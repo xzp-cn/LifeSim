@@ -1,0 +1,6 @@
+#	成就表					
+#	Id		Name	Content	ImageName	TreasureArr
+#	int		string	string	string	string
+#	物品编号	策划备注	名字	物品名称	图片名称	背包物品组合
+	30000	勋章物品	勋章1	勋章一	image	20000|20001|20002
+	30001		勋章2	这是宝藏2	image	20001|20002|20004|20005

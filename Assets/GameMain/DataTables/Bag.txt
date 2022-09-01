@@ -1,0 +1,11 @@
+#	背包表					
+#	Id		Name	Content	ImageName	TypeId
+#	int		string	string	string	int
+#	物品编号	策划备注	名字	物品名称	图片名称	类型
+	20000	背包物品	宝藏1	这是一个物品	image	0
+	20001		宝藏2	这是宝藏2	image	1
+	20002		宝藏3	这是宝藏3	image	0
+	20003		宝藏4	这是宝藏4	image	1
+	20004		宝藏5	这是宝藏5	image	2
+	20005		宝藏6	这是宝藏6	image	2
+	20006		宝藏7	这是宝藏7	image	3

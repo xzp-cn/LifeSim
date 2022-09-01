@@ -1,0 +1,10 @@
+{
+  "GameVersion": "0.1.0",
+  "InternalGameVersion": 4,
+  "CheckVersionUrl": "http://127.0.0.1:80/Resources/{0}Version.txt",
+  "WindowsAppUrl": "http://127.0.0.1:80/Resources/Windows",
+  "MacOSAppUrl": "http://127.0.0.1:80/Resources/Windows",
+  "IOSAppUrl": "http://127.0.0.1:80/Resources/Windows",
+  "AndroidAppUrl": "http://127.0.0.1:80/Resources/Windows",
+  "END_OF_JSON": ""
+}

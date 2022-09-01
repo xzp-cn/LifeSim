@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3669644368050876996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3669644368050877002}
+  - component: {fileID: 3669644368050876997}
+  m_Layer: 0
+  m_Name: UIPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3669644368050877002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669644368050876996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 734.3813, y: 766.3095, z: -99.0156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3669644368050876997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669644368050876996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70df30619c9c5a4981da12408f5dea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiStructs:
+  - uiName: "\u674E\u5B50\u60A6"
+    uiSprite: {fileID: 21300000, guid: b2d312f4f5414bb419bc785d663f819f, type: 3}
+  - uiName: "\u90B9\u5609\u6728"
+    uiSprite: {fileID: 21300000, guid: dd1a02e6e472d7540a71fa38f5697be1, type: 3}
+  - uiName: "\u5B66\u59D0"
+    uiSprite: {fileID: 21300000, guid: edaf7dc0daf72d147a415c22c84af6dc, type: 3}
+  - uiName: "\u674E\u6B23"
+    uiSprite: {fileID: 21300000, guid: bd0bdc44cd010a042a54d10f29477a1a, type: 3}
+  - uiName: "\u5A77\u5A77"
+    uiSprite: {fileID: 21300000, guid: 5e696deccafbc1742b896cac86484752, type: 3}
+  - uiName: "\u8D75\u96E8"
+    uiSprite: {fileID: 21300000, guid: 973fbc79fd31c5c48a332e572423946a, type: 3}
+  - uiName: "\u5F20\u53EF\u53EF"
+    uiSprite: {fileID: 21300000, guid: 7241303d3ee805e4f8487267e0726ef6, type: 3}
+  - uiName: "\u4E25\u51B0"
+    uiSprite: {fileID: 21300000, guid: a81de448f37e14248b2a4db571b8665d, type: 3}
+  - uiName: "\u9976\u6811"
+    uiSprite: {fileID: 21300000, guid: 5a4ffd39e19fb4d4b87f9e53ffb27658, type: 3}
+  - uiName: "\u9879\u5C1A"
+    uiSprite: {fileID: 21300000, guid: d2907e4a28902a4469c675d74389ce50, type: 3}
+  - uiName: "\u6768\u82B1"
+    uiSprite: {fileID: 21300000, guid: 4515e73e1f175494ebdb4a32ed0cc4c7, type: 3}
+  - uiName: "\u58EE\u5A1C"
+    uiSprite: {fileID: 21300000, guid: 22beac23e07aadb4fa22784a685514e3, type: 3}
+  - uiName: "\u674E\u771F"
+    uiSprite: {fileID: 21300000, guid: d5314317a5d7d024a89bc802194988e0, type: 3}
+  - uiName: "\u9EC4\u9752\u4E91"
+    uiSprite: {fileID: 21300000, guid: 5be8fd6568dc50d49a8fba45323aa8fb, type: 3}
+  - uiName: "\u7533\u660E\u4E9A"
+    uiSprite: {fileID: 21300000, guid: a012d5904ecce6a4897334eaa0979226, type: 3}
+  - uiName: "\u5F20\u5218\u85CF"
+    uiSprite: {fileID: 21300000, guid: df9b597f87349c84f94adbeb4d7db0b8, type: 3}
+  - uiName: "\u767D\u5BB6\u7433"
+    uiSprite: {fileID: 21300000, guid: 7a30f611ed59fb246a6c705a98b689e7, type: 3}
+  - uiName: "\u5F20\u8861"
+    uiSprite: {fileID: 21300000, guid: 6f8dd94fe15d26848b11aac7a69366e5, type: 3}
+  - uiName: "\u8001\u5E08"
+    uiSprite: {fileID: 21300000, guid: 743e24d09740b1142b7936045b1337ea, type: 3}
+  - uiName: "\u6559\u5B98"
+    uiSprite: {fileID: 21300000, guid: 78788e951527e3b4dbb3fe2e5d2b6523, type: 3}
+  - uiName: "\u5F20\u6797\u5E0C"
+    uiSprite: {fileID: 21300000, guid: c80977c423093f948b24e4d850debba6, type: 3}
+  - uiName: "\u5218\u5FB7\u534E"
+    uiSprite: {fileID: 21300000, guid: 4098379702ee8ac40baf499012568099, type: 3}
+  - uiName: "\u51B7\u9759"
+    uiSprite: {fileID: 21300000, guid: 1302b6b746bbb00419c5177b71a717ac, type: 3}
+  - uiName: "\u51B7\u7136"
+    uiSprite: {fileID: 21300000, guid: 7bbdb314af546d84a85d47b654579fee, type: 3}
+  - uiName: "\u8BFA\u57FA\u4E9A"
+    uiSprite: {fileID: 21300000, guid: a184574c8f8dd4444867b90b72673ca9, type: 3}
+  - uiName: "\u5218\u597D"
+    uiSprite: {fileID: 21300000, guid: a1e4c831b82f1784db28ef36a379d139, type: 3}
+  - uiName: "\u5F20\u6770"
+    uiSprite: {fileID: 21300000, guid: b1d7e12cdec75a8459884b85833ecb99, type: 3}
+  - uiName: "\u8C22\u5A1C"
+    uiSprite: {fileID: 21300000, guid: 1c3094d8fcbfaa04fbfff9a23970921e, type: 3}
+  - uiName: "\u603B\u6559\u5B98"
+    uiSprite: {fileID: 21300000, guid: a9c33a78a2347744f9d919c2134e2586, type: 3}
+  - uiName: "\u7F51\u53CB"
+    uiSprite: {fileID: 21300000, guid: 1fc2977a0df01c341a12ab7af134a35b, type: 3}
+  - uiName: "\u521D\u4E2D\u540C\u5B66"
+    uiSprite: {fileID: 21300000, guid: 5a8bbf51475c5b34bbfb75db376fe57e, type: 3}
+  - uiName: "\u8D75\u4E50\u5929"
+    uiSprite: {fileID: 21300000, guid: 3c2013e515316974b9af7de78637d154, type: 3}
+  - uiName: "\u8D2D\u7269\u5973\u751F"
+    uiSprite: {fileID: 21300000, guid: f7115c2c18f9fa64295d8786495a05ac, type: 3}
+  - uiName: "\u6768\u82D7"
+    uiSprite: {fileID: 21300000, guid: 98b70a5651417e74d9463d50250ebbe9, type: 3}
+  - uiName: "\u6768\u82D7\u5973\u670B\u53CB"
+    uiSprite: {fileID: 21300000, guid: fb94311bafce4b745b5c2f268b032488, type: 3}
+  - uiName: "\u5C0F\u5CF0"
+    uiSprite: {fileID: 21300000, guid: 6105e43f2a35458438d160361e2b5f25, type: 3}
+  - uiName: "\u5C0F\u5CF0\u6BCD\u4EB2"
+    uiSprite: {fileID: 21300000, guid: fee6fd719e0f3eb4b8fe277d4164623f, type: 3}
+  - uiName: "\u6570\u5B66\u8001\u5E08"
+    uiSprite: {fileID: 21300000, guid: 2530abb515e740a4f9a7621aa328d5ce, type: 3}
+  - uiName: map
+    uiSprite: {fileID: 21300000, guid: f828d2376a3bc954f9c9ce51f5452e83, type: 3}
+  m_TextureStructs:
+  - uiName: "\u64CD\u573A"
+    uiTexture2D: {fileID: 2800000, guid: 7f22aa1f9a27a23449e63f8f695fab37, type: 3}
+  - uiName: "\u6559\u5BA401"
+    uiTexture2D: {fileID: 2800000, guid: a4b626310fa09b949a4068e97a06db92, type: 3}
+  - uiName: "\u6559\u5BA401"
+    uiTexture2D: {fileID: 2800000, guid: c1aadd1ca225ff14b81bae94d492c201, type: 3}
+  - uiName: "\u98DF\u580201"
+    uiTexture2D: {fileID: 2800000, guid: 2d7ff8e31a62e1f4a8db7a45bc01b28d, type: 3}
+  - uiName: "\u98DF\u580202"
+    uiTexture2D: {fileID: 2800000, guid: d6e6c63eb944446448d64c598adbbca3, type: 3}
+  - uiName: "\u5BBF\u820D01"
+    uiTexture2D: {fileID: 2800000, guid: ac9c0eab1421d2540baa8de54a074825, type: 3}
+  - uiName: "\u56FE\u4E66\u998601"
+    uiTexture2D: {fileID: 2800000, guid: a09d1cb826e2b0241b96aa9438f73e0d, type: 3}
+  - uiName: "\u56FE\u4E66\u998602"
+    uiTexture2D: {fileID: 2800000, guid: 95dbb01dcc6c5704d987e75b00f020a3, type: 3}
+  - uiName: "\u6821\u56ED01"
+    uiTexture2D: {fileID: 2800000, guid: 2a3a962b1f699ee43b467084f00611f6, type: 3}
+  - uiName: "\u98DF\u580203"
+    uiTexture2D: {fileID: 2800000, guid: 7543c246cc0277f4980be1cf06275f04, type: 3}
+  - uiName: "\u5927\u95E801"
+    uiTexture2D: {fileID: 2800000, guid: cb7e55b2cf81b4640b2e54b74a6bd4ef, type: 3}
+  - uiName: "\u6797\u836B\u8DEF01"
+    uiTexture2D: {fileID: 2800000, guid: 51a18df2ff32ba849a29b9eeb8d2d4d7, type: 3}

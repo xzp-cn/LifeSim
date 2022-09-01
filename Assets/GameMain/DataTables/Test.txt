@@ -1,0 +1,6 @@
+#	ҢʔŤփ			
+#	Id		AssetName	BackgroundMusicId
+#	int		string	int
+#	ҢҢʔѠڅ	Ѹע	׊Դûӆ	ѳްҴûӆ
+	111111	Ңʔ1	Cube	1
+	111112	Ңʔ2	Sphere	2

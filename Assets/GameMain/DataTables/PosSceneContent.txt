@@ -1,0 +1,10 @@
+#	场景表					
+#	Id		StoryName	SpeakAsideIdArray	SceneBG	LocateName
+#	int		string	string	string	string
+#	场景编号	策划备注	剧情	旁白id数组	场景对话背景	校园位置
+	10000		场景一	20000|20001	DaMen01	daMen
+	10001		场景二	20002	SuShe01	suShe
+	10002		场景三	20003	ShiTang01	shiTang
+	10003		场景四	20004	SuShe01	linyinLu
+	10004		场景五	20006|20007|20008	DaMen01	daMen
+	10005		场景六	20009	JiaoShi02	jiaoXueLou

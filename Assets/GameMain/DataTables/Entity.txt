@@ -1,0 +1,15 @@
+#	实体表		
+#	Id		AssetName
+#	int		string
+#	实体编号	策划备注	资源名称
+	10000	宿舍物品	Treasure_SuShe
+	10001		Treasure_SuShe1
+	10002		Treasure_SuShe2
+	10003		Treasure_SuShe3
+	10004		Treasure_SuShe4
+	10005		Treasure_SuShe5
+	10006		Treasure_SuShe6
+	70000	敌人死亡特效	PlayerExplosion
+	70001		PlayerExplosion
+	70003		AsteroidExplosion
+	70004		MagicSoftExplosionBlue
