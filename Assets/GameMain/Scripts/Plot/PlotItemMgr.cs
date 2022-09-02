@@ -88,6 +88,15 @@ namespace StarForce
             plotItem.OverStory(_eventArgs.isOverStory);
         }
 
+        void SetNextStory(object sender, GameEventArgs args)
+        {
+            PlotItemNextFreshEventArgs _eventArgs = (PlotItemNextFreshEventArgs)args;
+            VarInt32 storyId = (VarInt32)_eventArgs.UserData;
+
+            PlotItem plotItem = GetActivePlotItem(storyId.Value);
+            plotItem.NextActive();
+        }
+
 
         public PlotItem ShowPlotItem(int storyID)
         {
@@ -148,18 +157,13 @@ namespace StarForce
             return plotItem;
         }
 
-
-
-
-
-
         //周期管理
         public virtual void OnOpen()
         {
             m_PlotInstanceRoot.gameObject.SetActive(true);
             GameEntry.Event.Subscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
             GameEntry.Event.Subscribe(PlotOverEventArgs.EventId, SetOverStory);
-
+            GameEntry.Event.Subscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
         }
         public virtual void Update()
         {
@@ -169,6 +173,7 @@ namespace StarForce
             m_PlotInstanceRoot.gameObject.SetActive(isShutdown);
             GameEntry.Event.Unsubscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
             GameEntry.Event.Unsubscribe(PlotOverEventArgs.EventId, SetOverStory);
+            GameEntry.Event.Unsubscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
         }
 
         public void OnRecycle()

@@ -39,8 +39,6 @@ public class AchieveMgr : IUIModule
         m_AchievementSystems = GameEntry.DataTable.GetDataTable<DRAchievementSystem>();
         achieveItemGridDatas=new List<AchieveItemGridData>();
 
-
-        GameEntry.Event.Subscribe(AchieveMedalFreshEventArgs.EventId, FreshTreasureShow);
     }
 
     public AchieveItem GetAchieveItemPoolObj()
@@ -74,11 +72,15 @@ public class AchieveMgr : IUIModule
     public void OnOpen()
     {
         GameEntry.Event.Subscribe(AchieveInfoFreshEventArgs.EventId, FreshInfo);
-      
-        m_AchivevePanelTransform.gameObject.SetActive(true);
-        //FreshTreasureShow(null, null);
+        GameEntry.Event.Subscribe(AchieveMedalFreshEventArgs.EventId, FreshTreasureShow);
+        
     }
 
+    public void Show()
+    {
+        m_AchivevePanelTransform.gameObject.SetActive(true);
+        FreshTreasureShow(null, null);
+    }
     /// <summary>
     /// 刷新事件
     /// </summary>
@@ -203,13 +205,12 @@ public class AchieveMgr : IUIModule
     public void OnClose(bool isShutdown, object userData)
     {
         m_AchivevePanelTransform.gameObject.SetActive(false);
-        if (m_AchieveInfoPanelTransform.gameObject.activeSelf)
-        {
-            CloseBagPanel();
-        }
-
-        OnRecycle();
-
+        //if (m_AchieveInfoPanelTransform.gameObject.activeSelf)
+        //{
+        //    CloseBagPanel();
+        //}
+        //Log.Warning("移除事件");
+        GameEntry.Event.Unsubscribe(AchieveInfoFreshEventArgs.EventId, FreshInfo);
         GameEntry.Event.Unsubscribe(AchieveMedalFreshEventArgs.EventId, FreshTreasureShow);
     }
     public void OnRecycle()
@@ -219,8 +220,8 @@ public class AchieveMgr : IUIModule
 
     public void CloseBagPanel()
     {
-        GameEntry.Event.Unsubscribe(AchieveInfoFreshEventArgs.EventId, FreshInfo);
-      
+        m_AchivevePanelTransform.gameObject.SetActive(false);
+        OnRecycle();
     }
 
     

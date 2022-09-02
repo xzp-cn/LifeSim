@@ -143,7 +143,7 @@ namespace StarForce
         public void OnAchieveBtnClick()
         {
             Log.Debug("成就系统打开");
-            m_AchievePanelMgr.OnOpen();
+            m_AchievePanelMgr.Show();
         }
         public void OnAchieveCloseBtnClick()
         {
@@ -164,7 +164,7 @@ namespace StarForce
 #endif
         {
             base.OnInit(userData);
-            Log.Debug("初始化");
+            //Log.Warning("初始化");
             if (PlotItemMgr == null)
             {
                 PlotItemMgr = new PlotItemMgr();
@@ -239,7 +239,7 @@ namespace StarForce
 
             //m_QuesManager.OnOpen();
 
-            //m_AchievePanelMgr.OnOpen();
+            m_AchievePanelMgr.OnOpen();
 
             m_JzMgr.OnOpen();
 
@@ -315,6 +315,8 @@ namespace StarForce
             GameEntry.Event.Unsubscribe(GameShowEventArgs.EventId, ShowGame);
             GameEntry.TTS.StopPlay();
         }
+
+        
 
         /// <summary>
         /// 页面结束

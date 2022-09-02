@@ -280,6 +280,14 @@ public class StoryModule :StoryModuleBase
                 StoryRefresh();
                 callback?.Invoke();
             },
+            OnClickCancel = delegate(object userData)
+            {//
+
+                int _index=tableIndex;
+                _index++;
+                int _CurStoryId = storyIdRange[Mathf.Clamp(_index, 0, storyIdRange.Length - 1)];
+                GameEntry.Event.Fire(this,PlotItemNextFreshEventArgs.Create(_CurStoryId));
+            }
         });
     }
 

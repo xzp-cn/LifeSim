@@ -64,7 +64,7 @@ namespace StarForce
 
             if (m_PortraitOfManForm != null)
             {
-                m_PortraitOfManForm.Close(true );
+                m_PortraitOfManForm.Close(true);
                 m_PortraitOfManForm = null;
             }
 

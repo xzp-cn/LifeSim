@@ -18,6 +18,8 @@ namespace StarForce
 
         public Image image_textBG;
 
+        public Image image_Btn;
+
         public Text storyText;
         // Start is called before the first frame update
 
@@ -30,6 +32,8 @@ namespace StarForce
             }
 
             storyId = _storyId;
+
+            image_Btn.enabled = true;
 
             gameObject.SetActive(true);
             StopAllCoroutines();
@@ -50,6 +54,13 @@ namespace StarForce
         public void OverStory(bool isOver)
         {
             image_circle.enabled = isOver;
+            NextActive();
+        }
+
+        public void NextActive()
+        {
+            image_Btn.enabled = true;
+            image_Btn.raycastTarget = true;
         }
 
 

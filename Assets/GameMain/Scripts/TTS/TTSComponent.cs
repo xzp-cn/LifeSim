@@ -100,14 +100,23 @@ namespace StarForce
         private IEnumerator GetAudioClip(string AudioText)
         {
             string url = Utility.Text.Format(_Url, AudioText);
-            using (UnityWebRequest _AudioWeb = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+            
+            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
             {
-                yield return _AudioWeb.SendWebRequest();
-                if (_AudioWeb.isNetworkError)
+                DownloadHandlerAudioClip dHA = new DownloadHandlerAudioClip(string.Empty, AudioType.MPEG);
+                dHA.streamAudio = true;
+                www.downloadHandler = dHA;
+                www.SendWebRequest();
+                while (www.downloadProgress < 1)
+                {
+                    //Debug.Log(www.downloadProgress);
+                    yield return new WaitForSeconds(.1f);
+                }
+                if (www.isNetworkError|| www.responseCode != 200)
                 {
                     yield break;
                 }
-                AudioClip _Cli = DownloadHandlerAudioClip.GetContent(_AudioWeb);
+                AudioClip _Cli = DownloadHandlerAudioClip.GetContent(www);
                 if (_Cli.LoadAudioData())
                 {
                    //Debug.Log("音频已成功加载");

@@ -24,6 +24,7 @@ public class HomePageForm : UGuiForm
         //TODO 全局清理
         GameEntry.DataNode.Clear();
         
+
         Log.Debug("重新开始");
         //
         m_ProcedureMenu.StartGame();

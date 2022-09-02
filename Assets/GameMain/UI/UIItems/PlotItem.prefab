@@ -649,6 +649,7 @@ MonoBehaviour:
   storyId: 0
   image_circle: {fileID: 5856590495848673366}
   image_textBG: {fileID: 5322541449302785129}
+  image_Btn: {fileID: 2538162718069746729}
   storyText: {fileID: 6383240724636860402}
 --- !u!1 &7612329133998654124
 GameObject:
