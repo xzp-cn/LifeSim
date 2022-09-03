@@ -4,6 +4,7 @@ public class AchieveItemData
     public string name;
     public string imageName;
     public string inforText;
+    public string treasureArr;
 }
 
 

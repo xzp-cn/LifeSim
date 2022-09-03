@@ -16,7 +16,7 @@ public class AchieveItemObject : ObjectBase
 
     protected override void Release(bool isShutdown)
     {
-        BagItem bagItem = (BagItem)Target;
+        AchieveItem bagItem = (AchieveItem)Target;
         if (bagItem == null)
         {
             return;

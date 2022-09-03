@@ -279,7 +279,7 @@ public class StoryModule :StoryModuleBase
             {
                 StoryRefresh();
                 callback?.Invoke();
-            },
+            },  
             OnClickCancel = delegate(object userData)
             {//
 

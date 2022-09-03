@@ -175,7 +175,7 @@ public class BagPanelMgr : IUIModule
       
         if (!GameEntry.Setting.HasSetting("Treasure"))
         {
-            Log.Warning("当前背包中没有任何内容");
+            Log.Debug("当前背包中没有任何内容");
             return;
         }
         List<TreasureBagData> treasureBagDatas = GameEntry.Setting.GetObject<List<TreasureBagData>>("Treasure");
