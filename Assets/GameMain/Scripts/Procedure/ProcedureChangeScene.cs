@@ -109,6 +109,10 @@ namespace StarForce
             {
                 ChangeState<ProcedureCareer>(procedureOwner);
             }
+            else if (SceneId == 5)//主线目录
+            {
+                ChangeState<ProcedureCataLog>(procedureOwner);
+            }
         }
 
         private void OnLoadSceneSuccess(object sender, GameEventArgs e)

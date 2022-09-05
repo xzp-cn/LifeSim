@@ -56,5 +56,10 @@ namespace StarForce
         /// </summary>
         Life_GameForm = 106,
 
+        /// <summary>
+        /// 目录面板
+        /// </summary>
+        life_CataLogForm=107,
+
     }
 }

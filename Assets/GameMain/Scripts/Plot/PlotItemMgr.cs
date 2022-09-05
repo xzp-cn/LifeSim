@@ -94,7 +94,7 @@ namespace StarForce
             VarInt32 storyId = (VarInt32)_eventArgs.UserData;
 
             PlotItem plotItem = GetActivePlotItem(storyId.Value);
-            plotItem.NextActive();
+            plotItem.ActiveRaycast();
         }
 
 

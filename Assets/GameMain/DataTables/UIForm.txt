@@ -1,11 +1,12 @@
-#	界面配置表					
+#	面板					
 #	Id		AssetName	UIGroupName	AllowMultiInstance	PauseCoveredUIForm
 #	int		string	string	bool	bool
-#	界面编号	策划备注	资源名称	界面组名称	是否允许多个界面实例	是否暂停被其覆盖的界面
-	1	弹出框	DialogForm	Default	TRUE	FALSE
+#	面板	策划备注	名字	组	允许多个实例	停止其他
+	1	对话框	DialogForm	Default	TRUE	FALSE
 	100	首页	Life_HomePage	Default	FALSE	TRUE
-	101	人物画像	Life_portraitOfMan	Default	FALSE	TRUE
+	101	剧情	Life_portraitOfMan	Default	FALSE	TRUE
 	103	设置面板	SettingForm	Setting	FALSE	TRUE
 	104	正能量	Life_PositiveForm	Default	FALSE	TRUE
-	105	职业规划	Life_CareerForm	Default	FALSE	TRUE
-	106	游戏面板	Life_Game	Default	FALSE	TRUE
+	105	职业生涯	Life_CareerForm	Default	FALSE	TRUE
+	106	游戏	Life_Game	Default	FALSE	TRUE
+	107	目录	Life_CatalogsForm	Default	FALSE	TRUE

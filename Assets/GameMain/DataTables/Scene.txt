@@ -1,8 +1,9 @@
-#	场景配置表			
+#	场景表			
 #	Id		AssetName	BackgroundMusicId
 #	int		string	int
-#	场景编号	策划备注	资源名称	背景音乐编号
-	1	场景一	HomePage	1
-	2	场景二	PortraitOfMan	2
-	3	场景三	PsychologicalCounseling	3
-	4	场景四	CareerChoice	1
+#	Id	策划备注	场景名字	背景音乐id
+	1	首页	HomePage	1
+	2	剧情	PortraitOfMan	2
+	3	心理治疗	PsychologicalCounseling	3
+	4	职业选择	CareerChoice	1
+	5	主线目录	CatLog	1

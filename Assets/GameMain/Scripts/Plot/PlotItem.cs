@@ -54,21 +54,26 @@ namespace StarForce
         public void OverStory(bool isOver)
         {
             image_circle.enabled = isOver;
-            NextActive();
+            ActiveRaycast();
         }
 
-        public void NextActive()
+        public void ActiveRaycast()
         {
             image_Btn.enabled = true;
-            image_Btn.raycastTarget = true;
         }
 
 
         public void OnBtnClick()
         {
+
+            GameEntry.DataNode.SetData("Story", new VarInt32() { Value = storyId });
+
+            GameEntry.Event.Fire(this, StoryEventArgs.Create(storyId));
+            return;
             //流程数据重置
             GameEntry.Event.Fire(this,StoryEventArgs.Create(storyId));
             Log.Debug("切换场景事件 "+storyId);
+           
            
             //切换ui背景
             VarInt32 varId=new VarInt32();

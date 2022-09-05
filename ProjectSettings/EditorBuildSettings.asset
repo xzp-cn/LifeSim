@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameMain/Scenes/CareerChoice.unity
     guid: 5bbab3b7e52cde14bb32f72ecfe931e0
+  - enabled: 1
+    path: Assets/GameMain/Scenes/CatLog.unity
+    guid: bb313d57f462a7d40b2bd97d27e84276
   m_configObjects: {}

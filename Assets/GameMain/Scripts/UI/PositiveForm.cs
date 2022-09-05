@@ -34,7 +34,7 @@ namespace StarForce
         public void OnBackButtonClick()
         {
             Log.Debug("返回到初始场景");
-            //m_ProcedurePositive.GotoMenu();
+            //m_ProcedurePositive.GotoStory();
         }
 
 

@@ -165,12 +165,12 @@ namespace StarForce
         {
             base.OnInit(userData);
             //Log.Warning("初始化");
-            if (PlotItemMgr == null)
-            {
-                PlotItemMgr = new PlotItemMgr();
-                ((PlotItemMgr)PlotItemMgr).Init(m_PlotParent, m_PlotItem);
-                ((PlotItemMgr)PlotItemMgr).InitStoryItems();
-            }
+            //if (PlotItemMgr == null)
+            //{
+            //    PlotItemMgr = new PlotItemMgr();
+            //    ((PlotItemMgr)PlotItemMgr).Init(m_PlotParent, m_PlotItem);
+            //    ((PlotItemMgr)PlotItemMgr).InitStoryItems();
+            //}
 
             if (StoryModuleMgr == null)
             {
@@ -233,7 +233,7 @@ namespace StarForce
 
             m_RoleItemMgr.OnOpen();
 
-            PlotItemMgr.OnOpen();
+            //PlotItemMgr.OnOpen();
 
             m_MapLocate.OnOpen();
 
@@ -265,7 +265,7 @@ namespace StarForce
         {
             base.OnUpdate(elapseSeconds, realElapseSeconds);
 
-            PlotItemMgr?.Update();
+            //PlotItemMgr?.Update();
 
             m_RoleItemMgr?.Update();
 
@@ -303,7 +303,7 @@ namespace StarForce
             Log.Debug("关闭当前PortraitOfManForm" + isShutdown.ToString()+userData);
             base.OnClose(isShutdown, userData);
 
-            PlotItemMgr.OnClose(isShutdown, userData);
+            //PlotItemMgr.OnClose(isShutdown, userData);
             m_RoleItemMgr.OnClose(isShutdown, userData);
             StoryModuleMgr.OnClose(isShutdown, userData);
             m_MapLocate.OnClose(isShutdown, userData);

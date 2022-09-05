@@ -1,14 +1,21 @@
-﻿using GameFramework.Event;
+﻿using System.Collections;
+using System.Collections.Generic;
+using GameFramework.Event;
+using GameFramework.Fsm;
+using StarForce;
+using UnityEngine;
 using UnityGameFramework.Runtime;
+using GameEntry = StarForce.GameEntry;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
-namespace StarForce {
-
-    public class ProcedureHomePage : ProcedureBase
+namespace StarForce
+{
+    public class ProcedureCataLog : ProcedureBase
     {
+        private bool m_GotoStory = false;
         private bool m_StartGame = false;
-        private HomePageForm m_HomeForm = null;
+        private CatalogsForm m_cataLogForm = null;
 
-        private int? serialId_HomeForm;
+        
         public override bool UseNativeDialog
         {
             get
@@ -17,9 +24,13 @@ namespace StarForce {
             }
         }
 
-        public void StartGame()
+        public void BackHome()
         {
             m_StartGame = true;
+        }
+        public void GotoStory()
+        {
+            m_GotoStory = true;
         }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
@@ -29,7 +40,8 @@ namespace StarForce {
             GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
             m_StartGame = false;
-            serialId_HomeForm= GameEntry.UI.OpenUIForm(UIFormId.Life_HomePage, this);
+            m_GotoStory = false;
+            GameEntry.UI.OpenUIForm(UIFormId.life_CataLogForm, this);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -38,10 +50,10 @@ namespace StarForce {
 
             GameEntry.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
-            if (m_HomeForm != null)
+            if (m_cataLogForm != null)
             {
-                m_HomeForm.Close(isShutdown);
-                m_HomeForm = null;
+                m_cataLogForm.Close(isShutdown);
+                m_cataLogForm = null;
             }
         }
 
@@ -51,15 +63,23 @@ namespace StarForce {
 
             if (m_StartGame)
             {
-                Log.Debug("跳转到下一个场景");
+                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.HomePage"));
+                Log.Debug("跳转到首页");
                 //return;
-                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.CataLog"));
+                
                 //procedureOwner.SetData<VarByte>("GameMode", (byte)GameMode.Survival);
+                ChangeState<ProcedureChangeScene>(procedureOwner);
+            }
+
+            if (m_GotoStory)
+            {
+                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.PortraitOfMan"));
+             
                 ChangeState<ProcedureChangeScene>(procedureOwner);
             }
         }
 
-        protected  override void OnDestroy(ProcedureOwner procedureOwner)
+        protected override void OnDestroy(ProcedureOwner procedureOwner)
         {
             base.OnDestroy(procedureOwner);
         }
@@ -73,7 +93,7 @@ namespace StarForce {
                 return;
             }
 
-            m_HomeForm = (HomePageForm)ne.UIForm.Logic;
+            m_cataLogForm = (CatalogsForm)ne.UIForm.Logic;
         }
     }
 }
