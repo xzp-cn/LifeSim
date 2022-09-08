@@ -14,7 +14,7 @@ public class JzFreshEventArgs : GameEventArgs
 
     public JzFreshEventArgs()
     {
-
+        
     }
     /// <summary>
     /// 获取用户自定义数据。

@@ -130,7 +130,6 @@ public class StoryModule :StoryModuleBase
         m_fsm = fsm;
         //注册修改场景ID 事件
         GameEntry.Event.Subscribe(StoryEventArgs.EventId, ChangeTableIdEvent);
-        GameEntry.Event.Subscribe(QuesOverEventArgs.EventId, OverExam);
         GameEntry.Event.Subscribe(StoryFreshEventArgs.EventId, FreshStory);
     }
 
@@ -156,11 +155,9 @@ public class StoryModule :StoryModuleBase
             storyOverDic[m_CurStoryId] = true;
             //当前剧情结束，场景UI完成 刷新
             GameEntry.Event.Fire(this,PlotOverEventArgs.Create(m_CurStoryId,true));
-            //
-            //GameEntry.Event.Fire(this, QuesFreshEventArgs.Create(m_CurStoryId));
 
-            GameEntry.Event.Fire(this, QuesOverEventArgs.Create(null));
-            //
+            OverExam();
+        
         }
         else
         {
@@ -216,8 +213,9 @@ public class StoryModule :StoryModuleBase
         base.OnDestroy(fsm);
 
         GameEntry.Event.Unsubscribe(StoryEventArgs.EventId, ChangeTableIdEvent);
-        GameEntry.Event.Unsubscribe(QuesOverEventArgs.EventId, OverExam);
         GameEntry.Event.Unsubscribe(StoryFreshEventArgs.EventId, FreshStory);
+
+
 
         if (GameEntry.DataNode.Root != null)
         {
@@ -242,24 +240,13 @@ public class StoryModule :StoryModuleBase
     }
 
 
-    void OverExam(object sender,GameEventArgs args)
+    void OverExam()
     {
         //TODO 选择 0.寄语 1.游戏
-        // GameEntry.Event.Fire(JzFreshEventArgs.EventId,JzFreshEventArgs.Create(m_CurStoryId));
-        //
-        int x= Random.Range(0, 10000) % 2; 
-        x = 0;
-        if (x==0)
-        {
-            GameEntry.Event.Fire(JzFreshEventArgs.EventId, JzFreshEventArgs.Create(m_CurStoryId));
-        }
-        else
-        {
-            GameEntry.Event.Fire(GameShowEventArgs.EventId, GameShowEventArgs.Create(GameId.Puzzle));
-        }
+        GameEntry.Event.Fire(JzFreshEventArgs.EventId, JzFreshEventArgs.Create(m_CurStoryId));
     }
 
-    void FreshStory(object sender,GameEventArgs args)
+    void FreshStory(object sender, GameEventArgs args)
     {
         Action callback = () =>
         {

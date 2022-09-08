@@ -53,44 +53,65 @@ public class TreasureSuShe : TreasureModuleBase
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
     void FreshData(object sender,GameEventArgs args)
     {
-        TreasureData treasureData=(TreasureData)((ModelTreasureStoreFreshEventArgs)args).UserData;
-        if (treasureDic.ContainsKey(treasureData.StoryId))
+        TreasureEntityData treasureData=(TreasureEntityData)((ModelTreasureStoreFreshEventArgs)args).UserData;
+        if (treasureDic.ContainsKey(treasureData.storyId))
         {
-            List<TreasureData> treasureDataList=treasureDic[treasureData.StoryId];
+            List<TreasureData> treasureDataList=treasureDic[treasureData.storyId];
             if (treasureDataList.Count!=0)
             {
-                TreasureData data= treasureDataList.Find((_data) => { return _data.TypeId == treasureData.TypeId; });
+                TreasureData data= treasureDataList.Find((_data) => { return _data.TypeId == treasureData.typeId; });
                 if (data!=null)
                 {
-                    treasureDataList.Remove(data);
+                    if (treasureData.count==0)
+                    {
+                        treasureDataList.Remove(data);
+
+
+                        //更新当前剧情能量值
+                        bool has = false;
+                        if (!treasureDic.ContainsKey(treasureData.storyId))
+                        {
+                            has = true;
+                        }
+                        else if (treasureDic.ContainsKey(treasureData.storyId))
+                        {
+                            has = treasureDic[treasureData.storyId].Count != 0;
+                        }
+                        GameEntry.DataNode.SetData("StoryPower/" + treasureData.storyId, new VarBoolean()
+                        {
+                            Value = has
+                        });
+
+                    }
+                    else
+                    {
+                        data.MaxNum = treasureData.count;
+                    }
                 }
             }
         }
 
-        //更新当前剧情能量值
-        bool has = false;
-        if (!treasureDic.ContainsKey(treasureData.StoryId))
-        {
-            has = true;
-        }
-        else if (treasureDic.ContainsKey(treasureData.StoryId))
-        {
-            has = treasureDic[treasureData.StoryId].Count != 0;
-        }
-        GameEntry.DataNode.SetData("StoryPower/"+treasureData.StoryId,new VarBoolean()
-        {
-            Value = has
-        });
+      
     }
 
     public override void Clear()
     {
         GameEntry.Event.Unsubscribe(ModelTreasureStoreFreshEventArgs.EventId,FreshData);
-
-     
     }
 
-    
+}
+
+
+public class TreasureEntityData
+{
+    public int storyId;
+    public int typeId;
+    public int count;
 }

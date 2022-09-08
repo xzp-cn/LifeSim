@@ -66,6 +66,13 @@ namespace StarForce
         private AchieveMgr m_AchievePanelMgr;
 
         /// <summary>
+        /// 界面关闭
+        /// </summary>
+        [SerializeField]
+        private Transform m_GamePanel;
+        private GameMgr m_GameMgr;
+
+        /// <summary>
         /// 测试题
         /// </summary>
         //[SerializeField]
@@ -151,10 +158,20 @@ namespace StarForce
             m_AchievePanelMgr.CloseBagPanel();
         }
 
+        //卷轴关闭
         public void OnMessagePanelClose()
         {
             Log.Debug("消息面吧关闭");
             m_JzMgr.Close();
+        }
+
+        /// <summary>
+        /// 游戏界面关闭
+        /// </summary>
+        public void OnGameBtnClick()
+        {
+            Log.Debug("游戏界面关闭");
+            m_GameMgr.OnOpen();
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -214,6 +231,12 @@ namespace StarForce
                 m_JzMgr=new JzMgr();
                 m_JzMgr.Init(m_JzTransform);
             }
+
+            if (m_GameMgr == null)
+            {
+                m_GameMgr = new GameMgr();
+                m_GameMgr.Init(m_GamePanel);
+            }
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -254,7 +277,6 @@ namespace StarForce
             StoryModuleMgr.StartProcedure<StoryModule>();
 
             GameEntry.Event.Subscribe(StoryOverEventArgs.EventId, OverScene);
-            GameEntry.Event.Subscribe(GameShowEventArgs.EventId, ShowGame);
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -311,9 +333,10 @@ namespace StarForce
             m_BagPanelMgr.OnClose(isShutdown,userData);
             m_AchievePanelMgr.OnClose(isShutdown, userData);
             m_JzMgr.OnClose(isShutdown, userData);
+            m_GameMgr.OnClose(isShutdown,userData);
             GameEntry.Event.Unsubscribe(StoryOverEventArgs.EventId, OverScene);
-            GameEntry.Event.Unsubscribe(GameShowEventArgs.EventId, ShowGame);
             GameEntry.TTS.StopPlay();
+
         }
 
         
@@ -329,10 +352,6 @@ namespace StarForce
             m_ProcedurePortraitOfMan = null;
         }
 
-        public void ShowGame(object sender, GameEventArgs args)
-        {
-            GameEntry.UI.OpenUIForm(UIFormId.Life_GameForm, args);
-        }
     }
 }
 

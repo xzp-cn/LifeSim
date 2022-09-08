@@ -186,6 +186,7 @@ public class SceneModelComponent : GameFrameworkComponent
         GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));//背包更新
 
         GameEntry.Event.Fire(this,AchieveMedalFreshEventArgs.Create(null));//成就更新
+        
     }
 
 
@@ -213,7 +214,7 @@ public class SceneModelComponent : GameFrameworkComponent
     public void ResetAll()
      {
          //TODO::重置所有状态
-         ReferencePool.Release(SusheBase);
+
          //清空数据
          treasureDic.Clear();
     }

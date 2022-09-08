@@ -34,7 +34,7 @@ public class ModelTreasureStoreFreshEventArgs : GameEventArgs
         }
     }
 
-    public static ModelTreasureStoreFreshEventArgs Create(TreasureData args)
+    public static ModelTreasureStoreFreshEventArgs Create(TreasureEntityData args)
     {
         ModelTreasureStoreFreshEventArgs modelTreasureEventArgs = ReferencePool.Acquire<ModelTreasureStoreFreshEventArgs>();
         modelTreasureEventArgs.UserData = (object)args;

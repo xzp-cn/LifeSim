@@ -82,12 +82,12 @@ namespace StarForce
          
             return;
             //流程数据重置
-            GameEntry.Event.Fire(this,StoryEventArgs.Create(storyId));
-            Log.Debug("切换场景事件 "+storyId);
-            //切换ui背景
-            VarInt32 varId=new VarInt32();
-            varId.SetValue(storyId);
-            GameEntry.Event.Fire(this,PlotItemCallEventArgs.Create(varId));
+            //GameEntry.Event.Fire(this,StoryEventArgs.Create(storyId));
+            //Log.Debug("切换场景事件 "+storyId);
+            ////切换ui背景
+            //VarInt32 varId=new VarInt32();
+            //varId.SetValue(storyId);
+            //GameEntry.Event.Fire(this,PlotItemCallEventArgs.Create(varId));
         }
 
         public void PlayUISound(int uiSoundId)

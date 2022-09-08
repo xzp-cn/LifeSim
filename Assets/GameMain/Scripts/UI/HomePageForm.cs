@@ -32,6 +32,7 @@ public class HomePageForm : UGuiForm
     {
         //TODO 全局清理
         GameEntry.DataNode.Clear();
+        GameEntry.SceneModel.ResetAll();
         
         Log.Debug("重新开始");
         //

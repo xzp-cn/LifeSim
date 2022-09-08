@@ -97,8 +97,7 @@ public class Treasure : Entity
             int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy")+energy ;
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value =m_value });
 
-            //场景数据刷新
-            GameEntry.Event.Fire(this,ModelTreasureStoreFreshEventArgs.Create(m_TreasureData));
+            
         }
         else
         {
@@ -108,8 +107,16 @@ public class Treasure : Entity
                 num = clickNum,
                 bagId = m_TreasureData.BagId,
             }));
+            //
+            //场景数据刷新
+            TreasureEntityData data = new TreasureEntityData()
+            {
+                storyId = m_TreasureData.StoryId,
+                typeId = m_TreasureData.TypeId,
+                count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)
+            };
+            GameEntry.Event.Fire(this, ModelTreasureStoreFreshEventArgs.Create(data));
 
-          
         }
     }
 }

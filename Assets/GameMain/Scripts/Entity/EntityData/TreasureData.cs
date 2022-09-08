@@ -92,6 +92,7 @@ public class TreasureData : EntityData
         {
             return m_MaxNum;
         }
+        set { m_MaxNum = value; }
     }
 
     public int PerEnergy

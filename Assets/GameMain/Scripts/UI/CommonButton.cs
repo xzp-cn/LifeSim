@@ -22,7 +22,7 @@ namespace StarForce
 
 
         [SerializeField]
-        private UnityEvent m_OnClick = null;
+        public UnityEvent m_OnClick = null;
 
         private CanvasGroup m_CanvasGroup = null;
 
@@ -67,7 +67,7 @@ namespace StarForce
             }
 
             m_CanvasGroup.alpha = OnClickAlpha;
-            m_OnClick.Invoke();
+            m_OnClick?.Invoke();
         }
 
         public void OnPointerUp(PointerEventData eventData)
