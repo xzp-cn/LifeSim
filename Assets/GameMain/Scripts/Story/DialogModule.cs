@@ -189,6 +189,8 @@ public class DialogModule : StoryModuleBase
         }
         else//有对话
         {
+
+            //Log.Warning(tableIndex);
          
             FreshCharater(dialogIdRange[tableIndex]);
             FreshCharater(dialogIdRange[tableIndex+1]);
@@ -265,6 +267,11 @@ public class DialogModule : StoryModuleBase
 
         m_Character.OnDestroy();
         m_Character = null;
-        GameEntry.DataNode.SetData<VarInt32>("Story/StoryAside/Dialog", m_curId);
+
+        if (m_curId>0)
+        {
+            GameEntry.DataNode.SetData<VarInt32>("Story/StoryAside/Dialog", m_curId);
+        }
+      
     }
 }

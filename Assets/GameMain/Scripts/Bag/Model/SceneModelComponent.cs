@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 using GameEntry = StarForce.GameEntry;
 using DG.Tweening;
+using GameFramework;
+using GameFramework.DataTable;
 using StarForce;
 using UnityEngine.UIElements;
 
@@ -18,6 +20,8 @@ public class SceneModelComponent : GameFrameworkComponent
     private TreasureModuleBase SusheBase;
 
     public List<TreasureBagData> TreasureBagDatas;
+
+    public Dictionary<int, List<TreasureData>> treasureDic = new Dictionary<int, List<TreasureData>>();
     protected override void Awake()
     {
         base.Awake();
@@ -43,6 +47,9 @@ public class SceneModelComponent : GameFrameworkComponent
         TreasureBagDatas =new List<TreasureBagData>();
 
         GameEntry.Setting.RemoveSetting("Treasure");
+
+        InitStoryTaskValue();
+        
     }
 
     // Update is called once per frame
@@ -81,13 +88,13 @@ public class SceneModelComponent : GameFrameworkComponent
             DOTween.Kill(temp.gameObject);
         }
         //
-        string model = (string)((ModelChangeEventArgs)args).UserData;
+        ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
         //model = "JiaoShi01";
-        switch (model)
+        switch (model.modelName)
         {
             case "DaMen01"://大门
             case "SuShe01"://宿舍
-                SetSuShe();
+                SetSuShe(model.storyId);
                 break;  
             case "ShiTang01":
             case "ShiTang02":
@@ -135,35 +142,35 @@ public class SceneModelComponent : GameFrameworkComponent
 
     }
 
-    void SetSuShe()
+    void SetSuShe(int _storyId)
     {
         m_SuSheTransform.gameObject.SetActive(true);
         m_SuSheTransform.DOLocalMove(new Vector3(-5.28f, 4.33f, -5.76f), 1f).onComplete= () =>
         {
             if (SusheBase == null)
             {
-                Transform postionTransform = null;
-                int count = 0;
-                Vector3[] posArr = null;
-                SusheBase = new TreasureSuShe();
-                postionTransform = m_SuSheTransform.Find("RenShengMoNi_SuShe/Postion");
-                count = postionTransform.childCount;
-                posArr = new Vector3[count];
-                for (int i = 0; i < count; i++)
-                {
-                    posArr[i] = postionTransform.GetChild(i).position;
-                }
-                SusheBase.Init(posArr);
+                SusheBase =ReferencePool.Acquire<TreasureSuShe>();
             }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_SuSheTransform.Find("RenShengMoNi_SuShe/Postion");
+            count = postionTransform.childCount;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                posArr[i] = postionTransform.GetChild(i).position;
+            }
+            SusheBase.Init(posArr,_storyId);
         };
         //m_SuSheTransform.localPosition=new Vector3(0,0,4.75f);
 
     }
 
+    //收藏物品点击
     void FreshData(object sender,GameEventArgs args)
     {
         TreasureBagData modelTreasureData =(TreasureBagData)((ModelTreasureEventArgs) args).UserData;
-
 
         int bagID= modelTreasureData.bagId;
         TreasureBagData data=TreasureBagDatas.Find((_bData)=> { return _bData.bagId ==bagID; });
@@ -176,15 +183,45 @@ public class SceneModelComponent : GameFrameworkComponent
             data.num = modelTreasureData.num;
         }
         GameEntry.Setting.SetObject("Treasure",TreasureBagDatas);
-        GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));
+        GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));//背包更新
 
-        GameEntry.Event.Fire(this,AchieveMedalFreshEventArgs.Create(null));
+        GameEntry.Event.Fire(this,AchieveMedalFreshEventArgs.Create(null));//成就更新
     }
 
+
+    public void HideAllModels()
+    {
+        m_SuSheTransform.gameObject.SetActive(false);
+        m_ShiTangTransform.gameObject.SetActive(false);
+        m_JiaoShiTransform.gameObject.SetActive(false);
+        m_TuShuGuanTransform.gameObject.SetActive(false);
+    }
+
+
+    void InitStoryTaskValue()
+    {
+        for (int i = 10000; i < 10036; i++)
+        {
+            GameEntry.DataNode.SetData("StoryPower/" + i, new VarBoolean()
+            {
+                Value = true
+            });
+        }
+    }
+
+
+    public void ResetAll()
+     {
+         //TODO::重置所有状态
+         ReferencePool.Release(SusheBase);
+         //清空数据
+         treasureDic.Clear();
+    }
 }
 
 public class TreasureBagData
 {
     public int num;
     public int bagId;
+    public int power;
 }

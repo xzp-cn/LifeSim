@@ -1,6 +1,7 @@
 ﻿using StarForce;
 using System.Collections;
 using System.Collections.Generic;
+using GameFramework.DataNode;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityGameFramework.Runtime;
@@ -19,7 +20,7 @@ public class Treasure : Entity
 #endif
     {
         base.OnInit(userData);
-        shakeAmount=new Vector3(0,0, 0.2f);
+        shakeAmount = new Vector3(0, 0, 0.2f);
     }
 
 #if UNITY_2017_3_OR_NEWER
@@ -49,13 +50,13 @@ public class Treasure : Entity
 
         if (isClicked)
         {
-            if (_timer<interval)
+            if (_timer < interval)
             {
                 _timer += realElapseSeconds;
 
 
                 Vector3 pos = CachedTransform.localPosition;
-                pos +=0.9f*shakeAmount;
+                pos += 0.9f * shakeAmount;
                 CachedTransform.localPosition = pos;
                 shakeAmount *= -1;
             }
@@ -68,7 +69,7 @@ public class Treasure : Entity
 
     protected override void OnHide(bool isShutdown, object userData)
     {
-        base.OnHide(isShutdown,userData);
+        base.OnHide(isShutdown, userData);
     }
 
     private float _timer = 0;
@@ -82,23 +83,33 @@ public class Treasure : Entity
         GameEntry.Sound.PlaySound(m_TreasureData.SoundId);
 
         clickNum++;
-        if (clickNum>m_TreasureData.MaxNum)
+        if (clickNum > m_TreasureData.MaxNum)
         {
-            Log.Debug("点击次数 "+clickNum);
+            Log.Debug("点击次数 " + clickNum);
             GameEntry.Entity.HideEntity(this);
             GameEntry.Entity.ShowEffect(
                 new EffectData(GameEntry.Entity.GenerateSerialId(), m_TreasureData.ClickEffectId)
                 {
                     Position = CachedTransform.localPosition,
                 });
+
+            int energy = (clickNum-1) * m_TreasureData.PerEnergy;
+            int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy")+energy ;
+            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value =m_value });
+
+            //场景数据刷新
+            GameEntry.Event.Fire(this,ModelTreasureStoreFreshEventArgs.Create(m_TreasureData));
         }
         else
         {
-            GameEntry.Event.Fire(this,ModelTreasureEventArgs.Create(new TreasureBagData()
+            //更新背包
+            GameEntry.Event.Fire(this, ModelTreasureEventArgs.Create(new TreasureBagData()
             {
                 num = clickNum,
-                bagId = m_TreasureData.BagId
+                bagId = m_TreasureData.BagId,
             }));
+
+          
         }
     }
 }

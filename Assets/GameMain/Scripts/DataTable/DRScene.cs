@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-01 16:10:28.289
+// 生成时间：2022-09-08 11:17:10.109
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// 场景配置表。
+    /// 场景表。
     /// </summary>
     public class DRScene : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取场景编号。
+        /// 获取Id。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取资源名称。
+        /// 获取场景名字。
         /// </summary>
         public string AssetName
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取背景音乐编号。
+        /// 获取背景音乐id。
         /// </summary>
         public int BackgroundMusicId
         {

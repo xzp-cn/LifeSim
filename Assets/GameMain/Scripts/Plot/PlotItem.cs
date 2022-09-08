@@ -21,6 +21,10 @@ namespace StarForce
         public Image image_Btn;
 
         public Text storyText;
+
+        public Image image_lock;
+
+        public Toggle m_Toggle;
         // Start is called before the first frame update
 
         public void Init(int _storyId,string _text)
@@ -33,7 +37,7 @@ namespace StarForce
 
             storyId = _storyId;
 
-            image_Btn.enabled = true;
+            //image_Btn.enabled = true;
 
             gameObject.SetActive(true);
             StopAllCoroutines();
@@ -42,11 +46,15 @@ namespace StarForce
         }
 
 
-        public void SetCurrent(bool isCurrent)
-        {
-            image_textBG.enabled = isCurrent;
-        }
+        //public void SetCurrent(bool isCurrent)
+        //{
+        //    image_textBG.enabled = isCurrent;
+        //}
 
+        public void SetTask(bool AllOver)
+        {
+            m_Toggle.isOn = AllOver;
+        }
 
         /// <summary>
         /// 当前剧情结束
@@ -60,6 +68,7 @@ namespace StarForce
         public void ActiveRaycast()
         {
             image_Btn.enabled = true;
+            image_lock.transform.Find("Text_lock").gameObject.SetActive(false);
         }
 
 
@@ -69,12 +78,12 @@ namespace StarForce
             GameEntry.DataNode.SetData("Story", new VarInt32() { Value = storyId });
 
             GameEntry.Event.Fire(this, StoryEventArgs.Create(storyId));
+
+         
             return;
             //流程数据重置
             GameEntry.Event.Fire(this,StoryEventArgs.Create(storyId));
             Log.Debug("切换场景事件 "+storyId);
-           
-           
             //切换ui背景
             VarInt32 varId=new VarInt32();
             varId.SetValue(storyId);

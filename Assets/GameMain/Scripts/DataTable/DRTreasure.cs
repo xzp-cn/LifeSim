@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-01 16:10:28.688
+// 生成时间：2022-09-08 11:17:10.193
 //------------------------------------------------------------
 
 using GameFramework;
@@ -90,6 +90,24 @@ namespace StarForce
             private set;
         }
 
+        /// <summary>
+        /// 获取能量值。
+        /// </summary>
+        public int Power
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取故事id。
+        /// </summary>
+        public int StroyID
+        {
+            get;
+            private set;
+        }
+
         public override bool ParseDataRow(string dataRowString, object userData)
         {
             string[] columnStrings = dataRowString.Split(DataTableExtension.DataSplitSeparators);
@@ -108,6 +126,8 @@ namespace StarForce
             ClickEffectId = int.Parse(columnStrings[index++]);
             SoundId = int.Parse(columnStrings[index++]);
             TypeId = int.Parse(columnStrings[index++]);
+            Power = int.Parse(columnStrings[index++]);
+            StroyID = int.Parse(columnStrings[index++]);
 
             GeneratePropertyArray();
             return true;
@@ -126,6 +146,8 @@ namespace StarForce
                     ClickEffectId = binaryReader.Read7BitEncodedInt32();
                     SoundId = binaryReader.Read7BitEncodedInt32();
                     TypeId = binaryReader.Read7BitEncodedInt32();
+                    Power = binaryReader.Read7BitEncodedInt32();
+                    StroyID = binaryReader.Read7BitEncodedInt32();
                 }
             }
 

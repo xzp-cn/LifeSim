@@ -22,7 +22,11 @@ public class TreasureData : EntityData
     private int m_SoundId = 0;
 
     private int m_MaxNum=0;
-    public TreasureData(int entityId, int typeId,int maxNum)
+
+    private int perEnergyPower;
+
+    private int m_storyId;
+    public TreasureData(int entityId, int typeId,int maxNum,int storyId)
         : base(entityId, typeId)
     {
         IDataTable<DRTreasure> drTreasures = GameEntry.DataTable.GetDataTable<DRTreasure>();
@@ -38,6 +42,8 @@ public class TreasureData : EntityData
         m_ClickEffectId = drTreasure.ClickEffectId;
         m_SoundId = drTreasure.SoundId;
         m_MaxNum = maxNum;
+        perEnergyPower = drTreasure.Power;
+        m_storyId = storyId;
     }
 
     public string Name
@@ -85,6 +91,22 @@ public class TreasureData : EntityData
         get
         {
             return m_MaxNum;
+        }
+    }
+
+    public int PerEnergy
+    {
+        get
+        {
+            return perEnergyPower;
+        }
+    }
+
+    public int StoryId
+    {
+        get
+        {
+            return m_storyId;
         }
     }
 }

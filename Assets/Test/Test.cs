@@ -575,7 +575,7 @@ public class Test : MonoBehaviour
     {
         CSHeartBeat ne = (CSHeartBeat)e;
         Log.Debug("日志 "+ne.Id);
-    }
+    }   
 
     #endregion
 }

@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-01 16:10:28.237
+// 生成时间：2022-09-08 11:17:10.096
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// ҢʔŤփ。
+    /// 测试。
     /// </summary>
     public class DRTest : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取ҢҢʔѠڅ。
+        /// 获取Id。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取׊Դûӆ。
+        /// 获取名字。
         /// </summary>
         public string AssetName
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取ѳްҴûӆ。
+        /// 获取背景音乐、。
         /// </summary>
         public int BackgroundMusicId
         {

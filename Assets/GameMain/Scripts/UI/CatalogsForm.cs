@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameFramework.DataNode;
 using GameFramework.Event;
 using StarForce;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 using GameEntry = StarForce.GameEntry;
 
@@ -15,6 +17,8 @@ public class CatalogsForm : UGuiForm
 
     [SerializeField]
     private Transform m_PlotParent;
+
+    [SerializeField] private Text m_EnergyText;
     /// <summary>
     /// 滚动条模块
     /// </summary>
@@ -30,6 +34,20 @@ public class CatalogsForm : UGuiForm
         m_ProcedureCataLog.GotoStory();
     }
 
+    void FreshEnergy()
+    {
+        IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
+        int energy = 0;
+        if (dataNode == null)
+        {
+            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = energy });
+        }
+        else
+        {
+            energy= GameEntry.DataNode.GetData<VarInt32>("Energy");
+        }
+        m_EnergyText.text = energy.ToString();
+    }
     protected override void OnInit(object userData)
     {
         base.OnInit(userData);
@@ -60,6 +78,7 @@ public class CatalogsForm : UGuiForm
 
         PlotItemMgr.OnOpen();
 
+        FreshEnergy();
     }
 
     protected  override void OnUpdate(float elapseSeconds, float realElapseSeconds)
@@ -67,7 +86,6 @@ public class CatalogsForm : UGuiForm
         base.OnUpdate(elapseSeconds, realElapseSeconds);
         PlotItemMgr.Update();
     }
-
 
 
 #if UNITY_2017_3_OR_NEWER

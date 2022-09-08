@@ -129,8 +129,8 @@ namespace StarForce
         {
             DOTween.KillAll();
             //GameEntry.Event.Unsubscribe(StoryEventArgs.EventId, StoryRefresh);
-            GameEntry.Fsm.DestroyFsm(m_ProcedureFsm);
-            Log.Debug("销毁状态机");
+            bool isDes= GameEntry.Fsm.DestroyFsm(m_ProcedureFsm);
+            Log.Debug("销毁状态机 "+isDes);
         }
 
     }

@@ -55,6 +55,9 @@ namespace StarForce
                 GameEntry.Scene.UnloadScene(loadedSceneAssetNames[i]);
             }
 
+            //
+            GameEntry.SceneModel.HideAllModels();
+
             // 还原游戏速度
             GameEntry.Base.ResetNormalGameSpeed();
 

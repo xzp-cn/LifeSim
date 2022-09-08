@@ -34,7 +34,7 @@ public class ModelChangeEventArgs : GameEventArgs
         }
     }
 
-    public static ModelChangeEventArgs Create(string args)
+    public static ModelChangeEventArgs Create(ModelFreshData args)
     {
         ModelChangeEventArgs modelChangeEventArgs = ReferencePool.Acquire<ModelChangeEventArgs>();
         modelChangeEventArgs.UserData = (object)args;

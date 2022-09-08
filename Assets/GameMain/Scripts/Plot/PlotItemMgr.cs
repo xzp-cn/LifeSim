@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameFramework.DataNode;
 using GameFramework.DataTable;
 using GameFramework.Event;
 using GameFramework.ObjectPool;
@@ -60,24 +61,34 @@ namespace StarForce
                 PlotItem plotItem= ShowPlotItem(drSceneContent.Id);
                 plotItem.Init(drSceneContent.Id,drSceneContent.StorySummary);
             }
+
+            IDataNode node = GameEntry.DataNode.GetNode("Story");
+            if (node==null)
+            {
+                m_ActivePlotItems[0].ActiveRaycast();
+            }
+            else
+            {
+                int id= (VarInt32)node.GetData();
+                int startIndex = drSceneContentArray[0].Id;
+                for (int i =startIndex,j=0 ; i <=id; i++,j++)
+                {
+                    m_ActivePlotItems[j].ActiveRaycast();
+                }
+            }
         }
 
         /// <summary>
         /// 设置当前plot
         /// </summary>
         /// <param name="storyId"></param>
-        void SetCurrentStory(object sender,GameEventArgs args)
-        {
-            VarInt32 storyId =(VarInt32)((PlotItemCallEventArgs)args).UserData;
+        //void SetCurrentStory(object sender,GameEventArgs args)
+        //{
+        //    VarInt32 storyId =(VarInt32)((PlotItemCallEventArgs)args).UserData;
 
-            foreach (PlotItem _plotItem in m_ActivePlotItems)
-            {
-                _plotItem.SetCurrent(false);
-            }
-
-            PlotItem plotItem=GetActivePlotItem(storyId.Value);
-            plotItem.SetCurrent(true);
-        }
+        //    PlotItem plotItem=GetActivePlotItem(storyId.Value);
+        //    plotItem.SetCurrent(true);
+        //}
 
         void SetOverStory(object sender, GameEventArgs args)
         {
@@ -161,7 +172,14 @@ namespace StarForce
         public virtual void OnOpen()
         {
             m_PlotInstanceRoot.gameObject.SetActive(true);
-            GameEntry.Event.Subscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
+
+            foreach (PlotItem _plotItem in m_ActivePlotItems)
+            {
+                bool isOver=GameEntry.DataNode.GetData<VarBoolean>("StoryPower/"+_plotItem.storyId);
+                _plotItem.SetTask(isOver);
+            }
+
+            ///GameEntry.Event.Subscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
             GameEntry.Event.Subscribe(PlotOverEventArgs.EventId, SetOverStory);
             GameEntry.Event.Subscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
         }
@@ -171,7 +189,7 @@ namespace StarForce
         public  void OnClose(bool isShutdown, object userData)
         {
             m_PlotInstanceRoot.gameObject.SetActive(isShutdown);
-            GameEntry.Event.Unsubscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
+            //GameEntry.Event.Unsubscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
             GameEntry.Event.Unsubscribe(PlotOverEventArgs.EventId, SetOverStory);
             GameEntry.Event.Unsubscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
         }

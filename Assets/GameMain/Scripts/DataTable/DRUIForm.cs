@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-01 16:10:28.319
+// 生成时间：2022-09-08 11:17:10.116
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// 界面配置表。
+    /// 面板。
     /// </summary>
     public class DRUIForm : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取界面编号。
+        /// 获取面板。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取资源名称。
+        /// 获取名字。
         /// </summary>
         public string AssetName
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取界面组名称。
+        /// 获取组。
         /// </summary>
         public string UIGroupName
         {
@@ -55,7 +55,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取是否允许多个界面实例。
+        /// 获取允许多个实例。
         /// </summary>
         public bool AllowMultiInstance
         {
@@ -64,7 +64,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取是否暂停被其覆盖的界面。
+        /// 获取停止其他。
         /// </summary>
         public bool PauseCoveredUIForm
         {

@@ -53,7 +53,7 @@ namespace StarForce {
             {
                 Log.Debug("跳转到下一个场景");
                 //return;
-                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.CataLog"));
+                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.PortraitOfMan"));
                 //procedureOwner.SetData<VarByte>("GameMode", (byte)GameMode.Survival);
                 ChangeState<ProcedureChangeScene>(procedureOwner);
             }

@@ -62,10 +62,10 @@ public class StoryModule :StoryModuleBase
     {
         DRSceneContent drSceneContent = drSceneContentTable.GetDataRow(m_CurStoryId);
 
-        GameEntry.Event.Fire(this,ModelChangeEventArgs.Create(drSceneContent.SceneBG));
+        GameEntry.Event.Fire(this,ModelChangeEventArgs.Create(new ModelFreshData(){modelName = drSceneContent.SceneBG,storyId = CurStoryId}));
 
         //剧情按钮点击    
-        GameEntry.Event.Fire(this, PlotItemCallEventArgs.Create(m_CurStoryId));
+        //GameEntry.Event.Fire(this, PlotItemCallEventArgs.Create(m_CurStoryId));
         return;
 
         System.Action action = () =>
