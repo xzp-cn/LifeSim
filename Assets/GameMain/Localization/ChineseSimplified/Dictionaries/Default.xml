@@ -39,5 +39,11 @@
     <String Key="Voilence.Message" Value="远离暴力" />
     <String Key="GameOver.Title" Value="游戏结束" />
     <String Key="GameOver.Message" Value="是否回到首页？" />
+    <String Key="PuzzleTip.Title" Value="" />
+    <String Key="PuzzleTip.Message" Value="拼图未完成" />energy consumption
+    <String Key="EnergyConsumption.Title" Value="能量消耗提示" />
+    <String Key="EnergyConsumption.Message" Value="确认消耗{0}能量" />
+    <String Key="EnergyConsumptionLack.Title" Value="能量消耗" />
+    <String Key="EnergyConsumptionLack.Message" Value="剩余能量不足" />
   </Dictionary>
 </Dictionaries>

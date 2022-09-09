@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using StarForce;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -29,7 +30,23 @@ public class GameForm : UGuiForm
         if (isFinish)
         {
             Close();
-            GameEntry.Event.Fire(this, StoryFreshEventArgs.Create(null));
+            m_PuzzleMgr.OnClose(false,null);
+            DOTween.PlayAll();//
+        }
+        else
+        {
+            GameEntry.UI.OpenDialog(new DialogParams()
+            {
+                Mode = 2,
+                Title = GameEntry.Localization.GetString("PuzzleTip.Title"),
+                Message = GameEntry.Localization.GetString("PuzzleTip.Message"),
+                CancelText = GameEntry.Localization.GetString("Dialog.CancelButton"),
+                ConfirmText = GameEntry.Localization.GetString("Dialog.ConfirmButton"),
+                OnClickConfirm = delegate (object userdata)
+                {
+                    Log.Debug("未完成");
+                },
+            });
         }
     }
 
@@ -37,7 +54,7 @@ public class GameForm : UGuiForm
     {
         base.OnInit(userData);
 
-        gameId= (GameId)((GameShowEventArgs)userData).UserData;
+        gameId= (GameId)userData;
 
         if (m_PuzzleMgr == null)
         {

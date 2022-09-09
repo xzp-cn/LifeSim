@@ -2,7 +2,7 @@
 #	Id		AssetName	UIGroupName	AllowMultiInstance	PauseCoveredUIForm
 #	int		string	string	bool	bool
 #	面板	策划备注	名字	组	允许多个实例	停止其他
-	1	对话框	DialogForm	Default	TRUE	FALSE
+	1	对话框	DialogForm	PopUp	TRUE	FALSE
 	100	首页	Life_HomePage	Default	FALSE	TRUE
 	101	剧情	Life_portraitOfMan	Default	FALSE	TRUE
 	103	设置面板	SettingForm	Setting	FALSE	TRUE

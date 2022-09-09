@@ -40,6 +40,9 @@ public class SceneModelComponent : GameFrameworkComponent
         m_JiaoShiTransform = transform.Find("JiaoShi");
         m_TuShuGuanTransform = transform.Find("TuShuGuan");
         //
+
+        Debug.LogWarning("Start");
+
         GameEntry.Event.Subscribe(ModelChangeEventArgs.EventId, ModelChange);
         //
         GameEntry.Event.Subscribe(ModelTreasureEventArgs.EventId, FreshData);
@@ -72,8 +75,9 @@ public class SceneModelComponent : GameFrameworkComponent
     }
 
 
-    void OnDisable()
+    void OnDestroy()
     {
+        Debug.LogWarning("OnDestroy");
         GameEntry.Event.Unsubscribe(ModelChangeEventArgs.EventId, ModelChange);
         GameEntry.Event.Unsubscribe(ModelTreasureEventArgs.EventId,FreshData);
     }
@@ -170,7 +174,7 @@ public class SceneModelComponent : GameFrameworkComponent
     //收藏物品点击
     void FreshData(object sender,GameEventArgs args)
     {
-        TreasureBagData modelTreasureData =(TreasureBagData)((ModelTreasureEventArgs) args).UserData;
+        TreasureBagData modelTreasureData =(TreasureBagData)((ModelTreasureEventArgs)args).UserData;
 
         int bagID= modelTreasureData.bagId;
         TreasureBagData data=TreasureBagDatas.Find((_bData)=> { return _bData.bagId ==bagID; });
@@ -182,7 +186,9 @@ public class SceneModelComponent : GameFrameworkComponent
         {
             data.num = modelTreasureData.num;
         }
+
         GameEntry.Setting.SetObject("Treasure",TreasureBagDatas);
+
         GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));//背包更新
 
         GameEntry.Event.Fire(this,AchieveMedalFreshEventArgs.Create(null));//成就更新

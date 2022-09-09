@@ -173,6 +173,11 @@ namespace StarForce
             Log.Debug("游戏界面关闭");
             m_GameMgr.OnOpen();
         }
+        public void OnGameBtnCloseClick()
+        {
+            Log.Debug("游戏界面关闭");
+            m_GameMgr.OnClose(false,null);
+        }
 
 #if UNITY_2017_3_OR_NEWER
         protected override void OnInit(object userData)

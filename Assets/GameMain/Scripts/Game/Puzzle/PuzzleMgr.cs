@@ -18,7 +18,7 @@ public class PuzzleMgr : IUIModule
     private GridView gridView;
     private GridData gridData;
     private GridPiece gridPiece;
-    private int width=10, height=10;
+    private int width=2, height=2;
     public void Init(Transform _puzzleTr, GameObject _gridItem, GameObject _pieceItem, EdgeStruct _edgeStruct)
     {
         gridPar = _puzzleTr.Find("Grid");

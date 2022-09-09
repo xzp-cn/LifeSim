@@ -179,7 +179,10 @@ public class GridPiece
 
     public void OnClose()
     {
-
+        for (int i = par.childCount-1; i >=0; i--)
+        {
+            GameObject.Destroy(par.GetChild(i).gameObject);
+        }
     }
 }
 
