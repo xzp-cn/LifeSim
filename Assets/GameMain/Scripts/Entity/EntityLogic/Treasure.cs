@@ -106,6 +106,7 @@ public class Treasure : Entity
             {
                 num = clickNum,
                 bagId = m_TreasureData.BagId,
+                power = m_TreasureData.PerEnergy
             }));
             //
             //场景数据刷新

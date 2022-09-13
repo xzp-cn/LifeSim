@@ -89,6 +89,9 @@ namespace StarForce
 
         public TaskMgr m_TaskMgr;
         public Transform m_TaskTransform;
+        public GameObject tipBar;
+
+
 
 
         public void PauseOrPlay()
@@ -251,7 +254,7 @@ namespace StarForce
             if (m_TaskMgr==null)
             {
                 m_TaskMgr=new TaskMgr();
-                m_TaskMgr.Init(m_TaskTransform);
+                m_TaskMgr.Init(m_TaskTransform,PlotDialogTransform.parent.Find("TipBar"),tipBar);
             }
             
         }

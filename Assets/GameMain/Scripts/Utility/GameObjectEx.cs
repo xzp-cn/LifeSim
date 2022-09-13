@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using HighlightingSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class GameObjectEx
 {
@@ -66,5 +68,40 @@ public static class GameObjectEx
         }
         highlighter.tween = false;
         highlighter.constant = false;
+    }
+
+    public static void DoColor(this MaskableGraphic img,Color fromColor,Color toColor,float duration)
+    {
+        img.color = fromColor;
+        Color m = fromColor;
+        DOTween.To(
+            () =>
+            {
+                return m;
+            },
+            (t) => { img.color = t; },
+            toColor,
+            duration
+        );
+    }
+
+    public static void DoAlpha(this MaskableGraphic img,  float toAlpha, float duration)
+    {
+        
+        Color color = img.color;
+        float m = img.color.a;
+        DOTween.To(
+            () =>
+            {
+                return m;
+            },
+            (t) =>
+            {
+                color.a = t;
+                img.color = color;
+            },
+            toAlpha,
+            duration
+        );
     }
 }

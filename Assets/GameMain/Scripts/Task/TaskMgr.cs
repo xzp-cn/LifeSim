@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using GameFramework.DataTable;
 using GameFramework.Event;
+using GameFramework.ObjectPool;
 using StarForce;
 using UnityGameFramework.Runtime;
 using GameEntry = StarForce.GameEntry;
@@ -17,15 +18,24 @@ public class TaskMgr : IUIModule
     private Toggle m_toggleUp;
     private IDataTable<DRSceneContent> m_DrSceneContents;
     private Text m_Text;
-    public void Init(Transform _taskTransform)
+
+
+    //
+    private Transform tipBarPar;
+    private GameObject origin;
+    private IObjectPool<TipBarItemObject> m_TipObjectPool;
+
+    public void Init(Transform _taskTransform,Transform _tipBarPar,GameObject _origin)
     {
         m_TaskTipTransform = _taskTransform as RectTransform;
+        tipBarPar = _tipBarPar;
+        origin = _origin;
+
         m_toggleTip = m_TaskTipTransform.Find("Image/Toggle_tip").GetComponent<Toggle>();
         m_toggleUp = m_TaskTipTransform.Find("Toggle_up").GetComponent<Toggle>();
 
         UpDown();
 
-        
         m_toggleTip.onValueChanged.AddListener((isOn) =>
         {
             GameEntry.Event.Fire(this,TaskTipEventArgs.Create(isOn));
@@ -35,6 +45,16 @@ public class TaskMgr : IUIModule
 
         m_Text = m_TaskTipTransform.GetComponentInChildren<ContentSizeFitter>().GetComponentInChildren<Text>();
         m_DrSceneContents = GameEntry.DataTable.GetDataTable<DRSceneContent>();
+
+        bool exist = GameEntry.ObjectPool.HasObjectPool<TipBarItemObject>("tipBar");
+        if (!exist)
+        {
+            m_TipObjectPool = GameEntry.ObjectPool.CreateSingleSpawnObjectPool<TipBarItemObject>("tipBar",10);//
+        }
+        else
+        {
+            m_TipObjectPool= GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");
+        }
     }
 
     //上下
@@ -85,6 +105,10 @@ public class TaskMgr : IUIModule
         {
             m_toggleUp.isOn = true;
         }
+         
+        TipBar tipBar=GetTipBarGameObject();
+        string _content = drSceneContent.StoryName+", "+drSceneContent.StorySummary;
+        tipBar.Show(_content,3);
     }
 
     public void OnOpen()
@@ -92,6 +116,7 @@ public class TaskMgr : IUIModule
         m_TaskTipTransform.gameObject.SetActive(true);
 
         GameEntry.Event.Subscribe(MapLocateEventArgs.EventId,StoryFresh);
+        GameEntry.Event.Subscribe(ModelTreasureEventArgs.EventId,ShowTip);
     }
 
     public void Update()
@@ -106,8 +131,38 @@ public class TaskMgr : IUIModule
 
     public void OnClose(bool isShutdown, object userData)
     {
+        //提示面板
         m_TaskTipTransform.gameObject.SetActive(false);
         GameEntry.Event.Unsubscribe(MapLocateEventArgs.EventId, StoryFresh);
+        GameEntry.Event.Unsubscribe(ModelTreasureEventArgs.EventId, ShowTip);
+    }
+
+
+    void ShowTip(object sender,GameEventArgs args)
+    {
+        TreasureBagData modelTreasureData = (TreasureBagData)((ModelTreasureEventArgs)args).UserData;
+        TipBar tipBar=GetTipBarGameObject();
+        string content=  $"完成任务，能量 + {modelTreasureData.power}";
+        tipBar.Show(content,2);
+    }
+
+
+    //
+    TipBar GetTipBarGameObject()
+    {
+        TipBarItemObject tipBarItemObject=  m_TipObjectPool.Spawn();
+        if (tipBarItemObject!=null)
+        {
+            return (TipBar) tipBarItemObject.Target;
+        }
+        else
+        {
+            GameObject go= GameObject.Instantiate(origin);
+            go.transform.SetParent(tipBarPar);
+            TipBar tipBar= go.GetComponent<TipBar>();
+            m_TipObjectPool.Register(TipBarItemObject.Create(tipBar),true);
+            return tipBar;
+        }
     }
 
 }
