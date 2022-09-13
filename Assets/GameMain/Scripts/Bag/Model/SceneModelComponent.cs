@@ -22,6 +22,7 @@ public class SceneModelComponent : GameFrameworkComponent
     public List<TreasureBagData> TreasureBagDatas;
 
     public Dictionary<int, List<TreasureData>> treasureDic = new Dictionary<int, List<TreasureData>>();
+    private int curStoryId = 0;
     protected override void Awake()
     {
         base.Awake();
@@ -41,11 +42,14 @@ public class SceneModelComponent : GameFrameworkComponent
         m_TuShuGuanTransform = transform.Find("TuShuGuan");
         //
 
-        Debug.LogWarning("Start");
+        //Debug.LogWarning("Start");
 
         GameEntry.Event.Subscribe(ModelChangeEventArgs.EventId, ModelChange);
         //
         GameEntry.Event.Subscribe(ModelTreasureEventArgs.EventId, FreshData);
+
+
+        GameEntry.Event.Subscribe(TaskTipEventArgs.EventId, TaskTipEntities);
 
         TreasureBagDatas =new List<TreasureBagData>();
 
@@ -75,11 +79,12 @@ public class SceneModelComponent : GameFrameworkComponent
     }
 
 
-    void OnDestroy()
-    {
+    void OnDisble()
+    {   
         Debug.LogWarning("OnDestroy");
         GameEntry.Event.Unsubscribe(ModelChangeEventArgs.EventId, ModelChange);
         GameEntry.Event.Unsubscribe(ModelTreasureEventArgs.EventId,FreshData);
+        GameEntry.Event.Unsubscribe(TaskTipEventArgs.EventId, TaskTipEntities);
     }
 
     void ModelChange(object sender, GameEventArgs args)
@@ -148,6 +153,7 @@ public class SceneModelComponent : GameFrameworkComponent
 
     void SetSuShe(int _storyId)
     {
+        curStoryId = _storyId;
         m_SuSheTransform.gameObject.SetActive(true);
         m_SuSheTransform.DOLocalMove(new Vector3(-5.28f, 4.33f, -5.76f), 1f).onComplete= () =>
         {
@@ -195,6 +201,28 @@ public class SceneModelComponent : GameFrameworkComponent
         
     }
 
+    /// <summary>
+    /// 收藏物品高亮显示
+    /// </summary>
+    void TaskTipEntities(object sender,GameEventArgs args)
+    {
+        bool isOn = (VarBoolean)((TaskTipEventArgs)args).UserData;
+
+        List<TreasureData> treastList= treasureDic[curStoryId];
+        foreach (TreasureData data in treastList)
+        {
+            GameObject go= GameEntry.Entity.GetEntity(data.Id).gameObject;
+            if (isOn)
+            {
+                go.OpenHighLighterFlash();
+            }
+            else
+            {
+                go.CloseHighLighter();
+            }
+        }
+
+    }
 
     public void HideAllModels()
     {

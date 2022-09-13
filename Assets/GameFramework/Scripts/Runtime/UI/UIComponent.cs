@@ -641,7 +641,7 @@ namespace UnityGameFramework.Runtime
 
         /// <summary>
         /// 关闭所有正在加载的界面。
-        /// </summary>
+        /// </summary>s
         public void CloseAllLoadingUIForms()
         {
             m_UIManager.CloseAllLoadingUIForms();

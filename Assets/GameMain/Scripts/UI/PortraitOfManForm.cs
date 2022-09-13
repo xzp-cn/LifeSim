@@ -86,6 +86,11 @@ namespace StarForce
         /// </summary>
         public Transform m_JzTransform;
         public JzMgr m_JzMgr;
+
+        public TaskMgr m_TaskMgr;
+        public Transform m_TaskTransform;
+
+
         public void PauseOrPlay()
         {
             if (pauseImage.sprite == playSprite)
@@ -124,7 +129,7 @@ namespace StarForce
         {
             //m_QuesManager?.OnConfirmClick();
         }
-
+        
         public void OnQuitButtonClick()
         {
             GameEntry.UI.OpenDialog(new DialogParams()
@@ -242,6 +247,13 @@ namespace StarForce
                 m_GameMgr = new GameMgr();
                 m_GameMgr.Init(m_GamePanel);
             }
+
+            if (m_TaskMgr==null)
+            {
+                m_TaskMgr=new TaskMgr();
+                m_TaskMgr.Init(m_TaskTransform);
+            }
+            
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -271,6 +283,8 @@ namespace StarForce
 
             m_JzMgr.OnOpen();
 
+            m_TaskMgr.OnOpen();
+
             StoryModuleMgr.Initialize(GameFrameworkEntry.GetModule<IFsmManager>(),
                 new StoryModuleBase[]
                 {
@@ -299,7 +313,7 @@ namespace StarForce
             m_MapLocate?.Update();
 
             //m_QuesManager?.Update();
-
+            m_TaskMgr.Update();
 
             //if (Input.GetKeyDown(KeyCode.E))
             //{
@@ -339,6 +353,9 @@ namespace StarForce
             m_AchievePanelMgr.OnClose(isShutdown, userData);
             m_JzMgr.OnClose(isShutdown, userData);
             m_GameMgr.OnClose(isShutdown,userData);
+
+            m_TaskMgr.OnClose(isShutdown,userData);
+
             GameEntry.Event.Unsubscribe(StoryOverEventArgs.EventId, OverScene);
             GameEntry.TTS.StopPlay();
 

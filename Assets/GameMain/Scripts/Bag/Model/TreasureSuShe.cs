@@ -74,7 +74,7 @@ public class TreasureSuShe : TreasureModuleBase
                         treasureDataList.Remove(data);
 
 
-                        //更新当前剧情能量值
+                        //更新当前剧情任务
                         bool has = false;
                         if (!treasureDic.ContainsKey(treasureData.storyId))
                         {
