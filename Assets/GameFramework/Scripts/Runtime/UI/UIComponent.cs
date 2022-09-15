@@ -56,7 +56,7 @@ namespace UnityGameFramework.Runtime
         private int m_InstancePriority = 0;
 
         [SerializeField]
-        private Transform m_InstanceRoot = null;
+        public Transform m_InstanceRoot = null;
 
         [SerializeField]
         private string m_UIFormHelperTypeName = "UnityGameFramework.Runtime.DefaultUIFormHelper";

@@ -5,7 +5,9 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using System;
 using GameFramework;
+using GameFramework.Resource;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
@@ -20,6 +22,9 @@ namespace StarForce
         [SerializeField]
         private Text m_MessageText = null;
 
+        [SerializeField] 
+        private Image m_MessageBg;
+
         [SerializeField]
         private GameObject[] m_ModeObjects = null;
 
@@ -31,6 +36,9 @@ namespace StarForce
 
         [SerializeField]
         private Text[] m_OtherTexts = null;
+
+        [SerializeField]
+        private Image m_MessageBG = null;
 
         private int m_DialogMode = 1;
         private bool m_PauseGame = false;
@@ -66,7 +74,7 @@ namespace StarForce
         public void OnConfirmButtonClick()
         {
             Close();
-
+            m_MessageBG.gameObject.SetActive(false);
             if (m_OnClickConfirm != null)
             {
                 m_OnClickConfirm(m_UserData);
@@ -118,6 +126,7 @@ namespace StarForce
             RefreshPauseGame();
 
             m_UserData = dialogParams.UserData;
+            RefreshMessageImage();
 
             RefreshConfirmText(dialogParams.ConfirmText);
             m_OnClickConfirm = dialogParams.OnClickConfirm;
@@ -211,6 +220,57 @@ namespace StarForce
             {
                 m_OtherTexts[i].text = otherText;
             }
+        }
+
+        private void RefreshMessageImage()
+        {
+            if (m_UserData==null)
+            {
+                m_MessageBG.gameObject.SetActive(false);
+            }
+            else
+            {
+                Sprite sp= GetUISprite((string)m_UserData);
+                m_MessageBG.sprite = sp;
+                m_MessageBG.gameObject.SetActive(false);
+            }
+        }
+
+
+        private UIPool UiPool;
+        private GameObject uiPoolObject;
+
+        Sprite GetUISprite(string _imageName)
+        {
+            Sprite sp = null;
+            Action action = () =>
+            {
+                UIPool uiPool = uiPoolObject.GetComponent<UIPool>();
+                UIStruct uiStruct = uiPool.m_UiStructs.Find((_uiStruct) => { return _uiStruct.uiSprite.name.Equals(_imageName); });
+                sp = uiStruct.uiSprite;
+            };
+
+            if (uiPoolObject == null)
+            {
+                GameEntry.Resource.LoadAsset(AssetUtility.GetUIFormAsset("UIPrefab"), Constant.AssetPriority.UIFormAsset, new LoadAssetCallbacks(
+                    (assetName, asset, duration, userData) =>
+                    {
+                        uiPoolObject = (GameObject)asset;
+                        Log.Info("Load 资源 '{0}' OK.", "UIPrefab");
+                        action?.Invoke();
+                    },
+
+                    (assetName, status, errorMessage, userData) =>
+                    {
+                        Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'.", "UIPrefab", assetName, errorMessage);
+                    }));
+            }
+            else
+            {
+                action?.Invoke();
+            }
+
+            return sp;
         }
     }
 }

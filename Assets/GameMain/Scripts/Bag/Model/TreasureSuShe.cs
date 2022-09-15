@@ -45,8 +45,24 @@ public class TreasureSuShe : TreasureModuleBase
             }
             treasureDic.Add(storyId,treasureDatas);
         }
+        
+        //隐藏其他场景中的收藏品
+        foreach (var mdata in treasureDic)
+        {
+            if (mdata.Key==storyId)
+            {
+                continue;
+            }
+            else
+            {
+                foreach (var treasureData in mdata.Value)
+                {
+                    GameEntry.Entity.HideEntity(treasureData.Id);
+                }
+            }
+        }
 
-        //
+        //显示当前场景中的收藏品
         foreach (TreasureData _drTreasure in treasureDatas)
         {
             GameEntry.Entity.ShowTreasure(_drTreasure);

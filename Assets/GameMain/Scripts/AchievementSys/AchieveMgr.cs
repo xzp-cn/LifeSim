@@ -158,7 +158,6 @@ public class AchieveMgr : IUIModule
                     achieveItemGridData.num += n;
                 }
 
-
                 //数据刷新
                 string[] strArr = treasureArr.Split('|');
                 for (int i = 0; i < strArr.Length; i++)
@@ -171,6 +170,14 @@ public class AchieveMgr : IUIModule
                         treasureBagDatas.Remove(data);
                     }
                 }
+
+                //
+                GameEntry.UI.OpenDialog(new DialogParams()
+                {
+                    Mode = 1,
+                    Title = GameEntry.Localization.GetString("Dialog.AchieveTitle"),
+                    UserData = _drAchievementSystem.ImageName,
+                });
             }
         }
         //
@@ -280,4 +287,7 @@ public class AchieveMgr : IUIModule
     {
         
     }
+
+
+    
 }

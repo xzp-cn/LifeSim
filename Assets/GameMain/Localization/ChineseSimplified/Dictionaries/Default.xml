@@ -15,6 +15,8 @@
     <String Key="Dialog.OtherButton" Value="" />
     <String Key="Dialog.StoryTitle" Value="下个剧情" />
     <String Key="Dialog.StoryMessage" Value="是否确认跳转到下个剧情" />
+    <String Key="Dialog.AchieveTitle" Value="恭喜你获得" />
+    <String Key="Dialog.AchieveMessage" Value="" />
     <String Key="ForceUpdate.Title" Value="强制更新" />
     <String Key="ForceUpdate.Message" Value="当前游戏版本过旧，是否前往更新？" />
     <String Key="ForceUpdate.UpdateButton" Value="更新" />

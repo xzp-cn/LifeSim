@@ -31,25 +31,36 @@ public class TipBar : MonoBehaviour
         //回收
         rt.anchoredPosition=new Vector2(0,0);
         float m = 0;
-        DOTween.To(
-            () =>
-            {
-                return m;
-            },
-            (t) =>
-            {
-                rt.anchoredPosition = new Vector2(0, t);
-            },
-            500,
-            _duration
-        ).onComplete= () =>
-        {
-           IObjectPool<TipBarItemObject> tipBarItemObject=  GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");//
-           tipBarItemObject.Unspawn(this);
-        };
 
-        img.DoAlpha(0,_duration);
-        m_Text.DoAlpha(0,_duration);
+        DOTween.To(
+            () => { return m; },
+            (t) => { },
+            0,
+            1.5f
+        ).onComplete = () =>
+        {
+
+            DOTween.To(
+                () =>
+                {
+                    return m;
+                },
+                (t) =>
+                {
+                    rt.anchoredPosition = new Vector2(0, t);
+                },
+                500,
+                _duration
+            ).onComplete = () =>
+            {
+                IObjectPool<TipBarItemObject> tipBarItemObject = GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");//
+                tipBarItemObject.Unspawn(this);
+            };
+
+            img.DoAlpha(0, _duration);
+            m_Text.DoAlpha(0, _duration);
+
+        };
     }
 
     public void ResetVal()

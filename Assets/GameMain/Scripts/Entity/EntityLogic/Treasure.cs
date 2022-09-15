@@ -1,6 +1,7 @@
 ﻿using StarForce;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameFramework.DataNode;
 using UnityEngine;
 using UnityEngine.Diagnostics;
@@ -108,7 +109,7 @@ public class Treasure : Entity
                 bagId = m_TreasureData.BagId,
                 power = m_TreasureData.PerEnergy
             }));
-            //
+
             //场景数据刷新
             TreasureEntityData data = new TreasureEntityData()
             {
@@ -117,6 +118,20 @@ public class Treasure : Entity
                 count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)
             };
             GameEntry.Event.Fire(this, ModelTreasureStoreFreshEventArgs.Create(data));
+            //
+            //UIForm uiForm=GameEntry.UI.GetUIForm(AssetUtility.GetUIFormAsset("Life_portraitOfMan"));
+            //PortraitOfManForm form = uiForm.Logic as PortraitOfManForm;
+            //Transform btn=form.transform.Find("Screen_Portrait/center/center/Right/buttons/button");
+            //Vector2 screenPos= Camera.main.WorldToScreenPoint(transform.position);
+            //Vector3 worldPos;
+
+
+            //screenPos=RectTransformUtility.WorldToScreenPoint(null,btn.position);
+            //worldPos= Camera.main.ScreenToWorldPoint(screenPos);
+            //GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            //go.transform.position = worldPos;
+            //go.transform.localScale=Vector3.one*100;
+            //go.transform.DOMove(btn.position,2);
 
         }
     }

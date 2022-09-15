@@ -18,8 +18,6 @@ public class TaskMgr : IUIModule
     private Toggle m_toggleUp;
     private IDataTable<DRSceneContent> m_DrSceneContents;
     private Text m_Text;
-
-
     //
     private Transform tipBarPar;
     private GameObject origin;
@@ -38,7 +36,10 @@ public class TaskMgr : IUIModule
 
         m_toggleTip.onValueChanged.AddListener((isOn) =>
         {
-            GameEntry.Event.Fire(this,TaskTipEventArgs.Create(isOn));
+            if (isOn)
+            {
+                DialogOpen();
+            }
         });
 
         m_toggleUp.isOn = false;
@@ -165,4 +166,52 @@ public class TaskMgr : IUIModule
         }
     }
 
+
+    private int energyCosume = 5;
+    void DialogOpen()
+    {
+        //Log.Warning("123");
+
+        Action action = () =>
+        {
+            GameEntry.UI.OpenDialog(new DialogParams()
+            {
+                Mode = 1,
+                Title = GameEntry.Localization.GetString("EnergyConsumptionLack.Title"),
+                Message = GameEntry.Localization.GetString("EnergyConsumptionLack.Message"),
+                ConfirmText = GameEntry.Localization.GetString("Dialog.ConfirmButton"),
+                OnClickConfirm = delegate (object data)
+                {
+                    Log.Debug("关闭界面");
+                    m_toggleTip.isOn = false;
+                }
+            });
+        };
+
+
+        //对话框打开
+        GameEntry.UI.OpenDialog(new DialogParams()
+        {
+            Mode = 2,
+            Title = GameEntry.Localization.GetString("EnergyConsumption.Title"),
+            Message = string.Format(GameEntry.Localization.GetString("EnergyConsumption.Message"), energyCosume),
+            CancelText = GameEntry.Localization.GetString("Dialog.CancelButton"),
+            ConfirmText = GameEntry.Localization.GetString("Dialog.ConfirmButton"),
+            OnClickConfirm = delegate (object userdata)
+            {
+                Log.Debug("消耗能量");
+                int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
+                int leftEnergy = curEnergy - energyCosume;
+                if (leftEnergy < 0)
+                {
+                    action?.Invoke();
+                }
+                else
+                {
+                    GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = leftEnergy });
+                    GameEntry.Event.Fire(this, TaskTipEventArgs.Create(true));
+                }
+            },
+        });
+    }
 }
