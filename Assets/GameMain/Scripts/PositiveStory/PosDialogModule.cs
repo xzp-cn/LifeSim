@@ -218,7 +218,7 @@ public class PosDialogModule : StoryModuleBase
         //m_GotoNextDialogDelaySeconds = 0;
         m_Character.OnLeave();
 
-        DOTween.KillAll(false);
+        DOTween.KillAll();
         //强制切换，重置数据
         tableIndex = 0;
         m_lastId = -100;

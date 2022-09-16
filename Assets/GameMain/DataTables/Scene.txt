@@ -7,3 +7,5 @@
 	3	心理治疗	PsychologicalCounseling	3
 	4	职业选择	CareerChoice	1
 	5	主线目录	CatLog	1
+	6	场景选择	SceneSelect	1
+	7	角色选择	CharacterSelect	1

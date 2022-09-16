@@ -87,7 +87,6 @@ public static class GameObjectEx
 
     public static void DoAlpha(this MaskableGraphic img,  float toAlpha, float duration)
     {
-        
         Color color = img.color;
         float m = img.color.a;
         DOTween.To(

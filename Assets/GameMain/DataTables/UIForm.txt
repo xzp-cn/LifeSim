@@ -1,12 +1,14 @@
-#	é¢æ¿					
+#	Ãæ°å					
 #	Id		AssetName	UIGroupName	AllowMultiInstance	PauseCoveredUIForm
 #	int		string	string	bool	bool
-#	é¢æ¿	ç­–åˆ’å¤‡æ³¨	åå­—	ç»„	å…è®¸å¤šä¸ªå®ä¾‹	åœæ­¢å…¶ä»–
-	1	å¯¹è¯æ¡†	DialogForm	PopUp	TRUE	FALSE
-	100	é¦–é¡µ	Life_HomePage	Default	FALSE	TRUE
-	101	å‰§æƒ…	Life_portraitOfMan	Default	FALSE	TRUE
-	103	è®¾ç½®é¢æ¿	SettingForm	Setting	FALSE	TRUE
-	104	æ­£èƒ½é‡	Life_PositiveForm	Default	FALSE	TRUE
-	105	èŒä¸šç”Ÿæ¶¯	Life_CareerForm	Default	FALSE	TRUE
-	106	æ¸¸æˆ	Life_Game	Default	FALSE	TRUE
-	107	ç›®å½•	Life_CatalogsForm	Default	FALSE	TRUE
+#	Ãæ°å	²ß»®±¸×¢	Ãû×Ö	×é	ÔÊĞí¶à¸öÊµÀı	Í£Ö¹ÆäËû
+	1	¶Ô»°¿ò	DialogForm	PopUp	TRUE	FALSE
+	100	Ê×Ò³	Life_HomePage	Default	FALSE	TRUE
+	101	¾çÇé	Life_portraitOfMan	Default	FALSE	TRUE
+	103	ÉèÖÃÃæ°å	SettingForm	Setting	FALSE	TRUE
+	104	ÕıÄÜÁ¿	Life_PositiveForm	Default	FALSE	TRUE
+	105	Ö°ÒµÉúÑÄ	Life_CareerForm	Default	FALSE	TRUE
+	106	ÓÎÏ·	Life_Game	Default	FALSE	TRUE
+	107	Ä¿Â¼	Life_CatalogsForm	Default	FALSE	TRUE
+	108	³¡¾°Ñ¡ÔñÃæ°å	Life_SelectForm	Default	FALSE	TRUE
+	109	½ÇÉ«Ãæ°å	Life_CharacterSelectForm	Default	FALSE	TRUE

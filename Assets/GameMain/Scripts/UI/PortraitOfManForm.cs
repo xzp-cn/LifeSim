@@ -91,9 +91,6 @@ namespace StarForce
         public Transform m_TaskTransform;
         public GameObject tipBar;
 
-
-
-
         public void PauseOrPlay()
         {
             if (pauseImage.sprite == playSprite)

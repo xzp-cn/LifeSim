@@ -116,6 +116,14 @@ namespace StarForce
             {
                 ChangeState<ProcedureCataLog>(procedureOwner);
             }
+            else if (SceneId == 6)//角色选择
+            {
+                ChangeState<ProcedureSelect>(procedureOwner);
+            }
+            else if (SceneId == 7)//角色选择
+            {
+                ChangeState<ProcedureCharacterSelect>(procedureOwner);
+            }
         }
 
         private void OnLoadSceneSuccess(object sender, GameEventArgs e)

@@ -228,8 +228,8 @@ public class AchieveMgr : IUIModule
             .GetComponentInChildren<Text>();
         contenText.text = bagItemData.inforText;
     }
+    
     GameObject uiPoolObject = null;
-
     void FreshImage(string _imageName,Image img)
     {
         Action action = () =>

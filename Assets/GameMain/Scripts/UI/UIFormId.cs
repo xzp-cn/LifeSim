@@ -61,5 +61,15 @@ namespace StarForce
         /// </summary>
         life_CataLogForm=107,
 
+        /// <summary>
+        ///场景选择面板
+        /// </summary>
+        life_SelectForm = 108,
+
+        /// <summary>
+        ///角色选择面板
+        /// </summary>
+        life_CharacterSelectForm = 109,
+
     }
 }

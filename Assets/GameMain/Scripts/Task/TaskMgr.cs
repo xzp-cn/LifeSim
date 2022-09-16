@@ -147,7 +147,6 @@ public class TaskMgr : IUIModule
         tipBar.Show(content,2);
     }
 
-
     //
     TipBar GetTipBarGameObject()
     {
@@ -165,7 +164,6 @@ public class TaskMgr : IUIModule
             return tipBar;
         }
     }
-
 
     private int energyCosume = 5;
     void DialogOpen()

@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using GameFramework.ObjectPool;
-using StarForce;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityGameFramework.Runtime;
+using GameEntry = StarForce.GameEntry;
 
 public class TipBar : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class TipBar : MonoBehaviour
             1.5f
         ).onComplete = () =>
         {
-
+            
             DOTween.To(
                 () =>
                 {
@@ -59,7 +60,6 @@ public class TipBar : MonoBehaviour
 
             img.DoAlpha(0, _duration);
             m_Text.DoAlpha(0, _duration);
-
         };
     }
 
