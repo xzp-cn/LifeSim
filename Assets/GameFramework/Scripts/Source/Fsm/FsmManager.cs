@@ -404,7 +404,6 @@ namespace GameFramework.Fsm
                 fsm.Shutdown();
                 return m_Fsms.Remove(typeNamePair);
             }
-
             return false;
         }
     }

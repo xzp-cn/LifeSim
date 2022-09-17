@@ -93,15 +93,15 @@ public class Treasure : Entity
                 {
                     Position = CachedTransform.localPosition,
                 });
-
-            int energy = (clickNum-1) * m_TreasureData.PerEnergy;
-            int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy")+energy ;
-            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value =m_value });
-
-            
         }
         else
         {
+            //更新能量显示
+            int energy = clickNum * m_TreasureData.PerEnergy;
+            int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
+            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
+
+
             //更新背包
             GameEntry.Event.Fire(this, ModelTreasureEventArgs.Create(new TreasureBagData()
             {
@@ -115,7 +115,7 @@ public class Treasure : Entity
             {
                 storyId = m_TreasureData.StoryId,
                 typeId = m_TreasureData.TypeId,
-                count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)
+                count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)//剩余点击次数
             };
             GameEntry.Event.Fire(this, ModelTreasureStoreFreshEventArgs.Create(data));
             //

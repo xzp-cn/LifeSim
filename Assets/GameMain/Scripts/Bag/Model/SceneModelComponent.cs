@@ -89,7 +89,6 @@ public class SceneModelComponent : GameFrameworkComponent
 
     void ModelChange(object sender, GameEventArgs args)
     {
-
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform temp= transform.GetChild(i);
@@ -98,7 +97,7 @@ public class SceneModelComponent : GameFrameworkComponent
         }
         //
         ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
-        //model = "JiaoShi01";
+        Log.Debug(model.storyId+"  当前故事情节");
         switch (model.modelName)
         {
             case "DaMen01"://大门
@@ -221,7 +220,6 @@ public class SceneModelComponent : GameFrameworkComponent
                 go.CloseHighLighter();
             }
         }
-
     }
 
     public void HideAllModels()

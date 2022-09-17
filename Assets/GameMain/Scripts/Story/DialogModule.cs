@@ -54,7 +54,6 @@ public class DialogModule : StoryModuleBase
         {
             idArr[i] = int.Parse(dialogArr[i]);
         }
-
         return idArr;
     }
 
@@ -125,8 +124,6 @@ public class DialogModule : StoryModuleBase
         {
             action.Invoke();
         }
-
-
     }
     void DialogIdFresh()
     {

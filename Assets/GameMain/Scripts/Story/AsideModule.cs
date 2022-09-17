@@ -18,6 +18,7 @@ public class AsideModule :StoryModuleBase
     public Text Text_asideTitle;
     public Text contenText;
 
+    private Tweener m_Tweener;
 
     private int tableIndex = 0;
     private int m_curId = -1;
@@ -44,7 +45,8 @@ public class AsideModule :StoryModuleBase
        // speed= Mathf.Clamp(speed, 1, 10);
         float _delay = _content.Length / speed;
         contenText.text = string.Empty;
-        contenText.DOText(_content,_delay).onComplete= () =>
+        m_Tweener = contenText.DOText(_content, _delay);
+        m_Tweener.onComplete= () =>
         {
             callback?.Invoke();
             callback = null;
@@ -163,7 +165,7 @@ public class AsideModule :StoryModuleBase
     protected override void OnLeave(IFsm<IStoryManager> fsm, bool isShutdown)
     {
         base.OnLeave(fsm,isShutdown);
-        DOTween.KillAll();
+        m_Tweener.Kill();
     }
 
     /// <summary>

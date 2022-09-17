@@ -46,21 +46,6 @@ public class TreasureSuShe : TreasureModuleBase
             treasureDic.Add(storyId,treasureDatas);
         }
         
-        //隐藏其他场景中的收藏品
-        foreach (var mdata in treasureDic)
-        {
-            if (mdata.Key==storyId)
-            {
-                continue;
-            }
-            else
-            {
-                foreach (var treasureData in mdata.Value)
-                {
-                    GameEntry.Entity.HideEntity(treasureData.Id);
-                }
-            }
-        }
 
         //显示当前场景中的收藏品
         foreach (TreasureData _drTreasure in treasureDatas)
@@ -70,7 +55,7 @@ public class TreasureSuShe : TreasureModuleBase
     }
 
     /// <summary>
-    /// 
+    /// 更新场景中的收藏品数据
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="args"></param>
@@ -87,8 +72,8 @@ public class TreasureSuShe : TreasureModuleBase
                 {
                     if (treasureData.count==0)
                     {
+                        Log.Debug("移除数据");
                         treasureDataList.Remove(data);
-
 
                         //更新当前剧情任务
                         bool has = false;
@@ -96,7 +81,7 @@ public class TreasureSuShe : TreasureModuleBase
                         {
                             has = true;
                         }
-                        else if (treasureDic.ContainsKey(treasureData.storyId))
+                        else 
                         {
                             has = treasureDic[treasureData.storyId].Count != 0;
                         }
@@ -104,7 +89,6 @@ public class TreasureSuShe : TreasureModuleBase
                         {
                             Value = has
                         });
-
                     }
                     else
                     {
@@ -113,8 +97,6 @@ public class TreasureSuShe : TreasureModuleBase
                 }
             }
         }
-
-      
     }
 
     public override void Clear()

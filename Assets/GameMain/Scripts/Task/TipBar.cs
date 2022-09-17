@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core;
 using GameFramework.ObjectPool;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,8 +41,7 @@ public class TipBar : MonoBehaviour
             1.5f
         ).onComplete = () =>
         {
-            
-            DOTween.To(
+             DOTween.To(
                 () =>
                 {
                     return m;
@@ -54,18 +54,29 @@ public class TipBar : MonoBehaviour
                 _duration
             ).onComplete = () =>
             {
-                IObjectPool<TipBarItemObject> tipBarItemObject = GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");//
-                tipBarItemObject.Unspawn(this);
+               gameObject.SetActive(false);
             };
-
             img.DoAlpha(0, _duration);
             m_Text.DoAlpha(0, _duration);
+
         };
+
     }
 
     public void ResetVal()
     {
         img.color=new Color(1,1,1, 0.3882353f);
         m_Text.color=new Color(1,1,1,1);
+    }
+
+    void Recycle()
+    {
+        IObjectPool<TipBarItemObject> tipBarItemObject = GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");//
+        tipBarItemObject.Unspawn(this);
+        
+    }
+    private void OnDisable()
+    {
+       Recycle();
     }
 }

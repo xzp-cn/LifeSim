@@ -22,6 +22,7 @@ public class TaskMgr : IUIModule
     private Transform tipBarPar;
     private GameObject origin;
     private IObjectPool<TipBarItemObject> m_TipObjectPool;
+    //private List<TipBar> m_tipBarList;
 
     public void Init(Transform _taskTransform,Transform _tipBarPar,GameObject _origin)
     {
@@ -39,6 +40,7 @@ public class TaskMgr : IUIModule
             if (isOn)
             {
                 DialogOpen();
+                
             }
         });
 
@@ -106,10 +108,10 @@ public class TaskMgr : IUIModule
         {
             m_toggleUp.isOn = true;
         }
-         
         TipBar tipBar=GetTipBarGameObject();
         string _content = drSceneContent.StoryName+", "+drSceneContent.StorySummary;
         tipBar.Show(_content,3);
+        //
     }
 
     public void OnOpen()
@@ -118,6 +120,7 @@ public class TaskMgr : IUIModule
 
         GameEntry.Event.Subscribe(MapLocateEventArgs.EventId,StoryFresh);
         GameEntry.Event.Subscribe(ModelTreasureEventArgs.EventId,ShowTip);
+
     }
 
     public void Update()
@@ -145,6 +148,7 @@ public class TaskMgr : IUIModule
         TipBar tipBar=GetTipBarGameObject();
         string content=  $"完成任务，能量 + {modelTreasureData.power}";
         tipBar.Show(content,2);
+        //m_tipBarList.Add(tipBar);
     }
 
     //
@@ -168,8 +172,6 @@ public class TaskMgr : IUIModule
     private int energyCosume = 5;
     void DialogOpen()
     {
-        //Log.Warning("123");
-
         Action action = () =>
         {
             GameEntry.UI.OpenDialog(new DialogParams()
@@ -185,7 +187,6 @@ public class TaskMgr : IUIModule
                 }
             });
         };
-
 
         //对话框打开
         GameEntry.UI.OpenDialog(new DialogParams()

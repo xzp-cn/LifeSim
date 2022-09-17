@@ -128,7 +128,6 @@ namespace StarForce
         public void OnClose(bool isShutdown, object userData)
         {
             DOTween.KillAll();
-            //GameEntry.Event.Unsubscribe(StoryEventArgs.EventId, StoryRefresh);
             bool isDes= GameEntry.Fsm.DestroyFsm(m_ProcedureFsm);
             Log.Debug("销毁状态机 "+isDes);
         }
