@@ -15,12 +15,11 @@ public class GameMgr : IUIModule
     private CommonButton[] commonButtons;
 
     private Action m_GameAction;
-    private int energyCosume = 5;
+    private int energyCosume = 3;
     public void Init(Transform _panelTransform)
     {
         m_GamePanelTransform = _panelTransform;
         commonButtons= m_GamePanelTransform.transform.Find("Image_mobile/center").GetComponentsInChildren<CommonButton>(true);
-      
     }
 
 

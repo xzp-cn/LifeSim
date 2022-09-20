@@ -1,11 +1,39 @@
 #	背包表					
 #	Id		Name	Content	ImageName	TypeId
-#	int		string	string	string	int
+#	int	背包物品	string	string	string	int
 #	物品编号	策划备注	名字	物品名称	图片名称	类型
-	20000	背包物品	宝藏1	这是一个物品	image	0
-	20001		宝藏2	这是宝藏2	image	1
-	20002		宝藏3	这是宝藏3	image	0
-	20003		宝藏4	这是宝藏4	image	1
-	20004		宝藏5	这是宝藏5	image	2
-	20005		宝藏6	这是宝藏6	image	2
-	20006		宝藏7	这是宝藏7	image	3
+	20000		短袖	短袖	image	0
+	20001		钥匙	钥匙	image	1
+	20002		碗	碗	image	0
+	20003		红宝石	红宝石	image	1
+	20004		课桌	课桌	image	2
+	20005		抹布	抹布	image	2
+	20006		降解袋	降解袋	image	3
+	20007		报警器	报警器	image	0
+	20008		灭火器	灭火器	image	1
+	20009		校牌	校牌	image	0
+	20010		手机	手机	image	1
+	20011		毛刷笔	毛刷笔	image	2
+	20012		饭卡	饭卡	image	2
+	20013		保温杯	保温杯	image	3
+	20014		减脂餐	减脂餐	image	0
+	20015		羽毛球	羽毛球	image	1
+	20016		保温杯	保温杯	image	0
+	20017		睡衣	睡衣	image	1
+	20018		体重秤	体重秤	image	2
+	20019		木棒针	木棒针	image	2
+	20020		毛线	毛线	image	3
+	20021		扑克牌	扑克牌	image	0
+	20022		眼影	眼影	image	1
+	20023		屏蔽器	屏蔽器	image	0
+	20024		银戒指	银戒指	image	1
+	20025		哑铃	哑铃	image	2
+	20026		帆布包	帆布包	image	2
+	20027		挂锁	挂锁	image	3
+	20028		电脑	电脑	image	0
+	20029		游戏卡带	游戏卡带	image	1
+	20030		抱枕	抱枕	image	0
+	20031		304筷子	304筷子	image	1
+	20032		帆布包	帆布包	image	2
+	20033		口红	口红	image	3
+	20034		拐杖	拐杖	image	0

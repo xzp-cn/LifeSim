@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-13 14:10:45.160
+// 生成时间：2022-09-19 10:58:49.487
 //------------------------------------------------------------
 
 using GameFramework;
@@ -117,6 +117,15 @@ namespace StarForce
             private set;
         }
 
+        /// <summary>
+        /// 获取位置。
+        /// </summary>
+        public string PosArr
+        {
+            get;
+            private set;
+        }
+
         public override bool ParseDataRow(string dataRowString, object userData)
         {
             string[] columnStrings = dataRowString.Split(DataTableExtension.DataSplitSeparators);
@@ -138,6 +147,7 @@ namespace StarForce
             ExamCareerArr = columnStrings[index++];
             ExamVoilenceArr = columnStrings[index++];
             TaskTip = columnStrings[index++];
+            PosArr = columnStrings[index++];
 
             GeneratePropertyArray();
             return true;
@@ -159,6 +169,7 @@ namespace StarForce
                     ExamCareerArr = binaryReader.ReadString();
                     ExamVoilenceArr = binaryReader.ReadString();
                     TaskTip = binaryReader.ReadString();
+                    PosArr = binaryReader.ReadString();
                 }
             }
 

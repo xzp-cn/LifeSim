@@ -25,7 +25,7 @@ public class TreasureSuShe : TreasureModuleBase
         treasureDic = GameEntry.SceneModel.treasureDic;
         //
         Utility.Random.SetSeed((int)Time.realtimeSinceStartup);
-        DRTreasure[] shDrTreasures=Array.FindAll(drTreasures, (_dataTreasure) => { return _dataTreasure.Model.Equals("SuShe")&&_dataTreasure.StroyID.Equals(storyId); });
+        DRTreasure[] shDrTreasures=Array.FindAll(drTreasures, (_dataTreasure) => { return /*_dataTreasure.Model.Equals("SuShe")&&*/_dataTreasure.StroyID.Equals(storyId); });
         DefaultEntityGroupHelper helpler=GameEntry.Entity.GetEntityGroup("Treasure").Helper as DefaultEntityGroupHelper;
         List<TreasureData> treasureDatas=new List<TreasureData>();
         if (treasureDic.ContainsKey(storyId))

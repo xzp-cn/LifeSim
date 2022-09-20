@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using GameFramework.Event;
 using UnityEngine;
@@ -16,18 +17,19 @@ public class SceneModelComponent : GameFrameworkComponent
     private Transform m_ShiTangTransform;
     private Transform m_JiaoShiTransform;
     private Transform m_TuShuGuanTransform;
-
+    private Transform m_CaochangTransform;
+    private Transform m_LinYinLuTransform;
     private TreasureModuleBase SusheBase;
 
     public List<TreasureBagData> TreasureBagDatas;
 
     public Dictionary<int, List<TreasureData>> treasureDic = new Dictionary<int, List<TreasureData>>();
     private int curStoryId = 0;
+    private IDataTable<DRSceneContent> m_SceneContents;
     protected override void Awake()
     {
         base.Awake();
     }
-
 
     void OnEnable()
     {
@@ -56,10 +58,10 @@ public class SceneModelComponent : GameFrameworkComponent
         GameEntry.Setting.RemoveSetting("Treasure");
 
         InitStoryTaskValue();
-        
+
+        m_SceneContents = GameEntry.DataTable.GetDataTable<DRSceneContent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.T))
@@ -79,9 +81,9 @@ public class SceneModelComponent : GameFrameworkComponent
     }
 
 
-    void OnDisble()
+    void OnDisable()
     {   
-        Debug.LogWarning("OnDestroy");
+        //Debug.LogWarning("OnDestroy");
         GameEntry.Event.Unsubscribe(ModelChangeEventArgs.EventId, ModelChange);
         GameEntry.Event.Unsubscribe(ModelTreasureEventArgs.EventId,FreshData);
         GameEntry.Event.Unsubscribe(TaskTipEventArgs.EventId, TaskTipEntities);
@@ -95,9 +97,20 @@ public class SceneModelComponent : GameFrameworkComponent
             temp.gameObject.SetActive(false);
             DOTween.Kill(temp.gameObject);
         }
+
+        if (m_SceneContents==null)
+        {
+            m_SceneContents = GameEntry.DataTable.GetDataTable<DRSceneContent>();
+        }
         //
         ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
         Log.Debug(model.storyId+"  当前故事情节");
+
+        ///能量值+6
+        int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
+        GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = curEnergy+6 });
+        
+        //
         switch (model.modelName)
         {
             case "DaMen01"://大门
@@ -107,46 +120,208 @@ public class SceneModelComponent : GameFrameworkComponent
             case "ShiTang01":
             case "ShiTang02":
             case "shiTang03"://食堂
-                SetShiTang();
+                SetShiTang(model.storyId);
                 break;
             case "JiaoShi01":
             case "JiaoShi02"://教室
             case "jiaoXueLou":
-                SetJiaoShi();
+                SetJiaoShi(model.storyId);
                 break;
             case "CaoChang01"://操场
+                SetCaoChang(model.storyId);
                 break;
             case "linYinLu01"://林荫路
+                SetLinYInLu(model.storyId);
                 break;
             case "TuShuGuan01"://图书馆
-                SetTuShuGuan();
+                SetTuShuGuan(model.storyId);
                 break;
             default:
                 break;
         }
     }
 
-    void SetJiaoShi()
+    void SetJiaoShi(int _storyId)
     {
         m_JiaoShiTransform.gameObject.SetActive(true);
-        m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 1);
-        //m_JiaoShiTransform.localPosition= new Vector3(0, -2.8f, 5.3f);
+        m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 1).onComplete = () =>
+        {
+            DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id == curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length == 0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
+
+            if (SusheBase == null)
+            {
+                SusheBase = ReferencePool.Acquire<TreasureSuShe>();
+            }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_JiaoShiTransform.Find("RenShengMoNi_JiaoShi/Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 pos = postionTransform.Find(posStrs[i]).position;
+                posArr[i] = pos;
+            }
+            SusheBase.Init(posArr, _storyId);
+        };
 
     }
 
-    void SetShiTang()
+    void SetShiTang(int _storyId)
     {
+        curStoryId = _storyId;
         m_ShiTangTransform.gameObject.SetActive(true);
-        m_ShiTangTransform.DOLocalJump(new Vector3(-11.5f, -1.2f, 18.8f), 2, 3, 1);
-        //m_ShiTangTransform.localPosition=new Vector3(-1.4f,0,-0.9f);
+        m_ShiTangTransform.DOLocalJump(new Vector3(-11.5f, -1.2f, 18.8f), 2, 3, 1).onComplete = () =>
+        {
+            DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id == curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length == 0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
 
+            if (SusheBase == null)
+            {
+                SusheBase = ReferencePool.Acquire<TreasureSuShe>();
+            }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_ShiTangTransform.Find("RenShengMoNi_ShiTang/Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 pos = postionTransform.Find(posStrs[i]).position;
+                posArr[i] = pos;
+            }
+            SusheBase.Init(posArr, _storyId);
+        };
+        //m_ShiTangTransform.localPosition=new Vector3(-1.4f,0,-0.9f);
     } 
 
-    void SetTuShuGuan()
+    void SetTuShuGuan(int _storyId)
     {
+        curStoryId = _storyId;
         m_TuShuGuanTransform.gameObject.SetActive(true);
-        m_TuShuGuanTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1);
-        //m_TuShuGuanTransform.localPosition=new Vector3(8.8f,-2.3f,11.5f);
+        m_TuShuGuanTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        {
+            DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id == curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length == 0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
+
+            if (SusheBase == null)
+            {
+                SusheBase = ReferencePool.Acquire<TreasureSuShe>();
+            }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_TuShuGuanTransform.Find("RenShengMoNi_TuShuGuan/Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 pos = postionTransform.Find(posStrs[i]).position;
+                posArr[i] = pos;
+            }
+            SusheBase.Init(posArr, _storyId);
+        };
+    }
+
+    /// <summary>
+    /// 操场
+    /// </summary>
+    void SetCaoChang(int _storyId)
+    {
+        curStoryId = _storyId;
+        m_CaochangTransform.gameObject.SetActive(true);
+        m_CaochangTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        {
+            DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id == curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length == 0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
+
+            if (SusheBase == null)
+            {
+                SusheBase = ReferencePool.Acquire<TreasureSuShe>();
+            }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_CaochangTransform.Find("Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 pos = postionTransform.Find(posStrs[i]).position;
+                posArr[i] = pos;
+            }
+            SusheBase.Init(posArr, _storyId);
+        };
+    }
+
+    /// <summary>
+    /// 林荫路
+    /// </summary>
+    void SetLinYInLu(int _storyId)
+    {
+        curStoryId = _storyId;
+        m_LinYinLuTransform.gameObject.SetActive(true);
+        m_LinYinLuTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        {
+            DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id == curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length == 0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
+
+            if (SusheBase == null)
+            {
+                SusheBase = ReferencePool.Acquire<TreasureSuShe>();
+            }
+            Transform postionTransform = null;
+            int count = 0;
+            Vector3[] posArr = null;
+            postionTransform = m_LinYinLuTransform.Find("LinYinLu/Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 pos = postionTransform.Find(posStrs[i]).position;
+                posArr[i] = pos;
+            }
+            SusheBase.Init(posArr, _storyId);
+        }; 
+        
 
     }
 
@@ -156,6 +331,16 @@ public class SceneModelComponent : GameFrameworkComponent
         m_SuSheTransform.gameObject.SetActive(true);
         m_SuSheTransform.DOLocalMove(new Vector3(-5.28f, 4.33f, -5.76f), 1f).onComplete= () =>
         {
+            DRSceneContent drSceneContents= Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
+                return _item.Id==curStoryId;
+            });
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            if (posStrs.Length==0)
+            {
+                Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
+                return;
+            }
+
             if (SusheBase == null)
             {
                 SusheBase =ReferencePool.Acquire<TreasureSuShe>();
@@ -163,17 +348,16 @@ public class SceneModelComponent : GameFrameworkComponent
             Transform postionTransform = null;
             int count = 0;
             Vector3[] posArr = null;
-            postionTransform = m_SuSheTransform.Find("RenShengMoNi_SuShe/Postion");
-            count = postionTransform.childCount;
-            posArr = new Vector3[count];
+            postionTransform = m_SuSheTransform.Find("RenShengMoNi_SuShe/Position");
+            count = posStrs.Length;
+            posArr = new Vector3[count];    
             for (int i = 0; i < count; i++)
             {
-                posArr[i] = postionTransform.GetChild(i).position;
+                Vector3 pos=postionTransform.Find(posStrs[i]).position;
+                posArr[i] =pos;
             }
             SusheBase.Init(posArr,_storyId);
         };
-        //m_SuSheTransform.localPosition=new Vector3(0,0,4.75f);
-
     }
 
     //收藏物品点击
@@ -191,7 +375,6 @@ public class SceneModelComponent : GameFrameworkComponent
         {
             data.num = modelTreasureData.num;
         }
-
         GameEntry.Setting.SetObject("Treasure",TreasureBagDatas);
 
         GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));//背包更新
@@ -230,7 +413,6 @@ public class SceneModelComponent : GameFrameworkComponent
         m_TuShuGuanTransform.gameObject.SetActive(false);
     }
 
-
     void InitStoryTaskValue()
     {
         for (int i = 10000; i < 10036; i++)
@@ -240,7 +422,7 @@ public class SceneModelComponent : GameFrameworkComponent
                 Value = true
             });
         }
-    }
+    }   
 
 
     public void ResetAll()

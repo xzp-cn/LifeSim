@@ -232,7 +232,7 @@ namespace StarForce
             {
                 Sprite sp= GetUISprite((string)m_UserData);
                 m_MessageBG.sprite = sp;
-                m_MessageBG.gameObject.SetActive(false);
+                m_MessageBG.gameObject.SetActive(true);
             }
         }
 

@@ -85,7 +85,7 @@ namespace StarForce
 
             if (m_GotoPositive)
             {
-                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.PsychologicalCounseling"));
+                procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.CareerChoice"));//职业选择
                 ChangeState<ProcedureChangeScene>(procedureOwner);
             }
         }

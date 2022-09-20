@@ -116,20 +116,30 @@ namespace StarForce
                 {
                     yield break;
                 }
-                AudioClip _Cli = DownloadHandlerAudioClip.GetContent(www);
-                if (_Cli.LoadAudioData())
-                {
-                   //Debug.Log("音频已成功加载");
-                }                 
-                else
-                {
-                    Log.Error("音效加载失败");
-                    yield break;
-                }
 
-                //将clip赋给A
-                _Audio.clip = _Cli;
-                _Audio.Play();
+                try
+                {
+                    AudioClip _Cli = DownloadHandlerAudioClip.GetContent(www);
+                    if (_Cli.LoadAudioData())
+                    {
+                        //Debug.Log("音频已成功加载");
+                    }
+                    else
+                    {
+                        Log.Error("音效加载失败");
+                        yield break;
+                    }
+
+                    //将clip赋给A
+                    _Audio.clip = _Cli;
+                    _Audio.Play();
+                }
+                catch (Exception e)
+                {
+                    
+                    Log.Debug(" TTS 语音播放错误"+ url +"  , "+ e.Message);
+                    //throw;
+                }
             }
         }
 

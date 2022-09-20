@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-13 14:10:45.080
+// 生成时间：2022-09-19 10:58:49.383
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// 实体表。
+    /// ʵ���。
     /// </summary>
     public class DREntity : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取实体编号。
+        /// 获取ʵ����。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取资源名称。
+        /// 获取��Դ����。
         /// </summary>
         public string AssetName
         {

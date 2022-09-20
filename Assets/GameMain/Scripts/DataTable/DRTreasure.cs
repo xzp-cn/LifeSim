@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-13 14:10:45.267
+// 生成时间：2022-09-19 10:58:49.679
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// 拾取物品表。
+    /// ʰȡ��Ʒ��。
     /// </summary>
     public class DRTreasure : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取物品编号。
+        /// 获取��Ʒ���。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取物品名称。
+        /// 获取��Ʒ����。
         /// </summary>
         public string Name
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取背包物品Id。
+        /// 获取������ƷId。
         /// </summary>
         public int BagId
         {
@@ -55,7 +55,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取物品所属背景。
+        /// 获取��Ʒ�������。
         /// </summary>
         public string Model
         {
@@ -64,7 +64,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取消失特效编号。
+        /// 获取��ʧ��Ч���。
         /// </summary>
         public int ClickEffectId
         {
@@ -73,7 +73,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取点击声音编号。
+        /// 获取���������。
         /// </summary>
         public int SoundId
         {
@@ -82,7 +82,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取类型。
+        /// 获取����。
         /// </summary>
         public int TypeId
         {
@@ -91,7 +91,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取能量值。
+        /// 获取����ֵ。
         /// </summary>
         public int Power
         {
@@ -100,7 +100,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取故事id。
+        /// 获取����id。
         /// </summary>
         public int StroyID
         {

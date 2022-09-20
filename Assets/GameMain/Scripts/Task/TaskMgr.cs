@@ -103,10 +103,11 @@ public class TaskMgr : IUIModule
         if (!string.IsNullOrEmpty(drSceneContent.TaskTip))
         {
             m_Text.text = content;
+            m_toggleUp.isOn = false;//
         }
         else
         {
-            m_toggleUp.isOn = true;
+            m_toggleUp.isOn = true;//隐藏任务提示
         }
         TipBar tipBar=GetTipBarGameObject();
         string _content = drSceneContent.StoryName+", "+drSceneContent.StorySummary;
@@ -169,9 +170,10 @@ public class TaskMgr : IUIModule
         }
     }
 
-    private int energyCosume = 5;
+    private int energyCosume = 1;
     void DialogOpen()
     {
+        m_toggleTip.isOn = false;
         Action action = () =>
         {
             GameEntry.UI.OpenDialog(new DialogParams()
@@ -183,7 +185,7 @@ public class TaskMgr : IUIModule
                 OnClickConfirm = delegate (object data)
                 {
                     Log.Debug("关闭界面");
-                    m_toggleTip.isOn = false;
+                  
                 }
             });
         };

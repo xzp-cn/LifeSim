@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TitleText: {fileID: 11434978}
   m_MessageText: {fileID: 11419300}
-  m_MessageBg: {fileID: 0}
+  m_MessageBg: {fileID: 7356418441161241457}
   m_ModeObjects:
   - {fileID: 100172}
   - {fileID: 160110}
