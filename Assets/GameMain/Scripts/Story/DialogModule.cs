@@ -159,7 +159,8 @@ public class DialogModule : StoryModuleBase
             int m_AsideId = fsm.GetState<AsideModule>().CurId;
             dialogIdRange = GetDialogIdRange(m_AsideId);
             int _dialogId = (int)node.GetData().GetValue();
-            tableIndex = Array.FindIndex(dialogIdRange, (_value) => { return _value == _dialogId; });
+            int findIndex=Array.FindIndex(dialogIdRange, (_value) => { return _value == _dialogId; });
+            tableIndex =findIndex <0?0:findIndex;
         }
 
         //角色头像刷新
@@ -188,10 +189,21 @@ public class DialogModule : StoryModuleBase
         {
 
             //Log.Warning(tableIndex);
-         
-            FreshCharater(dialogIdRange[tableIndex]);
-            FreshCharater(dialogIdRange[tableIndex+1]);
-            m_curId = dialogIdRange[Mathf.Clamp(tableIndex, 0, dialogIdRange.Length - 1)];
+            if (tableIndex==dialogIdRange.Length - 1)
+            {
+                tableIndex -= 1;
+            }
+            try
+            {
+                FreshCharater(dialogIdRange[tableIndex]);
+                FreshCharater(dialogIdRange[tableIndex + 1]);
+                m_curId = dialogIdRange[Mathf.Clamp(tableIndex, 0, dialogIdRange.Length - 1)];
+            }
+            catch (Exception e)
+            {
+                Log.Error(tableIndex);
+            }
+            
         }
         
         

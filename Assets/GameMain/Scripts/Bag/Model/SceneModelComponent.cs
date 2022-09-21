@@ -24,7 +24,7 @@ public class SceneModelComponent : GameFrameworkComponent
     public List<TreasureBagData> TreasureBagDatas;
 
     public Dictionary<int, List<TreasureData>> treasureDic = new Dictionary<int, List<TreasureData>>();
-    private int curStoryId = 0;
+    private int curStoryId = 10008;
     private IDataTable<DRSceneContent> m_SceneContents;
     protected override void Awake()
     {
@@ -42,8 +42,9 @@ public class SceneModelComponent : GameFrameworkComponent
         m_ShiTangTransform = transform.Find("ShiTang");
         m_JiaoShiTransform = transform.Find("JiaoShi");
         m_TuShuGuanTransform = transform.Find("TuShuGuan");
+        m_CaochangTransform = transform.Find("CaoChang");
+        m_LinYinLuTransform = transform.Find("LinYinLu");
         //
-
         //Debug.LogWarning("Start");
 
         GameEntry.Event.Subscribe(ModelChangeEventArgs.EventId, ModelChange);
@@ -102,6 +103,7 @@ public class SceneModelComponent : GameFrameworkComponent
         {
             m_SceneContents = GameEntry.DataTable.GetDataTable<DRSceneContent>();
         }
+        //能量提示关闭
         //
         ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
         Log.Debug(model.storyId+"  当前故事情节");
@@ -143,14 +145,16 @@ public class SceneModelComponent : GameFrameworkComponent
         m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 1).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
-                return _item.Id == curStoryId;
+                return _item.Id ==curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length == 0)
+
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
+
+            string[] posStrs = drSceneContents.PosArr.Split('|');
 
             if (SusheBase == null)
             {
@@ -181,13 +185,15 @@ public class SceneModelComponent : GameFrameworkComponent
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length == 0)
+
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
 
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+           
             if (SusheBase == null)
             {
                 SusheBase = ReferencePool.Acquire<TreasureSuShe>();
@@ -217,12 +223,15 @@ public class SceneModelComponent : GameFrameworkComponent
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length == 0)
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
+
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+           
+
 
             if (SusheBase == null)
             {
@@ -255,13 +264,16 @@ public class SceneModelComponent : GameFrameworkComponent
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length == 0)
+
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
 
+
+            string[] posStrs = drSceneContents.PosArr.Split('|');
+            
             if (SusheBase == null)
             {
                 SusheBase = ReferencePool.Acquire<TreasureSuShe>();
@@ -293,13 +305,14 @@ public class SceneModelComponent : GameFrameworkComponent
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length == 0)
+
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
 
+            string[] posStrs = drSceneContents.PosArr.Split('|');
             if (SusheBase == null)
             {
                 SusheBase = ReferencePool.Acquire<TreasureSuShe>();
@@ -316,9 +329,7 @@ public class SceneModelComponent : GameFrameworkComponent
                 posArr[i] = pos;
             }
             SusheBase.Init(posArr, _storyId);
-        }; 
-        
-
+        };
     }
 
     void SetSuShe(int _storyId)
@@ -330,12 +341,12 @@ public class SceneModelComponent : GameFrameworkComponent
             DRSceneContent drSceneContents= Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id==curStoryId;
             });
-            string[] posStrs = drSceneContents.PosArr.Split('|');
-            if (posStrs.Length==0)
+            if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
+            string[] posStrs = drSceneContents.PosArr.Split('|');
 
             if (SusheBase == null)
             {
@@ -385,6 +396,12 @@ public class SceneModelComponent : GameFrameworkComponent
     void TaskTipEntities(object sender,GameEventArgs args)
     {
         bool isOn = (VarBoolean)((TaskTipEventArgs)args).UserData;
+
+        if (!treasureDic.ContainsKey(curStoryId))
+        {
+            Log.Debug("没有收藏品　"+curStoryId);
+            return;
+        }
 
         List<TreasureData> treastList= treasureDic[curStoryId];
         foreach (TreasureData data in treastList)

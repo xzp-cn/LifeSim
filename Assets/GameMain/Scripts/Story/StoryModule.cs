@@ -156,12 +156,23 @@ public class StoryModule :StoryModuleBase
             //当前剧情结束，场景UI完成 刷新
             GameEntry.Event.Fire(this,PlotOverEventArgs.Create(m_CurStoryId,true));
 
+            OverExam();
+
+
+
+
+
             ///能量值+6
             int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = curEnergy + 6 });
 
-            OverExam();
-        
+            //能量提示关闭
+            GameEntry.Event.Fire(this, TaskTipEventArgs.Create(false));
+
+            //
+            GameEntry.Event.Fire(this,PlayerMoveMentEventArgs.Create(null));
+
+
         }
         else
         {

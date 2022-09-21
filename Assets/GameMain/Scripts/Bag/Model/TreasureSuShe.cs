@@ -37,13 +37,23 @@ public class TreasureSuShe : TreasureModuleBase
             int i = 0;
             foreach (DRTreasure _drTreasure in shDrTreasures)
             {
-                TreasureData data= new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, Utility.Random.GetRandom(1, 2),_drTreasure.StroyID)
+                try
                 {
-                    Position = helpler.transform.InverseTransformPoint(posArr[i++])
-                };
-                treasureDatas.Add(data);
+                    TreasureData data = new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, Utility.Random.GetRandom(1, 2), _drTreasure.StroyID)
+                    {
+                        Position = helpler.transform.InverseTransformPoint(posArr[i++])
+                    };
+                    treasureDatas.Add(data);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(posArr.Length+"  "+i);
+                    throw;
+                }
+              
             }
             treasureDic.Add(storyId,treasureDatas);
+
         }
         
 

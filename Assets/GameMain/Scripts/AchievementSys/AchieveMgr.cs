@@ -130,7 +130,7 @@ public class AchieveMgr : IUIModule
             int n = callBack(treasureArr);
             if (n == -1)
             {
-                Log.Debug($"{treasureArr} 没有勋章");
+                //Log.Warning($"{treasureArr} 没有勋章");
                 continue;
             }
             else

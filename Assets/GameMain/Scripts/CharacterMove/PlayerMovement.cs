@@ -1,4 +1,6 @@
 ﻿using System;
+using GameFramework.Event;
+using StarForce;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
             rotation = transform.localRotation,
             scale = transform.localScale
         };
+    }
+
+    void OnEnable()
+    {
+        GameEntry.Event.Subscribe(PlayerMoveMentEventArgs.EventId,ResetPos);
     }
 
     // Update is called once per frame
@@ -44,6 +51,15 @@ public class PlayerMovement : MonoBehaviour
         transform.localPosition = transfromStruct.pos;
         transform.localRotation = transfromStruct.rotation;
         transform.localScale = transfromStruct.scale;
+    }
 
+    private void OnDisable()
+    {
+        GameEntry.Event.Unsubscribe(PlayerMoveMentEventArgs.EventId, ResetPos);
+    }
+
+    void ResetPos(object sender,GameEventArgs args)
+    {
+        ResetPose();
     }
 }

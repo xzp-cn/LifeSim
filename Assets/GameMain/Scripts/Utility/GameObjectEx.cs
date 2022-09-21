@@ -64,10 +64,10 @@ public static class GameObjectEx
         Highlighter highlighter = go.GetComponent<Highlighter>();
         if (highlighter == null)
         {
-            go.AddComponent<Highlighter>();
+           highlighter= go.AddComponent<Highlighter>();
         }
         highlighter.tween = false;
-        highlighter.constant = false;
+        highlighter.constant = false;//
     }
 
     public static void DoColor(this MaskableGraphic img,Color fromColor,Color toColor,float duration)
