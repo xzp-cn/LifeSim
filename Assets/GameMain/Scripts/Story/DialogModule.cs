@@ -193,17 +193,17 @@ public class DialogModule : StoryModuleBase
             {
                 tableIndex -= 1;
             }
-            try
-            {
-                FreshCharater(dialogIdRange[tableIndex]);
-                FreshCharater(dialogIdRange[tableIndex + 1]);
-                m_curId = dialogIdRange[Mathf.Clamp(tableIndex, 0, dialogIdRange.Length - 1)];
-            }
-            catch (Exception e)
-            {
-                Log.Error(tableIndex);
-            }
-            
+            //try
+            //{
+
+            //}
+            //catch (Exception e)
+            //{
+            //    Log.Error(tableIndex+"   "+e.Message);
+            //}
+            FreshCharater(dialogIdRange[tableIndex]);
+            FreshCharater(dialogIdRange[tableIndex + 1]);
+            m_curId = dialogIdRange[Mathf.Clamp(tableIndex, 0, dialogIdRange.Length - 1)];
         }
         
         

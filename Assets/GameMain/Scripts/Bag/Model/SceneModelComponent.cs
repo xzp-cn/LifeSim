@@ -141,11 +141,12 @@ public class SceneModelComponent : GameFrameworkComponent
 
     void SetJiaoShi(int _storyId)
     {
+        curStoryId = _storyId;
         m_JiaoShiTransform.gameObject.SetActive(true);
         m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 1).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
-                return _item.Id ==curStoryId;
+                return _item.Id ==_storyId;
             });
 
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
@@ -320,7 +321,7 @@ public class SceneModelComponent : GameFrameworkComponent
             Transform postionTransform = null;
             int count = 0;
             Vector3[] posArr = null;
-            postionTransform = m_LinYinLuTransform.Find("LinYinLu/Position");
+            postionTransform = m_LinYinLuTransform.Find("Position");
             count = posStrs.Length;
             posArr = new Vector3[count];
             for (int i = 0; i < count; i++)

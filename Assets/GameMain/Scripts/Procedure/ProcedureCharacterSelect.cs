@@ -68,7 +68,6 @@ namespace StarForce
             {
                 return;
             }
-
             m_CharacterSelectForm = (CharacterSelectForm)ne.UIForm.Logic;
         }
     }

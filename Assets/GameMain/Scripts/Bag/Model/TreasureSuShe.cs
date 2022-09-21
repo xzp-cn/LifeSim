@@ -50,16 +50,14 @@ public class TreasureSuShe : TreasureModuleBase
                     Log.Error(posArr.Length+"  "+i);
                     throw;
                 }
-              
             }
             treasureDic.Add(storyId,treasureDatas);
 
         }
-        
-
         //显示当前场景中的收藏品
         foreach (TreasureData _drTreasure in treasureDatas)
         {
+            Log.Debug("显示收藏品  "+_drTreasure.Name);
             GameEntry.Entity.ShowTreasure(_drTreasure);
         }
     }
