@@ -123,11 +123,7 @@ public class AchieveMgr : IUIModule
              }
              return n;
          };
-
-
         DRAchievementSystem[] drAchievementSystems = m_AchievementSystems.GetAllDataRows();
-
-
         foreach (DRAchievementSystem _drAchievementSystem in drAchievementSystems)
         {
             string treasureArr = _drAchievementSystem.TreasureArr;
@@ -179,7 +175,6 @@ public class AchieveMgr : IUIModule
                         treasureBagDatas.Remove(data);
                     }
                 }
-
             }
         }
         //

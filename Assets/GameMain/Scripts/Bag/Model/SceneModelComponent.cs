@@ -106,10 +106,6 @@ public class SceneModelComponent : GameFrameworkComponent
         ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
         Log.Debug(model.storyId+"  当前故事情节");
 
-        ///能量值+6
-        int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
-        GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = curEnergy+6 });
-        
         //
         switch (model.modelName)
         {
@@ -431,6 +427,7 @@ public class SceneModelComponent : GameFrameworkComponent
 
          //清空数据
          treasureDic.Clear();
+         InitStoryTaskValue();
     }
 }
 
