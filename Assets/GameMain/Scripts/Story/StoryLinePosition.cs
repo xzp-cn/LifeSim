@@ -15,8 +15,8 @@ public class StoryLinePosition : MonoBehaviour
     private  float timeCurrent = 0;
     private bool isClicked = false;
     public bool isToRight = true;
-    public Sprite leftSprite, RightSprite;
     private Image img;
+    public Sprite normalSprite, graySprite;
     private void Start()
     {
         tarPos = m_ScrollRect.horizontalNormalizedPosition;
@@ -28,25 +28,28 @@ public class StoryLinePosition : MonoBehaviour
     /// </summary>
     public void OnClickDown()
     {
-        //RectTransform rt= transform.parent as RectTransform;
-        //isToRight = !isToRight;
-        //float startValue = isToRight?43:1300f;
-        //float endValue=isToRight? 1300f:43;
-        //img.sprite = isToRight?leftSprite:RightSprite;
-        //DOTween.To(
-        //        () => { return startValue; },
-        //        (t) => { rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, t); },
-        //        endValue,
-        //        1f
-        //    );
-
-        //return;
         delta = isToRight?0.1f:-0.1f;
         tarPos += delta;
         tarPos=Mathf.Clamp(tarPos, 0, 1);
         isClicked = true;
     }
-    //Update is called once per frame
+
+    /// <summary>
+    /// 改变状态
+    /// </summary>
+    public void ChangeState()
+    {
+        bool isEnd = false;
+        if (isToRight)
+        {
+            isEnd = Mathf.Approximately(m_ScrollRect.horizontalNormalizedPosition, 1);
+        }
+        else
+        {
+            isEnd = Mathf.Approximately(m_ScrollRect.horizontalNormalizedPosition, 0);
+        }
+        img.sprite = isEnd ? graySprite : normalSprite;
+    }
     void Update()
     {
         if (!isClicked)

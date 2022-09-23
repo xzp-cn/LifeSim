@@ -82,9 +82,9 @@ public class CharacterModule
 
     }
 
-    /// <summary>
+    /// <summary>   
     /// 状态切换
-    /// </summary>
+    /// </summary>s
     public void OnLeave()
     {
 

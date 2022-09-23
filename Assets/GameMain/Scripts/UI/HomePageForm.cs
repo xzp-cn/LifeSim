@@ -34,6 +34,7 @@ public class HomePageForm : UGuiForm
         GameEntry.DataNode.Clear();
         GameEntry.SceneModel.ResetAll();
         
+        
         Log.Debug("重新开始");
         //
         //m_ProcedureMenu.StartGame();
@@ -45,15 +46,10 @@ public class HomePageForm : UGuiForm
         m_ProcedureMenu.StartGame();
     }
 
-    public void OnQuitButtonClick()
+    public void OnBackButtonClick()
     {
-        GameEntry.UI.OpenDialog(new DialogParams()
-        {
-            Mode = 2,
-            Title = GameEntry.Localization.GetString("AskQuitGame.Title"),
-            Message = GameEntry.Localization.GetString("AskQuitGame.Message"),
-            OnClickConfirm = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
-        });
+        Log.Debug("返回起始页");
+        m_ProcedureMenu.BackSelect();
     }
 
     void FreshEnergy()

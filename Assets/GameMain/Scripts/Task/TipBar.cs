@@ -34,12 +34,13 @@ public class TipBar : MonoBehaviour
         rt.anchoredPosition=new Vector2(0,0);
         float m = 0;
 
-        DOTween.To(
+       var tw= DOTween.To(
             () => { return m; },
             (t) => { },
             0,
             1.5f
-        ).onComplete = () =>
+        );
+       tw.onComplete = () =>
         {
              DOTween.To(
                 () =>
@@ -58,8 +59,11 @@ public class TipBar : MonoBehaviour
             };
             img.DoAlpha(0, _duration);
             m_Text.DoAlpha(0, _duration);
-
         };
+       tw.onKill = () =>
+       {
+           gameObject.SetActive(false);
+       };
 
     }
 

@@ -14,13 +14,14 @@ namespace StarForce
         /// </summary>
         public int storyId=0;
 
-        public Image image_circle;
+        //public Image image_circle;
 
-        public Image image_textBG;
+        //public Image image_textBG;
 
         public Image image_Btn;
 
         public Text storyText;
+        public Text m_StoryOrderText;
 
         public Image image_lock;
 
@@ -34,22 +35,13 @@ namespace StarForce
                 Log.Error("Owner is invalid.");
                 return;
             }
-
             storyId = _storyId;
-
-            //image_Btn.enabled = true;
-
             gameObject.SetActive(true);
             StopAllCoroutines();
 
             storyText.text = _text;
+            m_StoryOrderText.text = (storyId%10000+1).ToString();
         }
-
-
-        //public void SetCurrent(bool isCurrent)
-        //{
-        //    image_textBG.enabled = isCurrent;
-        //}
 
         public void SetTask(bool AllOver)
         {
@@ -61,14 +53,13 @@ namespace StarForce
         /// </summary>
         public void OverStory(bool isOver)
         {
-            image_circle.enabled = isOver;
             ActiveRaycast();
         }
 
         public void ActiveRaycast()
         {
-            image_Btn.enabled = true;
-            image_lock.transform.Find("Text_lock").gameObject.SetActive(false);
+            image_lock.gameObject.SetActive(false);
+            image_Btn.gameObject.SetActive(true);
         }
 
 
@@ -79,15 +70,7 @@ namespace StarForce
 
             GameEntry.Event.Fire(this, StoryEventArgs.Create(storyId));
 
-         
             return;
-            //流程数据重置
-            //GameEntry.Event.Fire(this,StoryEventArgs.Create(storyId));
-            //Log.Debug("切换场景事件 "+storyId);
-            ////切换ui背景
-            //VarInt32 varId=new VarInt32();
-            //varId.SetValue(storyId);
-            //GameEntry.Event.Fire(this,PlotItemCallEventArgs.Create(varId));
         }
 
         public void PlayUISound(int uiSoundId)

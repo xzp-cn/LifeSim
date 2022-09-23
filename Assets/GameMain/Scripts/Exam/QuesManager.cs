@@ -410,7 +410,7 @@ public class QuesManager : IUIModule
                     }
                     else
                     {
-                        cScore = (VarInt32)GameEntry.DataNode.GetData(nodePath).GetValue();
+                        cScore = (int)GameEntry.DataNode.GetData(nodePath).GetValue();
                     }
 
                 }

@@ -91,24 +91,53 @@ namespace StarForce
         public Transform m_TaskTransform;
         public GameObject tipBar;
 
+        public void SetPlayMode()
+        {
+            bool has= GameEntry.Fsm.HasFsm<IStoryManager>();
+            if (has)
+            {
+                IFsm<IStoryManager> iStoryManagerFsm= GameEntry.Fsm.GetFsm<IStoryManager>();
+
+                iStoryManagerFsm.SetData("Play",new VarBoolean(){Value = true});
+            }
+        }
+
         public void PauseOrPlay()
         {
-            if (pauseImage.sprite == playSprite)
+            if (pauseImage.sprite.name.Equals(playSprite.name))
             {
-                pauseImage.sprite = pauseSprite;//暂停
-                GameEntry.Base.PauseGame();
-                GameEntry.TTS.StopPlay();
-                DOTween.PauseAll();
+                pauseImage.sprite = pauseSprite;//切换为手动模式
+                GameEntry.DataNode.SetData("isAutoPlay",new VarBoolean()
+                {
+                    Value = false
+                });
             }
             else
             {
-                pauseImage.sprite = playSprite;//播放
-                GameEntry.Base.ResumeGame();
-                GameEntry.TTS.Resume();
-                DOTween.RestartAll();
+                pauseImage.sprite = playSprite;//切换为自动模式
+                GameEntry.DataNode.SetData("isAutoPlay", new VarBoolean()
+                {
+                    Value = true
+                });
             }
+
+            return;
+            //if (pauseImage.sprite == playSprite)
+            //{
+            //    pauseImage.sprite = pauseSprite;//暂停
+            //    GameEntry.Base.PauseGame();
+            //    GameEntry.TTS.StopPlay();
+            //    DOTween.PauseAll();
+            //}
+            //else
+            //{
+            //    pauseImage.sprite = playSprite;//播放
+            //    GameEntry.Base.ResumeGame();
+            //    GameEntry.TTS.Resume();
+            //    DOTween.RestartAll();
+            //}
         }
-        
+
         public void OnBackButtonClick()
         {
             Log.Debug("返回到初始场景");
@@ -191,13 +220,11 @@ namespace StarForce
 #endif
         {
             base.OnInit(userData);
-            //Log.Warning("初始化");
-            //if (PlotItemMgr == null)
-            //{
-            //    PlotItemMgr = new PlotItemMgr();
-            //    ((PlotItemMgr)PlotItemMgr).Init(m_PlotParent, m_PlotItem);
-            //    ((PlotItemMgr)PlotItemMgr).InitStoryItems();
-            //}
+
+            GameEntry.DataNode.SetData("isAutoPlay", new VarBoolean()
+            {
+                Value = true
+            });
 
             if (StoryModuleMgr == null)
             {

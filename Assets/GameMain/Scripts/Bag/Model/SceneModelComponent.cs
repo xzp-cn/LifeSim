@@ -8,6 +8,7 @@ using GameEntry = StarForce.GameEntry;
 using DG.Tweening;
 using GameFramework;
 using GameFramework.DataTable;
+using GameFramework.Entity;
 using StarForce;
 using UnityEngine.UIElements;
 
@@ -108,6 +109,13 @@ public class SceneModelComponent : GameFrameworkComponent
         ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
         Log.Debug(model.storyId+"  当前故事情节");
 
+        //当前场景中的收藏品隐藏
+        //隐藏其他收藏品
+        IEntityGroup iGroup = GameEntry.Entity.GetEntityGroup("Treasure");
+        foreach (IEntity m_entity in iGroup.GetAllEntities())
+        {
+            GameEntry.Entity.HideEntity(m_entity.Id);
+        }
         //
         switch (model.modelName)
         {

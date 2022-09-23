@@ -40,7 +40,8 @@ public class AsideModule :StoryModuleBase
     /// </summary>
     public void RefreshAside(string _content,Action callback)
     {
-        //contenText.text= _content;
+        Text_asideTitle.transform.parent.gameObject.SetActive(true);
+
         float speed=GameEntry.Setting.GetFloat(Constant.Setting.UIAsideTextSpeed,1);
        // speed= Mathf.Clamp(speed, 1, 10);
         float _delay = _content.Length / speed;
@@ -113,7 +114,7 @@ public class AsideModule :StoryModuleBase
     {
         if (m_lastId!=-100)
         {
-            //GameEntry.UI.OpenDialog();
+            
             AsideFresh();
         }
         int _storyId = fsm.GetState<StoryModule>().CurStoryId;
@@ -146,12 +147,33 @@ public class AsideModule :StoryModuleBase
         {
             if (CurId != m_lastId)//文本更新
             {
-                m_lastId = CurId;
-
-                RefreshAside(GetSpeakAsideContent(CurId).Content, () =>
+                VarBoolean isAuto = GameEntry.DataNode.GetData<VarBoolean>("isAutoPlay");
+                if (isAuto)//自动播放
                 {
-                    ChangeState<DialogModule>(fsm);
-                });//刷新旁白
+                    m_lastId = CurId;
+
+                    RefreshAside(GetSpeakAsideContent(CurId).Content, () =>
+                    {
+                        Text_asideTitle.transform.parent.gameObject.SetActive(false);
+                        ChangeState<DialogModule>(fsm);
+                    });//刷新旁白
+                }
+                else//手动播放
+                {
+                    bool isClicked = fsm.GetData<VarBoolean>("Play");
+                    if (isClicked)
+                    {
+                        fsm.SetData<VarBoolean>("Play", new VarBoolean() { Value = false });
+                        RefreshAside(GetSpeakAsideContent(CurId).Content, () =>
+                        {
+                            Text_asideTitle.transform.parent.gameObject.SetActive(false);
+                            ChangeState<DialogModule>(fsm);
+                        });//刷新旁白
+                    }
+                }
+
+
+              
               
             }
         }
@@ -164,6 +186,7 @@ public class AsideModule :StoryModuleBase
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave(IFsm<IStoryManager> fsm, bool isShutdown)
     {
+        fsm.SetData<VarBoolean>("Play", new VarBoolean() { Value = false });
         base.OnLeave(fsm,isShutdown);
         m_Tweener.Kill();
     }
@@ -182,7 +205,6 @@ public class AsideModule :StoryModuleBase
             GameEntry.DataNode.SetData("Story/StoryAside",varId);
         }
 
-        //
         //注册修改场景ID 事件
         //GameEntry.Event.Unsubscribe(AsideEventArgs.EventId, ChangeTableIdEvent);
     }

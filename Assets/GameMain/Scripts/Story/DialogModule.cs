@@ -177,13 +177,12 @@ public class DialogModule : StoryModuleBase
     {
         int m_AsideId = fsm.GetState<AsideModule>().CurId;
         dialogIdRange = GetDialogIdRange(m_AsideId);
-
-
         //
         if (dialogIdRange[0]==-1)//没有对话
         {
             m_curId = dialogIdRange[0];
             Log.Debug("没有对话");
+            //m_ImgLeftTransform.parent.parent.gameObject.SetActive(true);
         }
         else//有对话
         {
@@ -193,14 +192,7 @@ public class DialogModule : StoryModuleBase
             {
                 tableIndex -= 1;
             }
-            //try
-            //{
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Log.Error(tableIndex+"   "+e.Message);
-            //}
+          
             FreshCharater(dialogIdRange[tableIndex]);
             FreshCharater(dialogIdRange[tableIndex + 1]);
             m_curId = dialogIdRange[Mathf.Clamp(tableIndex, 0, dialogIdRange.Length - 1)];
@@ -229,17 +221,38 @@ public class DialogModule : StoryModuleBase
 
         if (tableIndex >=dialogIdRange.Length)
         {
-         
             //跳转到旁白
             ChangeState<AsideModule>(fsm);
             Log.Debug("当前对话完成 "+CurId);
         }
         else
         {
-            if (CurId != m_lastId)
+            if (CurId != m_lastId)//
             {
-                m_lastId = CurId;
-                RefreshContent(CurId);
+                if (m_lastId != -100&&CurId !=-1)//第二次开始，有对话
+                {
+                    VarBoolean isAuto=GameEntry.DataNode.GetData<VarBoolean>("isAutoPlay");
+                    if (isAuto)//自动播放
+                    {
+                        m_lastId = CurId;
+                        RefreshContent(CurId);
+                    }
+                    else//手动播放
+                    {
+                       bool isClicked= fsm.GetData<VarBoolean>("Play");
+                       if (isClicked)
+                       {
+                           fsm.SetData<VarBoolean>("Play",new VarBoolean(){Value = false});
+                           m_lastId = CurId;
+                           RefreshContent(CurId);
+                       }
+                    }
+                }
+                else
+                {
+                    m_lastId = CurId;
+                    RefreshContent(CurId);
+                }
             }
         }
         //Profiler.EndSample();
@@ -255,7 +268,7 @@ public class DialogModule : StoryModuleBase
         base.OnLeave(fsm, isShutdown);
         //m_GotoNextDialogDelaySeconds = 0;
         m_Character.OnLeave();
-
+        fsm.SetData<VarBoolean>("Play", new VarBoolean() { Value = false });
         //强制切换，重置数据
         tableIndex = 0;
         m_lastId = -100;

@@ -46,7 +46,7 @@ public class TreasureSuShe : TreasureModuleBase
                     treasureDatas.Add(data);
                 }
                 catch (Exception e)
-                {
+                {   
                     Log.Error(posArr.Length+"  "+i);
                     throw;
                 }
@@ -54,6 +54,9 @@ public class TreasureSuShe : TreasureModuleBase
             treasureDic.Add(storyId,treasureDatas);
 
         }
+
+     
+
         //显示当前场景中的收藏品
         foreach (TreasureData _drTreasure in treasureDatas)
         {
@@ -111,7 +114,6 @@ public class TreasureSuShe : TreasureModuleBase
     {
         GameEntry.Event.Unsubscribe(ModelTreasureStoreFreshEventArgs.EventId,FreshData);
     }
-
 }
 
 
