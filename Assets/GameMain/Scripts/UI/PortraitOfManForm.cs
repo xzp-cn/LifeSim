@@ -122,7 +122,6 @@ namespace StarForce
                     Value = true
                 });
             }
-
             return;
             //if (pauseImage.sprite == playSprite)
             //{
