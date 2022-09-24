@@ -42,11 +42,11 @@ public class StoryLinePosition : MonoBehaviour
         bool isEnd = false;
         if (isToRight)
         {
-            isEnd = Mathf.Approximately(m_ScrollRect.horizontalNormalizedPosition, 1);
+            isEnd = Mathf.Abs(m_ScrollRect.horizontalNormalizedPosition-1)<0.01f;
         }
         else
         {
-            isEnd = Mathf.Approximately(m_ScrollRect.horizontalNormalizedPosition, 0);
+            isEnd = Mathf.Abs(m_ScrollRect.horizontalNormalizedPosition)<0.01f;
         }
         img.sprite = isEnd ? graySprite : normalSprite;
     }
