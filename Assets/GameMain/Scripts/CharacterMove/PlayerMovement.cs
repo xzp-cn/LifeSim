@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
         transform.localRotation = transfromStruct.rotation;
         transform.localScale = transfromStruct.scale;
     }
-
     private void OnDisable()
     {
         GameEntry.Event.Unsubscribe(PlayerMoveMentEventArgs.EventId, ResetPos);

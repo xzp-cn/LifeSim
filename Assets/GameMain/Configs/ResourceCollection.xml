@@ -166,6 +166,7 @@
       <Resource Name="Textures/prop_asteroid_02_nrm" LoadType="0" Packed="False" />
       <Resource Name="Textures/prop_asteroid_03_dff" LoadType="0" Packed="False" />
       <Resource Name="Textures/prop_asteroid_03_nrm" LoadType="0" Packed="False" />
+      <Resource Name="Textures/sceneSelect" LoadType="0" Packed="False" />
       <Resource Name="Textures/ShiTang01" LoadType="0" Packed="False" />
       <Resource Name="Textures/ShiTang02" LoadType="0" Packed="False" />
       <Resource Name="Textures/shiTang03" LoadType="0" Packed="False" />
@@ -226,14 +227,18 @@
       <Resource Name="UI/UISprites/Common/43" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/7" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/8" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/Achievement" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/Arrow" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/aside" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/Aside_Close" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/AsideBar" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/asideBg" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/asideButtonClose" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/Auto" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/back" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/backBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/background" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/bag" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/bjl" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/box" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/button-filled" LoadType="0" Packed="False" />
@@ -254,7 +259,10 @@
       <Resource Name="UI/UISprites/Common/dialog-background" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/dialog-title-background" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/DialogBG" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/dialogPanel" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/dialogSetting" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/downTip" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/energy" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/exam_Check" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/exam_checkBg" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/exam_confirm" LoadType="0" Packed="False" />
@@ -263,6 +271,11 @@
       <Resource Name="UI/UISprites/Common/exit" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/exit_press" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/friend" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/frient" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/game" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/handPlay" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/haskTask_press" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/hasTask_normal" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/hp_bg" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/hpContinueBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/hpNewBtn" LoadType="0" Packed="False" />
@@ -276,18 +289,25 @@
       <Resource Name="UI/UISprites/Common/JzLeft" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/jzLine" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/jzRight" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/lastPage" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/lastPage_gray" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/left" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/left_press" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/lh" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/line" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/listBoxBG" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/lock" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/LOGO" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/lx" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/lz" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/lzy" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/map" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/mapBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/mapTag" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/nameCharacter" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/NameTip" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/nextPage" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/nextPage_Gray" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/njy" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/OK_normal" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/OK_Press" LoadType="0" Packed="False" />
@@ -300,11 +320,14 @@
       <Resource Name="UI/UISprites/Common/progress-conner" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/progressbar" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/progressbar-background" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/reset" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/right" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/right_press" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/rightMenu" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/round-button-filled" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/round-button-outline" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/rs" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/sceneItemBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/setting_normal" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/setting_press" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/settingBG" LoadType="0" Packed="False" />
@@ -313,15 +336,23 @@
       <Resource Name="UI/UISprites/Common/SoftTitle" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/spliteLine" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/spliteLine2" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/storyBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/storyCircleNormal" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/storyCirclePress" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/storyLine" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/storyTip" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/stoy" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/StroyPoint" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/sxls" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/taskActive5" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/taskDownPanel" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/taskTipBtn" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/treasure" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/tt" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/upTip" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/voiceSpeak" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/waitStart" LoadType="0" Packed="False" />
+      <Resource Name="UI/UISprites/Common/waitStartBg" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/wy" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/xf" LoadType="0" Packed="False" />
       <Resource Name="UI/UISprites/Common/xfmq" LoadType="0" Packed="False" />
@@ -357,7 +388,9 @@
       <Asset Guid="04081878b774d914298fedba47e0c55e" ResourceName="DataTables/Scene" />
       <Asset Guid="04d7dde7615d71b4db1a0c8d67a62e95" ResourceName="UI/UIForms/DialogForm" />
       <Asset Guid="04dbc0581071c254ea6564b2ff06ff9b" ResourceName="Textures/part_shockwave_dff" />
+      <Asset Guid="0534e6877acc849498244f5033738651" ResourceName="UI/UISprites/Common/waitStart" />
       <Asset Guid="06b90c4e36bbf644da49a15481b4700e" ResourceName="Entities/Treasure_SuShe3" />
+      <Asset Guid="0917efed1acdf4348979056540aae284" ResourceName="Textures/sceneSelect" />
       <Asset Guid="093f8873cfe371d41b854ed9fb6bff69" ResourceName="Music/music_about" />
       <Asset Guid="0963e6c65b2b1f74d9f455e21901e2dc" ResourceName="Textures/part_jet_core_dff" />
       <Asset Guid="0992f89f84d762f478fd32f8225168b0" ResourceName="Entities/DefaultArmor" />
@@ -367,11 +400,13 @@
       <Asset Guid="0a343bd739e9f9c409e49e0f818b80bd" ResourceName="DataTables/Bag" />
       <Asset Guid="0a65a68c01a76ea4b8b574827a6467aa" ResourceName="UI/UISprites/Common/dialog-title-background" />
       <Asset Guid="0b363b143d7ebb94fafd3a3e970946a7" ResourceName="DataTables/Dialog" />
+      <Asset Guid="0bb6bac4b3a34864083eef211091eb5d" ResourceName="UI/UISprites/Common/waitStartBg" />
       <Asset Guid="0bfeb5f9bbbc99b4cb302e35ece92e68" ResourceName="DataTables/ExamDepression" />
       <Asset Guid="0da2d2cad609f424cbdf8cb1de4482ba" ResourceName="DataTables/CareerMessage" />
       <Asset Guid="0df2e8586a0742444b742c55428e13f5" ResourceName="Entities/Treasure_SuShe27" />
       <Asset Guid="0ed73dc47f4cb38489020d05e9f02c99" ResourceName="Materials/part_glow_mat" />
       <Asset Guid="0f995b3145e0e7247a42da6cef1dbf23" ResourceName="Materials/part_spark_white_mat" />
+      <Asset Guid="0fc8fc0364d44b848a5d30a0a645e3a0" ResourceName="UI/UISprites/Common/Auto" />
       <Asset Guid="1053b0070685be347ab58587156842dc" ResourceName="Localization/ChineseTraditional/Dictionaries/Default" />
       <Asset Guid="11e27c26ac87b40f0a62ec40d7261989" ResourceName="Entities/EnemyBolt" />
       <Asset Guid="1302b6b746bbb00419c5177b71a717ac" ResourceName="UI/UISprites/Common/19" />
@@ -410,8 +445,10 @@
       <Asset Guid="2a3a962b1f699ee43b467084f00611f6" ResourceName="Textures/XiaoYuan01" />
       <Asset Guid="2a7f1939470375842ba172d0ee249dd7" ResourceName="UI/UISprites/Common/jzRight" />
       <Asset Guid="2bbe2b1049e19604a9ec54c362624a9f" ResourceName="UI/UISprites/Common/careerAdviceBG" />
+      <Asset Guid="2be06e3132df2254ea3c168ea02b13cc" ResourceName="UI/UISprites/Common/game" />
       <Asset Guid="2c1c43b43e16788459f76bbba10af470" ResourceName="Entities/Treasure_SuShe24" />
       <Asset Guid="2cb5eef4d7d7bf6459dd13a3f8d90246" ResourceName="Textures/part_jet_flare_dff" />
+      <Asset Guid="2d65e5c392b69a74f9fdac182931f35d" ResourceName="UI/UISprites/Common/nextPage" />
       <Asset Guid="2d7ff8e31a62e1f4a8db7a45bc01b28d" ResourceName="Textures/ShiTang01" />
       <Asset Guid="2d9a801ff3edcdc40821987c6a3bb4cc" ResourceName="UI/UISprites/Common/hpNewBtn" />
       <Asset Guid="2e6bf74cc223fcd488cf3c5a9744319c" ResourceName="UI/UISprites/Common/exam_checkBg" />
@@ -420,6 +457,7 @@
       <Asset Guid="313ae909abdf3014e9185f375f66609d" ResourceName="UI/UIForms/Life_Game" />
       <Asset Guid="315e8ed2db27c254cb3366ff0793cd90" ResourceName="DataTables/Music" />
       <Asset Guid="32fa6c0fad013424f875167c7dfdcfd8" ResourceName="Entities/MagicSoftExplosionBlue" />
+      <Asset Guid="334928588133b7f44900c274204e3956" ResourceName="UI/UISprites/Common/mapBtn" />
       <Asset Guid="339aff7749beca2448c786bb1e5bd90f" ResourceName="DataTables/ExamDepression" />
       <Asset Guid="34032b2eca763ba41a6eaec5afa46480" ResourceName="UI/UIItems/Jz" />
       <Asset Guid="3455fe69f7ddc4604b95bf9b0a1e88d7" ResourceName="Entities/PlayerExplosion" />
@@ -441,6 +479,7 @@
       <Asset Guid="3f54fcfdac53aec42ae18a6a1c6d8cb1" ResourceName="UI/UISprites/Common/checked" />
       <Asset Guid="4098379702ee8ac40baf499012568099" ResourceName="UI/UISprites/Common/8" />
       <Asset Guid="419b28a993bb89c429e3281562b4c5d8" ResourceName="Test/Prefab/Sphere" />
+      <Asset Guid="420edd1a58f042d43a73d605d6ac083c" ResourceName="UI/UISprites/Common/frient" />
       <Asset Guid="44210aded3ec8de49abe3123a38ee8a7" ResourceName="Entities/Treasure_SuShe18" />
       <Asset Guid="4473d81b14ddb0143addf0e6050d8491" ResourceName="Scenes/Main" />
       <Asset Guid="4498c2a4980479d438213cf875d01af1" ResourceName="UI/UISprites/Common/setting_press" />
@@ -450,6 +489,7 @@
       <Asset Guid="47bd1199fd9291741b15e6e31ccae091" ResourceName="Scenes/Wa" />
       <Asset Guid="4a17d2c656f5c6b44a31e3ee547a76b0" ResourceName="DataTables/Aircraft" />
       <Asset Guid="4bd764d958371004bb7e783387830fa5" ResourceName="Scenes/Test_w" />
+      <Asset Guid="4c1cfd747b0bd754e9d63553c820fbd7" ResourceName="UI/UISprites/Common/Achievement" />
       <Asset Guid="4c3865b2ac420cd46a9cde6ab468d016" ResourceName="Materials/prop_asteroid_03_mat" />
       <Asset Guid="4db6a299939bfe94893585eb387f577a" ResourceName="DataTables/Thruster" />
       <Asset Guid="4ea38cda73654024581c315ae90760f9" ResourceName="DataTables/PosDialog" />
@@ -460,6 +500,7 @@
       <Asset Guid="51a18df2ff32ba849a29b9eeb8d2d4d7" ResourceName="Textures/linYinLu01" />
       <Asset Guid="5282f20eba4d44213820e21af8481932" ResourceName="Meshes/vehicle_playerShip_collider" />
       <Asset Guid="5359fecb5b38cb7498f23978fba76c78" ResourceName="UI/UISprites/Common/28" />
+      <Asset Guid="544e8e4781091d84aaf8291a4e9d79e6" ResourceName="UI/UISprites/Common/storyBtn" />
       <Asset Guid="553c2c5130cec924a8d8cb1956a6e557" ResourceName="UI/UISprites/Common/friend" />
       <Asset Guid="55448a87896413240b91e41fe13f6ea4" ResourceName="UI/UIItems/Toggle" />
       <Asset Guid="557b1597c65c3964b9476672fd3b9d95" ResourceName="Entities/Treasure_SuShe11" />
@@ -470,9 +511,11 @@
       <Asset Guid="59c5ab55cf8175a42827993bdfab29c9" ResourceName="UI/UISprites/Common/PositiveIcon" />
       <Asset Guid="5a4ffd39e19fb4d4b87f9e53ffb27658" ResourceName="UI/UISprites/Common/rs" />
       <Asset Guid="5a8bbf51475c5b34bbfb75db376fe57e" ResourceName="UI/UISprites/Common/cztx" />
+      <Asset Guid="5b3d7f4e16b07db40a62e9bbffa1b969" ResourceName="UI/UISprites/Common/hasTask_normal" />
       <Asset Guid="5bbab3b7e52cde14bb32f72ecfe931e0" ResourceName="Scenes/CareerChoice" />
       <Asset Guid="5bc1937567744f34f9351e68c80507b6" ResourceName="DataTables/SpeakAside" />
       <Asset Guid="5be8fd6568dc50d49a8fba45323aa8fb" ResourceName="UI/UISprites/Common/hqy" />
+      <Asset Guid="5c2b8599931cadc47819c2007cad4601" ResourceName="UI/UISprites/Common/reset" />
       <Asset Guid="5dcd89912e222bf4c87f76db4044bc5e" ResourceName="Localization/Korean/Dictionaries/Default" />
       <Asset Guid="5e696deccafbc1742b896cac86484752" ResourceName="UI/UISprites/Common/tt" />
       <Asset Guid="5efd467f36513894d805167d0e44910c" ResourceName="UI/UISprites/Common/OK_normal" />
@@ -487,6 +530,7 @@
       <Asset Guid="638ff8ae4a0d15047839cd265d3bc296" ResourceName="Music/music_background" />
       <Asset Guid="63fe6ff9ab9e1433f8db4ebd940f2442" ResourceName="Materials/done_fx_bolt_cyan_mat" />
       <Asset Guid="641ab45b98f753948acf29e22472e7c8" ResourceName="UI/UISprites/Common/asideBg" />
+      <Asset Guid="64f3527f92d5a8f4b9b81bc7a6bec2eb" ResourceName="UI/UISprites/Common/energy" />
       <Asset Guid="64f3bb52c6a54854688fcc656af2b1c9" ResourceName="DataTables/Aircraft" />
       <Asset Guid="64fd9be9efbf34b4e9fc12cb550a4a0b" ResourceName="Entities/Treasure_SuShe14" />
       <Asset Guid="6645b7a4b1b77d84784712177cfc6cf1" ResourceName="UI/UIItems/tipBar" />
@@ -512,11 +556,14 @@
       <Asset Guid="7241303d3ee805e4f8487267e0726ef6" ResourceName="UI/UISprites/Common/zkk" />
       <Asset Guid="72e76810224064300b7d32e8322a5d12" ResourceName="Sounds/explosion_enemy" />
       <Asset Guid="738bdf56857a65f479c367c7b62c4ad7" ResourceName="Entities/PlayerShip" />
+      <Asset Guid="73b6cc005a78053449c7bdab675250a2" ResourceName="UI/UISprites/Common/handPlay" />
       <Asset Guid="743e24d09740b1142b7936045b1337ea" ResourceName="UI/UISprites/Common/22" />
+      <Asset Guid="74da36ef8ed5e5c42842524ba6c07b0c" ResourceName="UI/UISprites/Common/backBtn" />
       <Asset Guid="7543c246cc0277f4980be1cf06275f04" ResourceName="Textures/shiTang03" />
       <Asset Guid="757729dad2da8434b9268d40a977cd42" ResourceName="UI/UIForms/Life_CatalogsForm" />
       <Asset Guid="75990c91054ac2a41b6132052fa39476" ResourceName="DataTables/PosSceneContent" />
       <Asset Guid="76517ec24382d8f419dbdb0de0b37c10" ResourceName="UI/UISprites/Common/Close_press" />
+      <Asset Guid="76667cb974914cd4aa20497173e71632" ResourceName="UI/UISprites/Common/nextPage_Gray" />
       <Asset Guid="773061dad5d005d4db63f8fd1049801e" ResourceName="UI/UISprites/Common/settingBG" />
       <Asset Guid="777dafec18b21094a8b82e0ebfe06d57" ResourceName="UI/UISprites/Common/jzClose_Normal" />
       <Asset Guid="777f64886e32cdf4d95df9914a61e89d" ResourceName="Entities/Treasure_SuShe" />
@@ -536,6 +583,7 @@
       <Asset Guid="7f8da0d1ac2153a449e858c2b878125e" ResourceName="UI/UISprites/Common/treasure" />
       <Asset Guid="7fd11dc5d29076d469d414dec2818f11" ResourceName="Configs/DefaultConfig" />
       <Asset Guid="81b0ca3407f28c542b0c3d935f26d184" ResourceName="UI/UISprites/Common/jz" />
+      <Asset Guid="82324f319b8b0864eb6620cbd3c37f69" ResourceName="UI/UISprites/Common/dialogPanel" />
       <Asset Guid="834bfaee90a9d4e04b1e8c1ca22cc88e" ResourceName="Entities/Asteroid03" />
       <Asset Guid="836be25be3e1e8c41ae5545bc8a9a4d7" ResourceName="Textures/prop_asteroid_03_dff" />
       <Asset Guid="854b545f58a3c86488adf29a2bc6cf2c" ResourceName="UI/UISprites/Common/CareerBG" />
@@ -543,6 +591,7 @@
       <Asset Guid="876f93df5fb8adb49808ba0d4161a24c" ResourceName="UI/UISprites/Common/chatBG2" />
       <Asset Guid="88ce4531e28b5ed42b88efe945735a2f" ResourceName="Scenes/CharacterSelect" />
       <Asset Guid="8940b037a9b441c4cbd3d2b446838424" ResourceName="Materials/vehicle_playerShip_metal_mat" />
+      <Asset Guid="8aabb95ebc6f0474681a965218dbe271" ResourceName="UI/UISprites/Common/taskDownPanel" />
       <Asset Guid="8b1acacd22538f34cb85287a0781ea5e" ResourceName="DataTables/Weapon" />
       <Asset Guid="8b93af7a0f76e3a40b2e12a4b8ee7c74" ResourceName="Entities/Treasure_SuShe30" />
       <Asset Guid="8be82ccab86b1364db21c19d64a94239" ResourceName="Entities/Treasure_SuShe13" />
@@ -570,10 +619,12 @@
       <Asset Guid="9afa958d6d8235941b9badb42aae4370" ResourceName="Meshes/prop_asteroid_02" />
       <Asset Guid="9b23ea0477e060b41a68421f27a99a5f" ResourceName="UI/UISprites/Common/play" />
       <Asset Guid="9b433f0bb7fef6f4085c316a0d88c307" ResourceName="DataTables/Music" />
+      <Asset Guid="9b94d8a09ea4cfe4895da2772cbce854" ResourceName="UI/UISprites/Common/stoy" />
       <Asset Guid="9be2e1e45f4edd74c8764538ad306b78" ResourceName="Localization/ChineseSimplified/Dictionaries/Default" />
       <Asset Guid="9c3961f379234354e813d7b38146424d" ResourceName="DataTables/Thruster" />
       <Asset Guid="9c3faac13c8ced84a9f3018303b7bb98" ResourceName="DataTables/Sound" />
       <Asset Guid="9cebe46cfb54a5b4486dd638d4b30b2f" ResourceName="Entities/Treasure_SuShe26" />
+      <Asset Guid="9dcb2058f0275d944aa40565f0a484e7" ResourceName="UI/UISprites/Common/rightMenu" />
       <Asset Guid="9ddab293e2a8af3499dac05f5fd6169c" ResourceName="Meshes/vehicle_enemyShip" />
       <Asset Guid="9eeeb6db4ca5e3c468f4848eafba4c71" ResourceName="UI/UISprites/Common/24" />
       <Asset Guid="9f2dde66f1200e5418d8adec76293dfb" ResourceName="DataTables/AchievementSystem" />
@@ -589,10 +640,12 @@
       <Asset Guid="a327fc0af89b669429efddc49d18f047" ResourceName="DataTables/MessageCollege" />
       <Asset Guid="a33e23ae848110243820cda82120b105" ResourceName="DataTables/UIForm" />
       <Asset Guid="a3730c02df0974e4c85bd7326df6b319" ResourceName="UI/UISprites/Common/taskActive5" />
+      <Asset Guid="a43c966876a02c049971f2e246779b02" ResourceName="UI/UISprites/Common/upTip" />
       <Asset Guid="a4b626310fa09b949a4068e97a06db92" ResourceName="Textures/JiaoShi01" />
       <Asset Guid="a55a0aedaef3527448d5ae473e497554" ResourceName="Music/music_menu1" />
       <Asset Guid="a5b166d5ed0c01d4cbcf5766b122fdc3" ResourceName="Scenes/HomePage" />
       <Asset Guid="a5bc70b8e855c04488feaa2473fbb5e6" ResourceName="UI/UISprites/Common/right_press" />
+      <Asset Guid="a6a9b46262db6b5428e528ad703808ab" ResourceName="UI/UISprites/Common/lastPage_gray" />
       <Asset Guid="a6d58f54ce5934781962a4f887e834f3" ResourceName="Entities/AsteroidExplosion" />
       <Asset Guid="a7b030cffa2dc44478c14e49a22771c2" ResourceName="Materials/part_jet_flare_mat" />
       <Asset Guid="a81de448f37e14248b2a4db571b8665d" ResourceName="UI/UISprites/Common/yb" />
@@ -613,6 +666,7 @@
       <Asset Guid="afc18fc39ade3744397c0c993b57be53" ResourceName="Entities/EnemyShip" />
       <Asset Guid="b031b4f2980561542a7f7ba41391edc3" ResourceName="Scenes/Menu" />
       <Asset Guid="b0c7cf51d3fecb446ab93bf854419715" ResourceName="Materials/part_spark_blue_mat" />
+      <Asset Guid="b1c42372bf9676d418845a14f7bee7c0" ResourceName="UI/UISprites/Common/storyTip" />
       <Asset Guid="b1d7e12cdec75a8459884b85833ecb99" ResourceName="UI/UISprites/Common/zj" />
       <Asset Guid="b2cebe04343227945bab3729ca9a3493" ResourceName="DataTables/Armor" />
       <Asset Guid="b2d312f4f5414bb419bc785d663f819f" ResourceName="UI/UISprites/Common/lzy" />
@@ -654,6 +708,7 @@
       <Asset Guid="cc14568f1a7687346a5a3c58a75b0936" ResourceName="UI/UISprites/Common/spliteLine2" />
       <Asset Guid="cc8cc3f1d918c754a95efcd4382ca34e" ResourceName="UI/UIItems/BagItem" />
       <Asset Guid="ccc4f086541b6764aa35ddb888ecaae4" ResourceName="UI/UISprites/Common/left" />
+      <Asset Guid="ccd51eb10554e684ca939e2e57a11ae3" ResourceName="UI/UISprites/Common/haskTask_press" />
       <Asset Guid="cfe0693002941a444a7c51cc600c7ad1" ResourceName="DataTables/Role" />
       <Asset Guid="cfe53cf384344bd47a8680f8c5f97a7b" ResourceName="DataTables/Entity" />
       <Asset Guid="d1fdffb605cce724eaa465d07f414086" ResourceName="UI/UISprites/Common/button_home" />
@@ -675,6 +730,7 @@
       <Asset Guid="dde6d1525eeaa5b4691c533d6070123b" ResourceName="DataTables/SceneContent" />
       <Asset Guid="de75d4372d95971498a1186939e4467c" ResourceName="UI/UISprites/Common/StroyPoint" />
       <Asset Guid="de8b4dcf25abc7d4eac555221707f7cb" ResourceName="UI/UIItems/button" />
+      <Asset Guid="df099252c702520419e6a7ed2abae966" ResourceName="UI/UISprites/Common/lastPage" />
       <Asset Guid="df9b597f87349c84f94adbeb4d7db0b8" ResourceName="UI/UISprites/Common/zlz" />
       <Asset Guid="dfce4f5a785675b48bc494a3a69c865e" ResourceName="UI/UISprites/Common/Arrow" />
       <Asset Guid="e0792649e7774a24d8e7cceba0231c61" ResourceName="DataTables/Asteroid" />
@@ -686,6 +742,7 @@
       <Asset Guid="e82837c9099f69a48b48fc44eb8d119d" ResourceName="UI/UISprites/Common/progressbar" />
       <Asset Guid="e830964cdb85ff3429bca484c16bab44" ResourceName="UI/UISounds/select" />
       <Asset Guid="e85864330b68dde498dcb6e8711815d3" ResourceName="UI/UISprites/Common/round-button-filled" />
+      <Asset Guid="e8685d7320e6d254c801def64acc5c4d" ResourceName="UI/UISprites/Common/taskTipBtn" />
       <Asset Guid="e8a8a25a9d87fff408c7b80543636587" ResourceName="UI/UIForms/Life_CareerForm" />
       <Asset Guid="e8b2b467f88d51648b99d2e9a4de050d" ResourceName="Scenes/Test" />
       <Asset Guid="ea78e4e754dad274db2d938910899130" ResourceName="Entities/Treasure_SuShe8" />
@@ -712,10 +769,13 @@
       <Asset Guid="f7115c2c18f9fa64295d8786495a05ac" ResourceName="UI/UISprites/Common/23" />
       <Asset Guid="f71884f222c171a4f9e9eae67b4966c1" ResourceName="Entities/Treasure_SuShe17" />
       <Asset Guid="f828d2376a3bc954f9c9ce51f5452e83" ResourceName="UI/UISprites/Common/map" />
+      <Asset Guid="f8809ae3cfcf2d4428c6be14b6be8bc5" ResourceName="UI/UISprites/Common/nameCharacter" />
       <Asset Guid="f97cdb52244335845a06a9fb3356fd2b" ResourceName="UI/UIForms/Screen_Portrait" />
+      <Asset Guid="f9cc218c0bd9ef0489c1911cf2c6b919" ResourceName="UI/UISprites/Common/lock" />
       <Asset Guid="fa8638e8dac8e9c4daeff14ce5896417" ResourceName="Entities/Treasure_SuShe9" />
       <Asset Guid="fb94311bafce4b745b5c2f268b032488" ResourceName="UI/UISprites/Common/ymnpy" />
       <Asset Guid="fc5af6426b881bb48b6a827b8179e5af" ResourceName="UI/UIForms/UIPrefab" />
+      <Asset Guid="fc7eb5c79aa670245bb36b8306d79166" ResourceName="UI/UISprites/Common/downTip" />
       <Asset Guid="fca8f076fa7f8034c8a5b2202bd8e834" ResourceName="DataTables/PosSpeakAside" />
       <Asset Guid="fd0e695501bdb3149b591f42b121a6e4" ResourceName="UI/UISprites/Common/exam_confirm" />
       <Asset Guid="fd3cbf51780694849b9b019b36a3938e" ResourceName="Textures/fx_lazer_orange_dff" />
@@ -723,6 +783,8 @@
       <Asset Guid="fdb5edd099d06b045af609ba3172400a" ResourceName="DataTables/Scene" />
       <Asset Guid="fedd25a3c60e7ae499fc6efab9ee180b" ResourceName="Entities/EnemyEngine" />
       <Asset Guid="fee6fd719e0f3eb4b8fe277d4164623f" ResourceName="UI/UISprites/Common/xfmq" />
+      <Asset Guid="ff6df086b567cba48ab0555c6e4f237f" ResourceName="UI/UISprites/Common/bag" />
+      <Asset Guid="ffbf27b4e0936c4459cd4661bfc9bff3" ResourceName="UI/UISprites/Common/sceneItemBtn" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

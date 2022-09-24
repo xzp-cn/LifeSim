@@ -6,4 +6,5 @@ public class ModelFreshData
 {
     public string modelName;
     public int storyId;
+    public string storyName;
 }

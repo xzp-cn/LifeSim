@@ -62,7 +62,7 @@ public class StoryModule :StoryModuleBase
     {
         DRSceneContent drSceneContent = drSceneContentTable.GetDataRow(m_CurStoryId);
 
-        GameEntry.Event.Fire(this,ModelChangeEventArgs.Create(new ModelFreshData(){modelName = drSceneContent.SceneBG,storyId = CurStoryId}));
+        GameEntry.Event.Fire(this,ModelChangeEventArgs.Create(new ModelFreshData(){modelName = drSceneContent.SceneBG,storyId = CurStoryId,storyName = drSceneContent.StorySummary}));
 
         //剧情按钮点击    
         //GameEntry.Event.Fire(this, PlotItemCallEventArgs.Create(m_CurStoryId));
@@ -157,7 +157,6 @@ public class StoryModule :StoryModuleBase
             GameEntry.Event.Fire(this,PlotOverEventArgs.Create(m_CurStoryId,true));
 
             OverExam();
-
 
 
 

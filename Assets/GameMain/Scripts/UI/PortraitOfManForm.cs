@@ -91,6 +91,8 @@ namespace StarForce
         public Transform m_TaskTransform;
         public GameObject tipBar;
 
+        public Text storyTitleText;
+
         public void SetPlayMode()
         {
             bool has= GameEntry.Fsm.HasFsm<IStoryManager>();
@@ -213,6 +215,14 @@ namespace StarForce
             m_GameMgr.OnClose(false,null);
         }
 
+        public void StoryTitleFresh(object sender,GameEventArgs args)
+        {
+            ModelFreshData model = (ModelFreshData)((ModelChangeEventArgs)args).UserData;
+            Log.Debug(model.storyId + "  当前故事情节");
+            string storyName = model.storyName;
+            storyTitleText.text = model.storyName; ;
+        }
+
 #if UNITY_2017_3_OR_NEWER
         protected override void OnInit(object userData)
 #else
@@ -221,10 +231,6 @@ namespace StarForce
         {
             base.OnInit(userData);
 
-            GameEntry.DataNode.SetData("isAutoPlay", new VarBoolean()
-            {
-                Value = true
-            });
 
             if (StoryModuleMgr == null)
             {
@@ -291,6 +297,11 @@ namespace StarForce
         {
             base.OnOpen(userData);
 
+            GameEntry.DataNode.SetData("isAutoPlay", new VarBoolean()
+            {
+                Value = true
+            });
+
             m_ProcedurePortraitOfMan = (ProcedurePortraitOfMan)userData;
             if (m_ProcedurePortraitOfMan == null)
             {
@@ -323,6 +334,9 @@ namespace StarForce
             StoryModuleMgr.StartProcedure<StoryModule>();
 
             GameEntry.Event.Subscribe(StoryOverEventArgs.EventId, OverScene);
+
+
+            GameEntry.Event.Subscribe(ModelChangeEventArgs.EventId,StoryTitleFresh);
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -383,6 +397,7 @@ namespace StarForce
 
             m_TaskMgr.OnClose(isShutdown,userData);
 
+            GameEntry.Event.Unsubscribe(ModelChangeEventArgs.EventId, StoryTitleFresh);
             GameEntry.Event.Unsubscribe(StoryOverEventArgs.EventId, OverScene);
             GameEntry.TTS.StopPlay();
 
