@@ -5,15 +5,15 @@ using GameFramework.Event;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class PlayerMoveMentEventArgs : GameEventArgs
+public class PlayerMoveOnEventArgs : GameEventArgs
 {
     /// <summary>
     /// 网络连接成功事件编号。
     /// </summary>
-    public static readonly int EventId = typeof(PlayerMoveMentEventArgs).GetHashCode();
+    public static readonly int EventId = typeof(PlayerMoveOnEventArgs).GetHashCode();
     // Start is called before the first frame update
 
-    public PlayerMoveMentEventArgs()
+    public PlayerMoveOnEventArgs()
     {
         UserData = null;
     }
@@ -37,9 +37,9 @@ public class PlayerMoveMentEventArgs : GameEventArgs
 
     public static GameEventArgs Create(VarBoolean args)
     {
-        PlayerMoveMentEventArgs playerMoveMentEventArgs = ReferencePool.Acquire<PlayerMoveMentEventArgs>();
-        playerMoveMentEventArgs.UserData = (object)args;
-        return playerMoveMentEventArgs;
+        PlayerMoveOnEventArgs playerMoveOnEventArgs = ReferencePool.Acquire<PlayerMoveOnEventArgs>();
+        playerMoveOnEventArgs.UserData = (object)args;
+        return playerMoveOnEventArgs;
     }
 
     public override void Clear()

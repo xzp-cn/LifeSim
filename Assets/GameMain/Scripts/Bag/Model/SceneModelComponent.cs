@@ -151,7 +151,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_JiaoShiTransform.gameObject.SetActive(true);
-        m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 1).onComplete = () =>
+        m_JiaoShiTransform.DOLocalMove(new Vector3(1.4f, -0.6f, 10.2f), 0.01f).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id ==_storyId;
@@ -189,7 +189,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_ShiTangTransform.gameObject.SetActive(true);
-        m_ShiTangTransform.DOLocalJump(new Vector3(-11.5f, -1.2f, 18.8f), 2, 3, 1).onComplete = () =>
+        m_ShiTangTransform.DOLocalJump(new Vector3(-11.5f, -1.2f, 18.8f), 2, 3, 0.01f).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
@@ -227,7 +227,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_TuShuGuanTransform.gameObject.SetActive(true);
-        m_TuShuGuanTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        m_TuShuGuanTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 0.01f).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
@@ -268,7 +268,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_CaochangTransform.gameObject.SetActive(true);
-        m_CaochangTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        m_CaochangTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 0.01f).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
@@ -309,7 +309,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_LinYinLuTransform.gameObject.SetActive(true);
-        m_LinYinLuTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 1).onComplete = () =>
+        m_LinYinLuTransform.DOLocalMove(new Vector3(-0.11f, -2.27f, 10.2f), 0.01f).onComplete = () =>
         {
             DRSceneContent drSceneContents = Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id == curStoryId;
@@ -345,7 +345,7 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         curStoryId = _storyId;
         m_SuSheTransform.gameObject.SetActive(true);
-        m_SuSheTransform.DOLocalMove(new Vector3(-5.28f, 4.33f, -5.76f), 1f).onComplete= () =>
+        m_SuSheTransform.DOLocalMove(new Vector3(-5.28f, 4.33f, -5.76f), 0.01f).onComplete= () =>
         {
             DRSceneContent drSceneContents= Array.Find(m_SceneContents.GetAllDataRows(), (_item) => {
                 return _item.Id==curStoryId;
@@ -446,7 +446,7 @@ public class SceneModelComponent : GameFrameworkComponent
         }
     }   
 
-
+    
     public void ResetAll()
      {
          //TODO::重置所有状态

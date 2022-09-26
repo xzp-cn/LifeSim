@@ -100,6 +100,7 @@ public class Treasure : Entity
             int energy = clickNum * m_TreasureData.PerEnergy;
             int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
+            GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
 
 
             //更新背包

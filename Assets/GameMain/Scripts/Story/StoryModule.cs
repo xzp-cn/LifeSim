@@ -64,6 +64,7 @@ public class StoryModule :StoryModuleBase
 
         GameEntry.Event.Fire(this,ModelChangeEventArgs.Create(new ModelFreshData(){modelName = drSceneContent.SceneBG,storyId = CurStoryId,storyName = drSceneContent.StorySummary}));
 
+        GameEntry.Event.Fire(this, PlayerMoveMentEventArgs.Create(null));//视角重置
         //剧情按钮点击    
         //GameEntry.Event.Fire(this, PlotItemCallEventArgs.Create(m_CurStoryId));
         return;
@@ -164,14 +165,12 @@ public class StoryModule :StoryModuleBase
             ///能量值+6
             int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = curEnergy + 6 });
+            GameEntry.Event.Fire(this,FreshEnergyEventArgs.Create(m_CurStoryId));
 
             //能量提示关闭
             GameEntry.Event.Fire(this, TaskTipEventArgs.Create(false));
-
             //
-            GameEntry.Event.Fire(this,PlayerMoveMentEventArgs.Create(null));
-
-
+            
         }
         else
         {
@@ -238,7 +237,7 @@ public class StoryModule :StoryModuleBase
             GameEntry.DataNode.SetData("Story",varId);
         }
         storyOverDic.Clear();   
-        DOTween.KillAll();
+       // DOTween.KillAll();
     }
 
     //顶部菜单改变

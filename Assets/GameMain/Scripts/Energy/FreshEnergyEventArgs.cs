@@ -5,15 +5,15 @@ using GameFramework.Event;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class PlayerMoveMentEventArgs : GameEventArgs
+public class FreshEnergyEventArgs : GameEventArgs
 {
     /// <summary>
     /// 网络连接成功事件编号。
     /// </summary>
-    public static readonly int EventId = typeof(PlayerMoveMentEventArgs).GetHashCode();
+    public static readonly int EventId = typeof(FreshEnergyEventArgs).GetHashCode();
     // Start is called before the first frame update
 
-    public PlayerMoveMentEventArgs()
+    public FreshEnergyEventArgs()
     {
         UserData = null;
     }
@@ -35,11 +35,11 @@ public class PlayerMoveMentEventArgs : GameEventArgs
         }
     }
 
-    public static GameEventArgs Create(VarBoolean args)
+    public static GameEventArgs Create(VarInt32 args)
     {
-        PlayerMoveMentEventArgs playerMoveMentEventArgs = ReferencePool.Acquire<PlayerMoveMentEventArgs>();
-        playerMoveMentEventArgs.UserData = (object)args;
-        return playerMoveMentEventArgs;
+        FreshEnergyEventArgs freshEnergyEventArgs = ReferencePool.Acquire<FreshEnergyEventArgs>();
+        freshEnergyEventArgs.UserData = (object)args;
+        return freshEnergyEventArgs;
     }
 
     public override void Clear()

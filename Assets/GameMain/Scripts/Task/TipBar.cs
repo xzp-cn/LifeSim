@@ -33,38 +33,37 @@ public class TipBar : MonoBehaviour
         //回收
         rt.anchoredPosition=new Vector2(0,0);
         float m = 0;
+        StopAllCoroutines();
+        StartCoroutine(AnimBar(_duration));
+    }
 
-       var tw= DOTween.To(
-            () => { return m; },
-            (t) => { },
-            0,
-            1.5f
-        );
-       tw.onComplete = () =>
+    IEnumerator AnimBar(float _duration)
+    {
+        yield return new WaitForSeconds(1f);
+        float t = 0;
+        float h = 0;
+        //_duration = 6;
+        //img.DoAlpha(0, 2);
+        //m_Text.DoAlpha(0, 2);
+        Color cImg = img.color;
+        Color cText = m_Text.color;
+        WaitForEndOfFrame wf=new WaitForEndOfFrame();
+        while (t<=_duration)
         {
-             DOTween.To(
-                () =>
-                {
-                    return m;
-                },
-                (t) =>
-                {
-                    rt.anchoredPosition = new Vector2(0, t);
-                },
-                500,
-                _duration
-            ).onComplete = () =>
-            {
-               gameObject.SetActive(false);
-            };
-            img.DoAlpha(0, _duration);
-            m_Text.DoAlpha(0, _duration);
-        };
-       tw.onKill = () =>
-       {
-           gameObject.SetActive(false);
-       };
-
+            h=Mathf.Lerp(h, 500,Mathf.Sin((float)(Math.PI/2*(t/_duration))));
+            rt.anchoredPosition = new Vector2(0, h);
+            //
+            float alpha = Mathf.Lerp(cImg.a, 0, t / _duration);
+            cImg.a = alpha;
+            img.color = cImg;
+            //
+            cText.a = alpha;
+            m_Text.color = cText;
+            //
+            t += Time.deltaTime;
+            yield return wf;
+        }
+        Recycle();
     }
 
     public void ResetVal()
@@ -78,9 +77,5 @@ public class TipBar : MonoBehaviour
         IObjectPool<TipBarItemObject> tipBarItemObject = GameEntry.ObjectPool.GetObjectPool<TipBarItemObject>("tipBar");//
         tipBarItemObject.Unspawn(this);
         
-    }
-    private void OnDisable()
-    {
-       Recycle();
     }
 }

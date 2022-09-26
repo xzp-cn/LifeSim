@@ -29,6 +29,7 @@ public class DialogModule : StoryModuleBase
     private int tableIndex = 0;
     private int[] dialogIdRange;
 
+    private Tweener tw;
     private CharacterModule m_Character;
     public int CurId//获取当前表中
     {
@@ -95,7 +96,8 @@ public class DialogModule : StoryModuleBase
             //speed = Mathf.Clamp(speed, 1, 10);
             float _delay = _str.Length / speed;
             dialogText.text = string.Empty;
-            dialogText.DOText(_str, _delay).onComplete = () =>
+            tw= dialogText.DOText(_str, _delay);
+            tw.onComplete = () =>
             {
                 DialogIdFresh();
             };
@@ -274,7 +276,7 @@ public class DialogModule : StoryModuleBase
         m_lastId = -100;
         m_ImgLeftTransform.parent.parent.gameObject.SetActive(false);
 
-        DOTween.KillAll();
+        tw?.Kill();
     }
 
     /// <summary>
@@ -285,7 +287,6 @@ public class DialogModule : StoryModuleBase
     {
         base.OnDestroy(fsm);
 
-        DOTween.KillAll();
 
         m_Character.OnDestroy();
         m_Character = null;

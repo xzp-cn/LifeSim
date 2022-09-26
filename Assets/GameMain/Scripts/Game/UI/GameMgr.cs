@@ -65,6 +65,7 @@ public class GameMgr : IUIModule
                     OnClose(false, null);
 
                     GameEntry.DataNode.SetData("Energy",new VarInt32(){Value = leftEnergy});
+                    GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
 
                     switch (energyCosume)
                     {

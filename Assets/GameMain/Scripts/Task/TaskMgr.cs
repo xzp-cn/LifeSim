@@ -22,8 +22,6 @@ public class TaskMgr : IUIModule
     private Transform tipBarPar;
     private GameObject origin;
     private IObjectPool<TipBarItemObject> m_TipObjectPool;
-    //private List<TipBar> m_tipBarList;
-
     public void Init(Transform _taskTransform,Transform _tipBarPar,GameObject _origin)
     {
         m_TaskTipTransform = _taskTransform as RectTransform;
@@ -68,7 +66,7 @@ public class TaskMgr : IUIModule
             float m = 0;
             if (isOn)//上
             {
-                DOTween.To(
+                    DOTween.To(
                     () =>
                     {
                         return m;
@@ -111,7 +109,7 @@ public class TaskMgr : IUIModule
         }
         TipBar tipBar=GetTipBarGameObject();
         string _content = drSceneContent.StoryName+", "+drSceneContent.StorySummary;
-        tipBar.Show(_content,3);
+        tipBar.Show(_content,6);
         //
     }
 
@@ -211,6 +209,7 @@ public class TaskMgr : IUIModule
                 {
                     GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = leftEnergy });
                     GameEntry.Event.Fire(this, TaskTipEventArgs.Create(true));
+                    GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
                 }
             },
         });

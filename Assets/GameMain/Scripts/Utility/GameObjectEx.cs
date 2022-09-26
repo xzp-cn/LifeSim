@@ -85,7 +85,7 @@ public static class GameObjectEx
         );
     }
 
-    public static void DoAlpha(this MaskableGraphic img,  float toAlpha, float duration)
+    public static void DoAlpha(this MaskableGraphic img,  float toAlpha, float duration,System.Action callback=null)
     {
         Color color = img.color;
         float m = img.color.a;
@@ -101,6 +101,9 @@ public static class GameObjectEx
             },
             toAlpha,
             duration
-        );
+        ).onComplete= () =>
+        {
+            callback?.Invoke();
+        };
     }
 }

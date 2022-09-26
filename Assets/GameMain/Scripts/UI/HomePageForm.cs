@@ -37,7 +37,6 @@ public class HomePageForm : UGuiForm
 
         Log.Debug("重新开始");
         //
-        //m_ProcedureMenu.StartGame();
     }
 
     void GotoStory(object sender, GameEventArgs args)

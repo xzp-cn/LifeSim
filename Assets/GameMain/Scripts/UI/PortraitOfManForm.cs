@@ -18,14 +18,16 @@ namespace StarForce
         [SerializeField] private Sprite pauseSprite;
         [SerializeField] private Image pauseImage;
 
+        [SerializeField] private Sprite upSprite;
+        [SerializeField] private Sprite downSprite;
+        [SerializeField] private Toggle toggleTip;
+        
         [SerializeField]
         private PlotItem m_PlotItem;
 
         [SerializeField]
         private Transform m_MapTransform;
 
-        [SerializeField]
-        private Transform m_PlotParent;
         private ProcedurePortraitOfMan m_ProcedurePortraitOfMan = null;
 
         [SerializeField]
@@ -64,6 +66,9 @@ namespace StarForce
         [SerializeField]
         private Transform m_achievePanel;
         private AchieveMgr m_AchievePanelMgr;
+
+        [SerializeField]
+        private Text m_EnergyText;
 
         /// <summary>
         /// 界面关闭
@@ -122,21 +127,6 @@ namespace StarForce
                     Value = true
                 });
             }
-            return;
-            //if (pauseImage.sprite == playSprite)
-            //{
-            //    pauseImage.sprite = pauseSprite;//暂停
-            //    GameEntry.Base.PauseGame();
-            //    GameEntry.TTS.StopPlay();
-            //    DOTween.PauseAll();
-            //}
-            //else
-            //{
-            //    pauseImage.sprite = playSprite;//播放
-            //    GameEntry.Base.ResumeGame();
-            //    GameEntry.TTS.Resume();
-            //    DOTween.RestartAll();
-            //}
         }
 
         public void OnBackButtonClick()
@@ -212,6 +202,19 @@ namespace StarForce
         {
             Log.Debug("游戏界面关闭");
             m_GameMgr.OnClose(false,null);
+        }
+
+        public void TaskTipOpen(bool isOn)
+        {
+            Image img = toggleTip.GetComponentInChildren<Image>(true);
+            if (isOn)
+            {
+                img.sprite = downSprite;
+            }
+            else
+            {
+                img.sprite = upSprite;
+            }
         }
 
         public void StoryTitleFresh(object sender,GameEventArgs args)
@@ -329,13 +332,13 @@ namespace StarForce
                     new AsideModule(),
                     new DialogModule()
                 });
-            //Log.Error("启动");
             StoryModuleMgr.StartProcedure<StoryModule>();
 
             GameEntry.Event.Subscribe(StoryOverEventArgs.EventId, OverScene);
 
-
             GameEntry.Event.Subscribe(ModelChangeEventArgs.EventId,StoryTitleFresh);
+
+            GameEntry.Event.Subscribe(FreshEnergyEventArgs.EventId,FreshEnergy);
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -396,13 +399,13 @@ namespace StarForce
 
             m_TaskMgr.OnClose(isShutdown,userData);
 
+            GameEntry.Event.Unsubscribe(FreshEnergyEventArgs.EventId, FreshEnergy);
+
             GameEntry.Event.Unsubscribe(ModelChangeEventArgs.EventId, StoryTitleFresh);
             GameEntry.Event.Unsubscribe(StoryOverEventArgs.EventId, OverScene);
             GameEntry.TTS.StopPlay();
 
         }
-
-        
 
         /// <summary>
         /// 页面结束
@@ -415,6 +418,12 @@ namespace StarForce
             m_ProcedurePortraitOfMan = null;
         }
 
+
+        void FreshEnergy(object sender,GameEventArgs args)
+        {
+            int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
+            m_EnergyText.text = curEnergy.ToString();
+        }
     }
 }
 
