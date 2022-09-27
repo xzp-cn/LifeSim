@@ -122,6 +122,28 @@ MonoBehaviour:
     uiSprite: {fileID: 21300000, guid: 2530abb515e740a4f9a7621aa328d5ce, type: 3}
   - uiName: map
     uiSprite: {fileID: 21300000, guid: f828d2376a3bc954f9c9ce51f5452e83, type: 3}
+  - uiName: "\u6574\u6D01\u5927\u5E08"
+    uiSprite: {fileID: 21300000, guid: 0db014b63e8c332478ad1ac0efd0d962, type: 3}
+  - uiName: "\u8282\u7EA6\u4E4B\u661F"
+    uiSprite: {fileID: 21300000, guid: 11a13f4f74d4706448549974d01647be, type: 3}
+  - uiName: "\u661F\u5EA7\u80FD\u624B"
+    uiSprite: {fileID: 21300000, guid: 8d46079076a8fd44a8fa619f42a45e84, type: 3}
+  - uiName: "\u7CBE\u81F4\u8FBE\u4EBA"
+    uiSprite: {fileID: 21300000, guid: cb60592c277504f4b8d88cb336961618, type: 3}
+  - uiName: "\u6696\u5B9D\u5B9D"
+    uiSprite: {fileID: 21300000, guid: 5036fbd40eefcfb43adfa37de2f7cb3c, type: 3}
+  - uiName: "\u73AF\u4FDD\u536B\u58EB"
+    uiSprite: {fileID: 21300000, guid: d8e6edc5a5876d248a86ed854acafbf2, type: 3}
+  - uiName: "\u5B89\u5168\u7BA1\u5BB6 "
+    uiSprite: {fileID: 21300000, guid: 55d297126828fb94d8139736b5933f06, type: 3}
+  - uiName: "\u7535\u5B50\u4E07\u82B1\u7B52"
+    uiSprite: {fileID: 21300000, guid: 7c53804c866e1214db20bd47480ca121, type: 3}
+  - uiName: "\u71C3\u70E7\u5361\u8DEF\u91CC"
+    uiSprite: {fileID: 21300000, guid: 916f92df7de163940b794ba122d000ae, type: 3}
+  - uiName: "\u6E38\u620F\u738B\u8005"
+    uiSprite: {fileID: 21300000, guid: 759f42aaf29dff54c9fb13abe416ea3c, type: 3}
+  - uiName: "\u6210\u957F\u4E4B\u8DEF"
+    uiSprite: {fileID: 21300000, guid: 96047c5c21f9a044daebd1f59e742803, type: 3}
   m_TextureStructs:
   - uiName: "\u64CD\u573A"
     uiTexture2D: {fileID: 2800000, guid: 7f22aa1f9a27a23449e63f8f695fab37, type: 3}

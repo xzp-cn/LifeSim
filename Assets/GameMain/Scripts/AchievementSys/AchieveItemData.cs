@@ -10,6 +10,6 @@ public class AchieveItemData
 
 public class AchieveItemGridData
 {
-    public AchieveItemData bagData;
+    public AchieveItemData achieveData;
     public int num;
 }

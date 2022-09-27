@@ -12,15 +12,24 @@ using GameEntry = StarForce.GameEntry;
 public class BagItem : MonoBehaviour
 {
     public Image m_Image;
-    public Text m_NumText;
+    public Text m_NumText;  
+    public Text m_NameText;
 
     public BagItemGridData m_BagItemGridData;
     private GameObject uiPoolObject;
+    private BagInfoData m_BagInfoData;
+
+    private void Start()
+    {
+        m_BagInfoData=new BagInfoData();
+    }
+
     public void FreshContent(BagItemGridData _bagItemGridData)
     {
         m_BagItemGridData = _bagItemGridData;
         FreshImg();
         m_NumText.text = _bagItemGridData.num.ToString();
+        m_NameText.text = _bagItemGridData.bagData.name;
     }
 
     void FreshImg()
@@ -53,8 +62,25 @@ public class BagItem : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public void OnHover()
     {
-        GameEntry.Event.Fire(this, BagInfoFreshEventArgs.Create(m_BagItemGridData.bagData));
+        Log.Debug("OnHover");
+        m_BagInfoData.bagData = m_BagItemGridData.bagData;
+        m_BagInfoData.isHover = true;
+        GameEntry.Event.Fire(this, BagInfoFreshEventArgs.Create(m_BagInfoData));
     }
+
+    public void OnHoverExit()
+    {
+        m_BagInfoData.bagData = m_BagItemGridData.bagData;
+        m_BagInfoData.isHover = false;
+        GameEntry.Event.Fire(this, BagInfoFreshEventArgs.Create(m_BagInfoData));
+    }
+}
+
+
+public class BagInfoData
+{
+    public BagItemData bagData;
+    public bool isHover;
 }

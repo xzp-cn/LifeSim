@@ -214,13 +214,20 @@ public class BagPanelMgr : IUIModule
     {
         
         BagInfoFreshEventArgs bagInfoFreshEventArgs = ((BagInfoFreshEventArgs)e);
-        BagItemData bagItemData = (BagItemData)bagInfoFreshEventArgs.UserData;
+        BagInfoData bagInfoData=(BagInfoData)bagInfoFreshEventArgs.UserData;
 
+        if (!bagInfoData.isHover)
+        {
+            m_BagInfoPanelTransform.gameObject.SetActive(false);
+            return;
+        }
+
+        m_BagInfoPanelTransform.gameObject.SetActive(true);
+        BagItemData bagItemData = bagInfoData.bagData;
         BagItem _bagItem=sender as BagItem;
         RectTransform rt= m_BagInfoPanelTransform as RectTransform;
         Vector3 pos= _bagItem.transform.position + new Vector3(100, -100, 0) + new Vector3(rt.rect.size.x/2,-rt.rect.size.y/2);
         m_BagInfoPanelTransform.position = pos;
-        m_BagInfoPanelTransform.gameObject.SetActive(true);
         //
         Text text_title=m_BagInfoPanelTransform.Find("top/Text_title").GetComponent<Text>();
         Text Text_attr = m_BagInfoPanelTransform.Find("middle/Text_attr").GetComponent<Text>();

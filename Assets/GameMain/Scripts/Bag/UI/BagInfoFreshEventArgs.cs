@@ -7,7 +7,7 @@ using UnityEngine;
 public class BagInfoFreshEventArgs :GameEventArgs
 {
 /// <summary>
-/// 网络连接成功事件编号。
+/// 
 /// </summary>
 public static readonly int EventId = typeof(BagInfoFreshEventArgs).GetHashCode();
 // Start is called before the first frame update

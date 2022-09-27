@@ -29,9 +29,21 @@ public class GameForm : UGuiForm
         Log.Debug("isFinish "+isFinish.ToString());
         if (isFinish)
         {
-            Close();
-            m_PuzzleMgr.OnClose(false,null);
-            DOTween.PlayAll();//
+            GameEntry.UI.OpenDialog(new DialogParams()
+            {
+                Mode = 2,
+                Title = GameEntry.Localization.GetString("PuzzleTip.Title"),
+                Message = GameEntry.Localization.GetString("PuzzleTip.Message"),
+                CancelText = GameEntry.Localization.GetString("Dialog.CancelButton"),
+                ConfirmText = GameEntry.Localization.GetString("Dialog.ConfirmButton"),
+                OnClickConfirm = delegate (object userdata)
+                {
+                    Log.Debug("未完成");
+                    Close();
+                    m_PuzzleMgr.OnClose(false, null);
+                    DOTween.PlayAll();//
+                },
+            });
         }
         else
         {
@@ -39,7 +51,7 @@ public class GameForm : UGuiForm
             {
                 Mode = 2,
                 Title = GameEntry.Localization.GetString("PuzzleTip.Title"),
-                Message = GameEntry.Localization.GetString("PuzzleTip.Message"),
+                Message = GameEntry.Localization.GetString("PuzzleTip.ErrorMessage"),
                 CancelText = GameEntry.Localization.GetString("Dialog.CancelButton"),
                 ConfirmText = GameEntry.Localization.GetString("Dialog.ConfirmButton"),
                 OnClickConfirm = delegate (object userdata)

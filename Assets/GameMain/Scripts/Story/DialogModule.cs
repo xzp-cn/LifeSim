@@ -295,6 +295,5 @@ public class DialogModule : StoryModuleBase
         {
             GameEntry.DataNode.SetData<VarInt32>("Story/StoryAside/Dialog", m_curId);
         }
-      
     }
 }

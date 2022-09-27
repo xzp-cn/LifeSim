@@ -25,7 +25,7 @@ public class GameMgr : IUIModule
 
     void DialogOpen()
     {
-        Log.Warning("123");
+        //Log.Warning("123");
 
         Action action = () =>
         {

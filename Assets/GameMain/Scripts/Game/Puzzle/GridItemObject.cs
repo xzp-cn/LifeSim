@@ -29,13 +29,13 @@ public class GridItemObject :ObjectBase
     {
         base.OnSpawn();
         (Target as GameObject).SetActive(true);
-        Log.Debug("生成对象事件");
+        //Log.Debug("生成对象事件");
     }
 
     protected override void OnUnspawn()
     {
         base.OnSpawn();
         (Target as GameObject).SetActive(false);
-        Log.Debug("回收");
+        //Log.Debug("回收");
     }
 }

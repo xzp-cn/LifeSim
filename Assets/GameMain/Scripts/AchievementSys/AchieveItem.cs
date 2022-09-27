@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using GameFramework.Resource;
 using StarForce;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 using GameEntry = StarForce.GameEntry;
@@ -13,11 +14,11 @@ public class AchieveItem : MonoBehaviour
     public Image m_Image;
     public Text m_NumText;
 
-    public AchieveItemGridData m_BagItemGridData;
+    public AchieveItemGridData m_AchieveItemGridData;
     private GameObject uiPoolObject;
     public void FreshContent(AchieveItemGridData _bagItemGridData)
     {
-        m_BagItemGridData = _bagItemGridData;
+        m_AchieveItemGridData = _bagItemGridData;
         FreshImg();
         m_NumText.text = _bagItemGridData.num.ToString();
     }
@@ -27,7 +28,7 @@ public class AchieveItem : MonoBehaviour
         Action action = () =>
         {
             UIPool uiPool = uiPoolObject.GetComponent<UIPool>();
-            UIStruct uiStruct = uiPool.m_UiStructs.Find((_uiStruct) => { return _uiStruct.uiSprite.name.Equals(m_BagItemGridData.bagData.imageName); });
+            UIStruct uiStruct = uiPool.m_UiStructs.Find((_uiStruct) => { return _uiStruct.uiSprite.name.Equals(m_AchieveItemGridData.achieveData.imageName); });
             m_Image.sprite = uiStruct.uiSprite;
         };
 
@@ -54,6 +55,6 @@ public class AchieveItem : MonoBehaviour
 
     public void OnClick()
     {
-        GameEntry.Event.Fire(this, AchieveInfoFreshEventArgs.Create(m_BagItemGridData.bagData));
+        GameEntry.Event.Fire(this, AchieveInfoFreshEventArgs.Create(m_AchieveItemGridData.achieveData));
     }
 }

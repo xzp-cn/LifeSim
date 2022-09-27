@@ -135,11 +135,11 @@ public class AchieveMgr : IUIModule
             }
             else
             {
-                AchieveItemGridData achieveItemGridData = achieveItemGridDatas.Find((_item) => { return _item.bagData.name == _drAchievementSystem.Name; });
+                AchieveItemGridData achieveItemGridData = achieveItemGridDatas.Find((_item) => { return _item.achieveData.name == _drAchievementSystem.Name; });
                 if (achieveItemGridData == null)
                 {
                     achieveItemGridData = new AchieveItemGridData();
-                    achieveItemGridData.bagData = new AchieveItemData()
+                    achieveItemGridData.achieveData = new AchieveItemData()
                     {
                         name = _drAchievementSystem.Name,
                         imageName = _drAchievementSystem.ImageName,
@@ -149,7 +149,7 @@ public class AchieveMgr : IUIModule
                     achieveItemGridData.num = n;
                     achieveItemGridDatas.Add(achieveItemGridData);
 
-                    //弹出对话框、、
+                    //弹出对话框
                     GameEntry.UI.OpenDialog(new DialogParams()
                     {
                         Mode = 1,
@@ -284,7 +284,4 @@ public class AchieveMgr : IUIModule
     {
         
     }
-
-
-    
 }
