@@ -96,6 +96,7 @@ public class TreasureSuShe : TreasureModuleBase
                         {
                             has = treasureDic[treasureData.storyId].Count != 0;
                         }
+                        //是否还有收藏品
                         GameEntry.DataNode.SetData("StoryPower/" + treasureData.storyId, new VarBoolean()
                         {
                             Value = has

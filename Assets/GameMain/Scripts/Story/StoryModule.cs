@@ -103,7 +103,6 @@ public class StoryModule :StoryModuleBase
        
     }
 
-
     protected override void OnInit(IFsm<IStoryManager> fsm)
     {
         BgImage = ((StoryModuleMgr) fsm.Owner).m_plotDialogTransform.GetComponentInParent<PortraitOfManForm>().transform.Find("Screen_Portrait/bg").GetComponent<RawImage>();
@@ -130,7 +129,6 @@ public class StoryModule :StoryModuleBase
         //
         m_fsm = fsm;
         //注册修改场景ID 事件
-        GameEntry.Event.Subscribe(StoryEventArgs.EventId, ChangeTableIdEvent);
         GameEntry.Event.Subscribe(StoryFreshEventArgs.EventId, FreshStory);
     }
 
@@ -154,30 +152,30 @@ public class StoryModule :StoryModuleBase
         if (m_lastStoryId!=-100)
         {
             storyOverDic[m_CurStoryId] = true;
-            //当前剧情结束，场景UI完成 刷新
-            GameEntry.Event.Fire(this,PlotOverEventArgs.Create(m_CurStoryId,true));
 
             OverExam();
 
-
-
-
-            ///能量值+6
-            int curEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
-            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = curEnergy + 6 });
+            //能量值+6
+            IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
+            int energy = 0;
+            if (dataNode == null)
+            {
+                GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = energy });
+            }
+            else
+            {
+                energy = GameEntry.DataNode.GetData<VarInt32>("Energy");
+            }
+            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = energy + 6 });
             GameEntry.Event.Fire(this,FreshEnergyEventArgs.Create(m_CurStoryId));
 
             //能量提示关闭
             GameEntry.Event.Fire(this, TaskTipEventArgs.Create(false));
-            //
-            
         }
         else
         {
             callback?.Invoke();
         }
-        
-
     }
 
     /// <summary>
@@ -225,10 +223,7 @@ public class StoryModule :StoryModuleBase
     {
         base.OnDestroy(fsm);
 
-        GameEntry.Event.Unsubscribe(StoryEventArgs.EventId, ChangeTableIdEvent);
         GameEntry.Event.Unsubscribe(StoryFreshEventArgs.EventId, FreshStory);
-
-
 
         if (GameEntry.DataNode.Root != null)
         {
@@ -236,26 +231,12 @@ public class StoryModule :StoryModuleBase
             varId.SetValue(m_CurStoryId);
             GameEntry.DataNode.SetData("Story",varId);
         }
-        storyOverDic.Clear();   
-       // DOTween.KillAll();
-    }
-
-    //顶部菜单改变
-    void ChangeTableIdEvent(object sender,GameEventArgs args)
-    {
-        int _storyId=(VarInt32)((StoryEventArgs)args).UserData;
-        tableIndex = Array.FindIndex(storyIdRange, (_value) => { return _value == _storyId; });
-        m_lastStoryId = -100;
-
-        m_fsm.GetState<AsideModule>().ChangeTableIdEvent();
-        //切换流程状态
-        ChangeState<StoryModule>(m_fsm);
+        storyOverDic.Clear();
     }
 
 
     void OverExam()
     {
-        //TODO 选择 0.寄语 1.游戏
         GameEntry.Event.Fire(JzFreshEventArgs.EventId, JzFreshEventArgs.Create(m_CurStoryId));
     }
 
@@ -270,6 +251,15 @@ public class StoryModule :StoryModuleBase
             GameEntry.Event.Fire(this, MapLocateEventArgs.Create(m_CurStoryId));
         };
 
+        //解锁下一个
+        Action nextFreshAction = () =>
+        {
+            int _index = tableIndex;
+            _index++;
+            int _CurStoryId = storyIdRange[Mathf.Clamp(_index, 0, storyIdRange.Length - 1)];
+            GameEntry.DataNode.SetData<VarInt32>("Story",new VarInt32(){Value = _CurStoryId});
+        };
+
         GameEntry.UI.OpenDialog(new DialogParams()
         {
             Mode = 2,
@@ -279,14 +269,13 @@ public class StoryModule :StoryModuleBase
             {
                 StoryRefresh();
                 callback?.Invoke();
+
+                nextFreshAction?.Invoke();
+              
             },  
             OnClickCancel = delegate(object userData)
             {//
-
-                int _index=tableIndex;
-                _index++;
-                int _CurStoryId = storyIdRange[Mathf.Clamp(_index, 0, storyIdRange.Length - 1)];
-                GameEntry.Event.Fire(this,PlotItemNextFreshEventArgs.Create(_CurStoryId));
+                nextFreshAction?.Invoke();
             }
         });
     }

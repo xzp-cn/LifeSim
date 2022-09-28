@@ -14,10 +14,6 @@ namespace StarForce
         /// </summary>
         public int storyId=0;
 
-        //public Image image_circle;
-
-        //public Image image_textBG;
-
         public Image image_Btn;
 
         public Text storyText;
@@ -48,12 +44,11 @@ namespace StarForce
             m_Toggle.isOn = AllOver;
         }
 
-        /// <summary>
-        /// 当前剧情结束
-        /// </summary>
-        public void OverStory(bool isOver)
+
+        public void DisActiveRaycast()
         {
-            ActiveRaycast();
+            image_lock.gameObject.SetActive(true);
+            image_Btn.gameObject.SetActive(false);
         }
 
         public void ActiveRaycast()
@@ -62,14 +57,10 @@ namespace StarForce
             image_Btn.gameObject.SetActive(true);
         }
 
-
         public void OnBtnClick()
         {
-
             GameEntry.DataNode.SetData("Story", new VarInt32() { Value = storyId });
-
             GameEntry.Event.Fire(this, StoryEventArgs.Create(storyId));
-
             return;
         }
 

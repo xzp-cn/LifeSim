@@ -45,69 +45,49 @@ namespace StarForce
             }
             m_ActivePlotItems = new List<PlotItem>();
 
-            //
         }
 
         /// <summary>
         /// 显示所有的故事主线
         /// </summary>
         private IDataTable<DRSceneContent> drSceneTable;
+
+        private DRSceneContent[] drSceneContentArray;
         public void InitStoryItems()
         {
             drSceneTable = GameEntry.DataTable.GetDataTable<DRSceneContent>();
-            DRSceneContent[] drSceneContentArray = drSceneTable.GetAllDataRows();
+            drSceneContentArray = drSceneTable.GetAllDataRows();
             foreach (DRSceneContent drSceneContent in drSceneContentArray)
             {
                 PlotItem plotItem= ShowPlotItem(drSceneContent.Id);
                 plotItem.Init(drSceneContent.Id,drSceneContent.StorySummary);
             }
 
+        }
+
+
+        public void FreshStory()
+        {
             IDataNode node = GameEntry.DataNode.GetNode("Story");
-            if (node==null)
+            if (node == null)
             {
+                //重置
+                foreach (PlotItem m_activePlot in m_ActivePlotItems)
+                {
+                    m_activePlot.DisActiveRaycast();
+                }
                 m_ActivePlotItems[0].ActiveRaycast();
             }
             else
             {
-                int id= (VarInt32)node.GetData();
+                int id = (VarInt32)node.GetData();
                 int startIndex = drSceneContentArray[0].Id;
-                for (int i =startIndex,j=0 ; i <=id; i++,j++)
+                for (int i = startIndex, j = 0; i <= id; i++, j++)
                 {
                     m_ActivePlotItems[j].ActiveRaycast();
                 }
             }
         }
-
-        /// <summary>
-        /// 设置当前plot
-        /// </summary>
-        /// <param name="storyId"></param>
-        //void SetCurrentStory(object sender,GameEventArgs args)
-        //{
-        //    VarInt32 storyId =(VarInt32)((PlotItemCallEventArgs)args).UserData;
-
-        //    PlotItem plotItem=GetActivePlotItem(storyId.Value);
-        //    plotItem.SetCurrent(true);
-        //}
-
-        void SetOverStory(object sender, GameEventArgs args)
-        {
-            PlotOverEventArgs _eventArgs = (PlotOverEventArgs) args;
-            VarInt32 storyId = (VarInt32)_eventArgs.UserData;
-
-            PlotItem plotItem = GetActivePlotItem(storyId.Value);
-            plotItem.OverStory(_eventArgs.isOverStory);
-        }
-
-        void SetNextStory(object sender, GameEventArgs args)
-        {
-            PlotItemNextFreshEventArgs _eventArgs = (PlotItemNextFreshEventArgs)args;
-            VarInt32 storyId = (VarInt32)_eventArgs.UserData;
-
-            PlotItem plotItem = GetActivePlotItem(storyId.Value);
-            plotItem.ActiveRaycast();
-        }
-
 
         public PlotItem ShowPlotItem(int storyID)
         {
@@ -179,9 +159,9 @@ namespace StarForce
                 _plotItem.SetTask(isOver);
             }
 
-            ///GameEntry.Event.Subscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
-            GameEntry.Event.Subscribe(PlotOverEventArgs.EventId, SetOverStory);
-            GameEntry.Event.Subscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
+            FreshStory();
+
+
         }
         public virtual void Update()
         {
@@ -189,14 +169,11 @@ namespace StarForce
         public  void OnClose(bool isShutdown, object userData)
         {
             m_PlotInstanceRoot.gameObject.SetActive(isShutdown);
-            //GameEntry.Event.Unsubscribe(PlotItemCallEventArgs.EventId, SetCurrentStory);
-            GameEntry.Event.Unsubscribe(PlotOverEventArgs.EventId, SetOverStory);
-            GameEntry.Event.Unsubscribe(PlotItemNextFreshEventArgs.EventId, SetNextStory);
         }
 
         public void OnRecycle()
         {
-
+           
         }
     }
 }

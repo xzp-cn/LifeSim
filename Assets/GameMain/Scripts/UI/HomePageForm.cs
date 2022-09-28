@@ -26,7 +26,7 @@ public class HomePageForm : UGuiForm
     /// <summary>
     /// 滚动条模块
     /// </summary>
-    private IUIModule PlotItemMgr = null;
+    private IUIModule m_PlotItemMgr = null;
 
     public void OnNewButtonClick()
     {
@@ -37,6 +37,8 @@ public class HomePageForm : UGuiForm
 
         Log.Debug("重新开始");
         //
+        //TODO 重构：添加重置接口
+        ((PlotItemMgr)m_PlotItemMgr).FreshStory();
     }
 
     void GotoStory(object sender, GameEventArgs args)
@@ -70,11 +72,11 @@ public class HomePageForm : UGuiForm
     protected override void OnInit(object userData)
     {
         base.OnInit(userData);
-        if (PlotItemMgr == null)
+        if (m_PlotItemMgr == null)
         {
-            PlotItemMgr = new PlotItemMgr();
-            ((PlotItemMgr)PlotItemMgr).Init(m_PlotParent, m_PlotItem);
-            ((PlotItemMgr)PlotItemMgr).InitStoryItems();
+            m_PlotItemMgr = new PlotItemMgr();
+            ((PlotItemMgr)m_PlotItemMgr).Init(m_PlotParent, m_PlotItem);
+            ((PlotItemMgr)m_PlotItemMgr).InitStoryItems();
         }
     }
 
@@ -93,7 +95,7 @@ public class HomePageForm : UGuiForm
             return;
         }
 
-        PlotItemMgr.OnOpen();
+        m_PlotItemMgr.OnOpen();
 
         FreshEnergy();
 
@@ -105,7 +107,7 @@ public class HomePageForm : UGuiForm
     protected override void OnUpdate(float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(elapseSeconds, realElapseSeconds);
-        PlotItemMgr.Update();
+        m_PlotItemMgr.Update();
     }
 
 
@@ -119,7 +121,7 @@ public class HomePageForm : UGuiForm
 
         base.OnClose(isShutdown, userData);
 
-        PlotItemMgr.OnClose(isShutdown, userData);
+        m_PlotItemMgr.OnClose(isShutdown, userData);
 
         GameEntry.Event.Unsubscribe(StoryEventArgs.EventId, GotoStory);
     }

@@ -98,6 +98,17 @@ public class Treasure : Entity
         {
             //更新能量显示
             int energy = clickNum * m_TreasureData.PerEnergy;
+
+            IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
+            if (dataNode == null)
+            {
+                GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = energy });
+            }
+            else
+            {
+                energy+= GameEntry.DataNode.GetData<VarInt32>("Energy");
+            }
+
             int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
             GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));

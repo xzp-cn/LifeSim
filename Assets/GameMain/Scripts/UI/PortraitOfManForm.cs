@@ -407,6 +407,11 @@ namespace StarForce
 
         }
 
+        protected override void OnRecycle()
+        {
+            base.OnRecycle();
+        }
+
         /// <summary>
         /// 页面结束
         /// </summary>
