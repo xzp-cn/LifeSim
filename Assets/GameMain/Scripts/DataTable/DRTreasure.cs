@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-19 10:58:49.679
+// 生成时间：2022-09-29 16:54:38.796
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// ʰȡ��Ʒ��。
+    /// 0。
     /// </summary>
     public class DRTreasure : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取��Ʒ���。
+        /// 获取物品编号。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取��Ʒ����。
+        /// 获取物品名称。
         /// </summary>
         public string Name
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取������ƷId。
+        /// 获取背包物品Id。
         /// </summary>
         public int BagId
         {
@@ -55,7 +55,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取��Ʒ�������。
+        /// 获取物品所属背景。
         /// </summary>
         public string Model
         {
@@ -64,7 +64,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取��ʧ��Ч���。
+        /// 获取消失特效编号。
         /// </summary>
         public int ClickEffectId
         {
@@ -73,7 +73,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取���������。
+        /// 获取点击声音编号。
         /// </summary>
         public int SoundId
         {
@@ -82,16 +82,16 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取����。
+        /// 获取类型。
         /// </summary>
-        public int TypeId
+        public int Num
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取����ֵ。
+        /// 获取能量值。
         /// </summary>
         public int Power
         {
@@ -100,7 +100,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取����id。
+        /// 获取故事id。
         /// </summary>
         public int StroyID
         {
@@ -125,7 +125,7 @@ namespace StarForce
             Model = columnStrings[index++];
             ClickEffectId = int.Parse(columnStrings[index++]);
             SoundId = int.Parse(columnStrings[index++]);
-            TypeId = int.Parse(columnStrings[index++]);
+            Num = int.Parse(columnStrings[index++]);
             Power = int.Parse(columnStrings[index++]);
             StroyID = int.Parse(columnStrings[index++]);
 
@@ -145,7 +145,7 @@ namespace StarForce
                     Model = binaryReader.ReadString();
                     ClickEffectId = binaryReader.Read7BitEncodedInt32();
                     SoundId = binaryReader.Read7BitEncodedInt32();
-                    TypeId = binaryReader.Read7BitEncodedInt32();
+                    Num = binaryReader.Read7BitEncodedInt32();
                     Power = binaryReader.Read7BitEncodedInt32();
                     StroyID = binaryReader.Read7BitEncodedInt32();
                 }

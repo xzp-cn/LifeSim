@@ -130,10 +130,8 @@ public class Treasure : Entity
                 typeId = m_TreasureData.TypeId,
                 count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)//剩余点击次数
             };
-            GameEntry.Event.Fire(this, ModelTreasureStoreFreshEventArgs.Create(data));
+            GameEntry.Event.FireNow(this, ModelTreasureStoreFreshEventArgs.Create(data));
             //
-           
-
         }
     }
 }

@@ -39,7 +39,7 @@ public class TreasureSuShe : TreasureModuleBase
             {
                 try
                 {
-                    TreasureData data = new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, Utility.Random.GetRandom(2, 5), _drTreasure.StroyID)
+                    TreasureData data = new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, _drTreasure.Num, _drTreasure.StroyID)
                     {
                         Position = helpler.transform.InverseTransformPoint(posArr[i++])
                     };
@@ -88,14 +88,7 @@ public class TreasureSuShe : TreasureModuleBase
 
                         //更新当前剧情任务
                         bool has = false;
-                        if (!treasureDic.ContainsKey(treasureData.storyId))
-                        {
-                            has = true;
-                        }
-                        else 
-                        {
-                            has = treasureDic[treasureData.storyId].Count != 0;
-                        }
+                        has = treasureDic[treasureData.storyId].Count != 0;
                         //是否还有收藏品
                         GameEntry.DataNode.SetData("StoryPower/" + treasureData.storyId, new VarBoolean()
                         {

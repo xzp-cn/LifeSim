@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2022-09-19 10:58:49.698
+// 生成时间：2022-09-29 16:54:38.805
 //------------------------------------------------------------
 
 using GameFramework;
@@ -19,14 +19,14 @@ using UnityGameFramework.Runtime;
 namespace StarForce
 {
     /// <summary>
-    /// 成就表。
+    /// �ɾͱ�。
     /// </summary>
     public class DRAchievementSystem : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取物品编号。
+        /// 获取��Ʒ���。
         /// </summary>
         public override int Id
         {
@@ -37,7 +37,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取名字。
+        /// 获取����。
         /// </summary>
         public string Name
         {
@@ -46,7 +46,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取物品名称。
+        /// 获取��Ʒ����。
         /// </summary>
         public string Content
         {
@@ -55,7 +55,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取图片名称。
+        /// 获取ͼƬ����。
         /// </summary>
         public string ImageName
         {
@@ -64,7 +64,7 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取背包物品组合。
+        /// 获取������Ʒ���。
         /// </summary>
         public string TreasureArr
         {
