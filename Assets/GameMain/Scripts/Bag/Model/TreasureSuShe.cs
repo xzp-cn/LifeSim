@@ -39,7 +39,7 @@ public class TreasureSuShe : TreasureModuleBase
             {
                 try
                 {
-                    TreasureData data = new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, Utility.Random.GetRandom(1, 2), _drTreasure.StroyID)
+                    TreasureData data = new TreasureData(GameEntry.Entity.GenerateSerialId(), _drTreasure.Id, Utility.Random.GetRandom(2, 5), _drTreasure.StroyID)
                     {
                         Position = helpler.transform.InverseTransformPoint(posArr[i++])
                     };
@@ -47,7 +47,7 @@ public class TreasureSuShe : TreasureModuleBase
                 }
                 catch (Exception e)
                 {   
-                    Log.Error(posArr.Length+"  "+i);
+                    Log.Error(posArr.Length+"  "+i+" "+storyId);
                     throw;
                 }
             }

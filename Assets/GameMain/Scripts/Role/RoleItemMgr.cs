@@ -39,7 +39,7 @@ public class RoleItemMgr
         m_RoleInstanceRoot = _par;
         m_RoleItemTemplate = _roleItem;
         m_CachedTransform = m_RoleInstanceRoot.GetComponent<Transform>();
-        m_RoleItemObjectPool = GameEntry.ObjectPool.GetObjectPool<RoleItemObject>();
+        m_RoleItemObjectPool = GameEntry.ObjectPool.GetObjectPool<RoleItemObject>("RoleItem");
         if (m_RoleItemObjectPool == null)
         {
             m_RoleItemObjectPool = GameEntry.ObjectPool.CreateSingleSpawnObjectPool<RoleItemObject>("RoleItem", m_InstancePoolCapacity);

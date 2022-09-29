@@ -419,10 +419,13 @@ namespace StarForce
         {
             int id = (VarInt32)((StoryOverEventArgs)args).UserData;
             Log.Debug("故事ID =" + id);
+
+
+            //弹出对话框
             m_ProcedurePortraitOfMan.GotoPositive();
             m_ProcedurePortraitOfMan = null;
-        }
 
+        }
 
         void FreshEnergy(object sender,GameEventArgs args)
         {
@@ -431,4 +434,4 @@ namespace StarForce
         }
     }
 }
-
+    

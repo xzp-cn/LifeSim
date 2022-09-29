@@ -28,7 +28,7 @@ public class Treasure : Entity
     protected override void OnShow(object userData)
 #else
         protected internal override void OnShow(object userData)
-#endif  
+#endif
     {
         base.OnShow(userData);
 

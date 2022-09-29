@@ -109,7 +109,7 @@ namespace UnityGameFramework.Editor
 
             EditorGUILayout.BeginVertical("box");
             {
-                float gameSpeed = EditorGUILayout.Slider("Game Speed", m_GameSpeed.floatValue, 0f, 8f);
+                float gameSpeed = EditorGUILayout.Slider("Game Speed", m_GameSpeed.floatValue, 0f, 15f);
                 int selectedGameSpeed = GUILayout.SelectionGrid(GetSelectedGameSpeed(gameSpeed), GameSpeedForDisplay, 5);
                 if (selectedGameSpeed >= 0)
                 {

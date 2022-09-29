@@ -184,6 +184,12 @@ public class AchieveMgr : IUIModule
             AchieveItem achieveItem = GetAchieveItemPoolObj();
             achieveItem.FreshContent(_bagItemGridData);
             achieveItemList.Add(achieveItem);
+            
+            //默认显示第一个的成就信息
+            if (achieveItemGridDatas.Count==1)
+            {
+               achieveItem.OnClick();
+            }
         }
 
         GameEntry.Setting.SetObject<List<TreasureBagData>>("Treasure", treasureBagDatas);
