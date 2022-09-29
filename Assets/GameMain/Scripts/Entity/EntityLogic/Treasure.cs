@@ -100,13 +100,14 @@ public class Treasure : Entity
             int energy = clickNum * m_TreasureData.PerEnergy;
 
             IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
+            int originEnergy = 0;
             if (dataNode == null)
             {
-                GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = energy });
+                GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = originEnergy});
             }
             else
             {
-                energy+= GameEntry.DataNode.GetData<VarInt32>("Energy");
+                originEnergy= GameEntry.DataNode.GetData<VarInt32>("Energy");
             }
 
             int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
@@ -131,19 +132,7 @@ public class Treasure : Entity
             };
             GameEntry.Event.Fire(this, ModelTreasureStoreFreshEventArgs.Create(data));
             //
-            //UIForm uiForm=GameEntry.UI.GetUIForm(AssetUtility.GetUIFormAsset("Life_portraitOfMan"));
-            //PortraitOfManForm form = uiForm.Logic as PortraitOfManForm;
-            //Transform btn=form.transform.Find("Screen_Portrait/center/center/Right/buttons/button");
-            //Vector2 screenPos= Camera.main.WorldToScreenPoint(transform.position);
-            //Vector3 worldPos;
-
-
-            //screenPos=RectTransformUtility.WorldToScreenPoint(null,btn.position);
-            //worldPos= Camera.main.ScreenToWorldPoint(screenPos);
-            //GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //go.transform.position = worldPos;
-            //go.transform.localScale=Vector3.one*100;
-            //go.transform.DOMove(btn.position,2);
+           
 
         }
     }

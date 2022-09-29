@@ -30,15 +30,30 @@ public class HomePageForm : UGuiForm
 
     public void OnNewButtonClick()
     {
-        //TODO 全局清理
-        GameEntry.DataNode.Clear();
-        GameEntry.SceneModel.ResetAll();
-        GameEntry.Setting.RemoveSetting("Treasure");
+        GameEntry.UI.OpenDialog(new DialogParams()
+        {
+            Mode = 2,
+            Title = GameEntry.Localization.GetString("Dialog.ResetStoryTitle"),
+            Message = GameEntry.Localization.GetString("Dialog.ResetStoryMessage"),
+            OnClickConfirm = delegate (object userData)
+            {
 
-        Log.Debug("重新开始");
-        //
-        //TODO 重构：添加重置接口
-        ((PlotItemMgr)m_PlotItemMgr).FreshStory();
+                //TODO 全局数据清理
+                GameEntry.DataNode.Clear();
+                GameEntry.SceneModel.ResetAll();
+                GameEntry.Setting.RemoveSetting("Treasure");
+
+                Log.Debug("重新开始-");
+                //
+                //TODO 重构：添加重置接口
+                ((PlotItemMgr)m_PlotItemMgr).FreshStory();
+            },
+            OnClickCancel = delegate (object userData)
+            {
+
+            }
+        });
+
     }
 
     void GotoStory(object sender, GameEventArgs args)

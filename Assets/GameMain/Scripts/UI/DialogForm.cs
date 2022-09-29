@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System;
+using System.Threading.Tasks;
 using GameFramework;
 using GameFramework.Resource;
 using UnityEngine;
@@ -222,7 +223,7 @@ namespace StarForce
             }
         }
 
-        private void RefreshMessageImage()
+        async void RefreshMessageImage()
         {
             if (m_UserData==null)
             {
@@ -230,7 +231,8 @@ namespace StarForce
             }
             else
             {
-                Sprite sp= GetUISprite((string)m_UserData);
+                Sprite sp= await GetUISprite((string)m_UserData);
+                Log.Debug("勋章： "+sp);
                 m_MessageBG.sprite = sp;
                 m_MessageBG.gameObject.SetActive(true);
             }
@@ -240,7 +242,7 @@ namespace StarForce
         private UIPool UiPool;
         private GameObject uiPoolObject;
 
-        Sprite GetUISprite(string _imageName)
+        async Task<Sprite> GetUISprite(string _imageName)
         {
             Sprite sp = null;
             Action action = () =>
@@ -250,27 +252,28 @@ namespace StarForce
                 sp = uiStruct.uiSprite;
             };
 
-            if (uiPoolObject == null)
-            {
-                GameEntry.Resource.LoadAsset(AssetUtility.GetUIFormAsset("UIPrefab"), Constant.AssetPriority.UIFormAsset, new LoadAssetCallbacks(
-                    (assetName, asset, duration, userData) =>
-                    {
-                        uiPoolObject = (GameObject)asset;
-                        Log.Info("Load 资源 '{0}' OK.", "UIPrefab");
-                        action?.Invoke();
-                    },
+        
+          if (uiPoolObject == null)
+          {
+              await Task.Run(() =>
+              {
+                  GameEntry.Resource.LoadAsset(AssetUtility.GetUIFormAsset("UIPrefab"), Constant.AssetPriority.UIFormAsset, new LoadAssetCallbacks(
+                      (assetName, asset, duration, userData) =>
+                      {
+                          uiPoolObject = (GameObject)asset;
+                          Log.Info("Load 资源 '{0}' OK.", "UIPrefab");
+                          action?.Invoke();
+                      },
 
-                    (assetName, status, errorMessage, userData) =>
-                    {
-                        Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'.", "UIPrefab", assetName, errorMessage);
-                    }));
-            }
-            else
-            {
-                action?.Invoke();
-            }
+                      (assetName, status, errorMessage, userData) =>
+                      {
+                          Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'.", "UIPrefab", assetName, errorMessage);
+                      }));
 
-            return sp;
+              });
+            }
+          action.Invoke();
+          return sp;
         }
     }
 }
