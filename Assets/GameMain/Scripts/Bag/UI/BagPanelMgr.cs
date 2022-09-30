@@ -187,17 +187,21 @@ public class BagPanelMgr : IUIModule
         {
             TreasureBagData bagData = treasureBagDatas[i];
             DRBag drBag = Array.Find(drBags, (_bagData) => { return _bagData.Id == bagData.bagId; });
-            BagItemGridData bagItemGrid = new BagItemGridData();
-            bagItemGrid.bagData = new BagItemData()
+            BagItemGridData bagItemGrid = bagItemGridDatas.Find((_data) => { return _data.bagData.name.Equals(drBag.Name); });
+            if (bagItemGrid == null)
             {
-                name = drBag.Name,
-                imageName = drBag.ImageName,
-                inforText = drBag.Content,
-                type = drBag.TypeId
-            };
-            bagItemGrid.num = bagData.num;
+                bagItemGrid = new BagItemGridData();
+                bagItemGrid.bagData = new BagItemData()
+                {
+                    name = drBag.Name,
+                    imageName = drBag.ImageName,
+                    inforText = drBag.Content,
+                    type = drBag.TypeId
+                };
+                bagItemGridDatas.Add(bagItemGrid);
+            }
+            bagItemGrid.num += bagData.num;
             //
-            bagItemGridDatas.Add(bagItemGrid);
         }
         //
         bagItemList.Clear();

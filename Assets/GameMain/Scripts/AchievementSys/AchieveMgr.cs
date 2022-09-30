@@ -92,7 +92,7 @@ public class AchieveMgr : IUIModule
         //
         if (!GameEntry.Setting.HasSetting("Treasure"))
         {
-            Log.Warning("当前背包中没有任何内容");
+            Log.Debug("当前背包中没有任何内容");
             return;
         }
         List<TreasureBagData> treasureBagDatas = GameEntry.Setting.GetObject<List<TreasureBagData>>("Treasure");
@@ -100,18 +100,19 @@ public class AchieveMgr : IUIModule
         Func<string, int> callBack = (str) =>
          {
              string[] strArr = str.Split('|');
-             int n = -1;
+             int n = 0;
              for (int i = 0; i < strArr.Length; i++)
              {
                  TreasureBagData treasureBagData = treasureBagDatas.Find((item) => { return item.bagId == int.Parse(strArr[i]); });
                  if (treasureBagData == null)
                  {
-                     n = -1;
+                     Log.Debug("无法合成");
+                     n = 0;
                      break;
                  }
                  else
                  {
-                     if (n == -1)
+                     if (n==0)
                      {
                          n = treasureBagData.num;
                      }
@@ -119,6 +120,7 @@ public class AchieveMgr : IUIModule
                      {
                          n = Mathf.Min(n, treasureBagData.num);
                      }
+                   
                  }
              }
              return n;
@@ -128,9 +130,9 @@ public class AchieveMgr : IUIModule
         {
             string treasureArr = _drAchievementSystem.TreasureArr;
             int n = callBack(treasureArr);
-            if (n == -1)
+            if (n == 0)
             {
-                //Log.Warning($"{treasureArr} 没有勋章");
+                Log.Debug($"{_drAchievementSystem.Name} 没有勋章");
                 continue;
             }
             else
@@ -156,7 +158,6 @@ public class AchieveMgr : IUIModule
                         Title = GameEntry.Localization.GetString("Dialog.AchieveTitle"),
                         UserData = _drAchievementSystem.ImageName,
                     });
-
                 }
                 else
                 {
@@ -172,6 +173,7 @@ public class AchieveMgr : IUIModule
                     data.num -= n;
                     if (data.num == 0)
                     {
+                        Log.Debug("移除物品 "+data.bagId);
                         treasureBagDatas.Remove(data);
                     }
                 }

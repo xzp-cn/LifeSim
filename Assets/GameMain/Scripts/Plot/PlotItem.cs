@@ -39,11 +39,18 @@ namespace StarForce
             m_StoryOrderText.text = (storyId%10000+1).ToString();
         }
 
-        public void SetTask(bool AllOver)
+        public void SetTask(Vector2 AllOver)
         {
-            m_Toggle.isOn = AllOver;
+            if (AllOver.x==0)
+            {
+                m_Toggle.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_Toggle.gameObject.SetActive(true);
+                m_Toggle.isOn = AllOver.y!=0;//是否还有收藏品
+            }
         }
-
 
         public void DisActiveRaycast()
         {

@@ -114,7 +114,6 @@ public class Treasure : Entity
             GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
             GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
 
-
             //更新背包
             GameEntry.Event.Fire(this, ModelTreasureEventArgs.Create(new TreasureBagData()
             {

@@ -159,6 +159,10 @@ public class SceneModelComponent : GameFrameworkComponent
 
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -197,6 +201,10 @@ public class SceneModelComponent : GameFrameworkComponent
 
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -234,6 +242,10 @@ public class SceneModelComponent : GameFrameworkComponent
             });
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -276,6 +288,10 @@ public class SceneModelComponent : GameFrameworkComponent
 
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -317,6 +333,10 @@ public class SceneModelComponent : GameFrameworkComponent
 
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -352,6 +372,11 @@ public class SceneModelComponent : GameFrameworkComponent
             });
             if (string.IsNullOrEmpty(drSceneContents.PosArr))
             {
+                GameEntry.DataNode.SetData("StoryPower/" + curStoryId, new VarVector2()
+                {
+                    Value = new Vector2() { x = 0, y = 0 }
+                });
+
                 Log.Debug($"当前章节{drSceneContents.StoryName}没有收藏品");
                 return;
             }
@@ -381,21 +406,31 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         TreasureBagData modelTreasureData =(TreasureBagData)((ModelTreasureEventArgs)args).UserData;
 
-        int bagID= modelTreasureData.bagId;
-        TreasureBagData data=TreasureBagDatas.Find((_bData)=> { return _bData.bagId ==bagID; });
-        if (data==null)
+        Action call = () =>
         {
-            TreasureBagDatas.Add(modelTreasureData);
-        }
-        else
+            int bagID = modelTreasureData.bagId;
+            TreasureBagData data = TreasureBagDatas.Find((_bData) => { return _bData.bagId == bagID; });
+            if (data == null)
+            {
+                TreasureBagDatas.Add(modelTreasureData);
+            }
+            else
+            {
+                data.num += modelTreasureData.num;
+            }
+        };
+        bool hasSetting=GameEntry.Setting.HasSetting("Treasure");
+        if (hasSetting)
         {
-            data.num = modelTreasureData.num;
+            TreasureBagDatas = GameEntry.Setting.GetObject<List<TreasureBagData>>("Treasure");
+          
         }
-        GameEntry.Setting.SetObject("Treasure",TreasureBagDatas);
+        call?.Invoke();
+        GameEntry.Setting.SetObject<List<TreasureBagData>>("Treasure", TreasureBagDatas);
 
-        GameEntry.Event.Fire(this,BagTreasureFreshEventArgs.Create(null));//背包更新
+        GameEntry.Event.FireNow(this,BagTreasureFreshEventArgs.Create(null));//背包更新
 
-        GameEntry.Event.Fire(this,AchieveMedalFreshEventArgs.Create(null));//成就更新
+        GameEntry.Event.FireNow(this,AchieveMedalFreshEventArgs.Create(null));//成就更新
         
     }
 
@@ -439,9 +474,9 @@ public class SceneModelComponent : GameFrameworkComponent
     {
         for (int i = 10000; i < 10036; i++)
         {
-            GameEntry.DataNode.SetData("StoryPower/" + i, new VarBoolean()
+            GameEntry.DataNode.SetData("StoryPower/" + i, new VarVector2()
             {
-                Value = true
+                Value = new Vector2() { x = 1, y = 0 }//x=0没有收藏品,1有，y=0没完成，1完成
             });
         }
     }   

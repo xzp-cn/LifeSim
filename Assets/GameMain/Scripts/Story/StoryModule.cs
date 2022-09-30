@@ -191,7 +191,7 @@ public class StoryModule :StoryModuleBase
         if (tableIndex>=storyIdRange.Length)
         {
             //TODO。弹出对话框结束，跳转到下一个场景
-
+            tableIndex = -1;
             GameEntry.Event.Fire(this, StoryOverEventArgs.Create(CurStoryId));
             Log.Debug($"所有场景{CurStoryId}结束");
         }

@@ -73,32 +73,29 @@ public class TreasureSuShe : TreasureModuleBase
     void FreshData(object sender,GameEventArgs args)
     {
         TreasureEntityData treasureData=(TreasureEntityData)((ModelTreasureStoreFreshEventArgs)args).UserData;
-        if (treasureDic.ContainsKey(treasureData.storyId))
+        List<TreasureData> treasureDataList = treasureDic[treasureData.storyId];
+        if (treasureDataList.Count != 0)
         {
-            List<TreasureData> treasureDataList=treasureDic[treasureData.storyId];
-            if (treasureDataList.Count!=0)
+            TreasureData data = treasureDataList.Find((_data) => { return _data.TypeId == treasureData.typeId; });
+            if (data != null)
             {
-                TreasureData data= treasureDataList.Find((_data) => { return _data.TypeId == treasureData.typeId; });
-                if (data!=null)
+                if (treasureData.count == 0)
                 {
-                    if (treasureData.count==0)
-                    {
-                        Log.Debug("移除数据");
-                        treasureDataList.Remove(data);
+                    Log.Debug("移除数据 "+data.Name);
+                    treasureDataList.Remove(data);
 
-                        //更新当前剧情任务
-                        bool has = false;
-                        has = treasureDic[treasureData.storyId].Count != 0;
-                        //是否还有收藏品
-                        GameEntry.DataNode.SetData("StoryPower/" + treasureData.storyId, new VarBoolean()
-                        {
-                            Value = has
-                        });
-                    }
-                    else
+                    //更新当前剧情任务
+                    bool has = false;
+                    has = treasureDic[treasureData.storyId].Count != 0;
+                    //是否还有收藏品
+                    GameEntry.DataNode.SetData("StoryPower/" + treasureData.storyId, new VarVector2()
                     {
-                        data.MaxNum = treasureData.count;
-                    }
+                        Value = new Vector2() { x =1,y=has?0:1}
+                    });
+                }
+                else
+                {
+                    data.MaxNum = treasureData.count;
                 }
             }
         }

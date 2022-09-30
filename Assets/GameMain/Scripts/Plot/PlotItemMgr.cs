@@ -85,7 +85,9 @@ namespace StarForce
                 for (int i = startIndex, j = 0; i <= id; i++, j++)
                 {
                     m_ActivePlotItems[j].ActiveRaycast();
+                   
                 }
+                
             }
         }
 
@@ -155,13 +157,10 @@ namespace StarForce
 
             foreach (PlotItem _plotItem in m_ActivePlotItems)
             {
-                bool isOver=GameEntry.DataNode.GetData<VarBoolean>("StoryPower/"+_plotItem.storyId);
-                _plotItem.SetTask(isOver);
+                VarVector2 vector2= GameEntry.DataNode.GetData<VarVector2>("StoryPower/" + _plotItem.storyId);
+                _plotItem.SetTask(vector2);
             }
-
             FreshStory();
-
-
         }
         public virtual void Update()
         {

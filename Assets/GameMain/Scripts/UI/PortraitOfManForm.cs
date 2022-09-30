@@ -422,9 +422,19 @@ namespace StarForce
 
 
             //弹出对话框
-            m_ProcedurePortraitOfMan.GotoPositive();
-            m_ProcedurePortraitOfMan = null;
-
+            //弹出对话框
+            GameEntry.UI.OpenDialog(new DialogParams()
+            {
+                Mode = 1,
+                Title = GameEntry.Localization.GetString("Dialog.OverStoryTitle"),
+                Message = GameEntry.Localization.GetString("Dialog.OverStoryMessage"),
+                UserData =null,
+                OnClickConfirm = delegate(object data)
+                {
+                    m_ProcedurePortraitOfMan.GotoPositive();
+                    m_ProcedurePortraitOfMan = null;
+                }
+            });
         }
 
         void FreshEnergy(object sender,GameEventArgs args)
