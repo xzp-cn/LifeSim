@@ -197,6 +197,7 @@ public class BagPanelMgr : IUIModule
             };
             bagItemGrid.num += bagData.num;
             //
+            bagItemGridDatas.Add(bagItemGrid);
         }
         //
         bagItemList.Clear();

@@ -200,14 +200,15 @@ public class CareerModule : IUIModule
         string data2 = pairArr[2].Key;
         string careerStr = data0 + data1 + data2;
         Log.Debug(careerStr+" 分析分数");
-        DRCareerRelation relation=m_CareerRelationTable.GetDataRow((_dataRow) => { return _dataRow.CareerCombine == careerStr; });
+        Text relationText = m_CareerAnalysis.Find("4/relation/Content").GetComponent<Text>();
         try
         {
-            Text relationText = m_CareerAnalysis.Find("4/relation/Content").GetComponent<Text>();
+            DRCareerRelation relation = m_CareerRelationTable.GetDataRow((_dataRow) => { return _dataRow.CareerCombine == careerStr; });
             relationText.text = relation.Description;
         }
         catch (Exception e)
         {
+            relationText.text =string.Empty;
             Log.Error("没有找到对应的职业组合");
             Log.Error(e.Message);
         }

@@ -265,7 +265,7 @@ public class AchieveMgr : IUIModule
         }
 
     }
-
+    
     public void OnClose(bool isShutdown, object userData)
     {
         m_AchivevePanelTransform.gameObject.SetActive(false);
