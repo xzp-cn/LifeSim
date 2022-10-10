@@ -84,7 +84,44 @@ public class Treasure : Entity
         GameEntry.Sound.PlaySound(m_TreasureData.SoundId);
 
         clickNum++;
-        if (clickNum > m_TreasureData.MaxNum)
+
+        //更新能量显示
+        int energy = clickNum * m_TreasureData.PerEnergy;
+
+        IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
+        int originEnergy = 0;
+        if (dataNode == null)
+        {
+            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = originEnergy });
+        }
+        else
+        {
+            originEnergy = GameEntry.DataNode.GetData<VarInt32>("Energy");
+        }
+
+        int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
+        GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
+        GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
+
+        //更新背包
+        GameEntry.Event.Fire(this, ModelTreasureEventArgs.Create(new TreasureBagData()
+        {
+            num = clickNum,
+            bagId = m_TreasureData.BagId,
+            power = m_TreasureData.PerEnergy
+        }));
+
+        //场景数据刷新
+        TreasureEntityData data = new TreasureEntityData()
+        {
+            storyId = m_TreasureData.StoryId,
+            typeId = m_TreasureData.TypeId,
+            count = Mathf.Clamp(m_TreasureData.MaxNum - clickNum, 0, m_TreasureData.MaxNum)//剩余点击次数
+        };
+        GameEntry.Event.FireNow(this, ModelTreasureStoreFreshEventArgs.Create(data));
+
+
+        if (clickNum >=m_TreasureData.MaxNum)
         {
             Log.Debug("点击次数 " + clickNum);
             GameEntry.Entity.HideEntity(this);
@@ -93,44 +130,6 @@ public class Treasure : Entity
                 {
                     Position = CachedTransform.localPosition,
                 });
-        }
-        else
-        {
-            //更新能量显示
-            int energy = clickNum * m_TreasureData.PerEnergy;
-
-            IDataNode dataNode = GameEntry.DataNode.GetNode("Energy");
-            int originEnergy = 0;
-            if (dataNode == null)
-            {
-                GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = originEnergy});
-            }
-            else
-            {
-                originEnergy= GameEntry.DataNode.GetData<VarInt32>("Energy");
-            }
-
-            int m_value = (int)GameEntry.DataNode.GetData<VarInt32>("Energy") + energy;
-            GameEntry.DataNode.SetData("Energy", new VarInt32() { Value = m_value });
-            GameEntry.Event.Fire(this, FreshEnergyEventArgs.Create(null));
-
-            //更新背包
-            GameEntry.Event.Fire(this, ModelTreasureEventArgs.Create(new TreasureBagData()
-            {
-                num = clickNum,
-                bagId = m_TreasureData.BagId,
-                power = m_TreasureData.PerEnergy
-            }));
-
-            //场景数据刷新
-            TreasureEntityData data = new TreasureEntityData()
-            {
-                storyId = m_TreasureData.StoryId,
-                typeId = m_TreasureData.TypeId,
-                count = Mathf.Clamp(m_TreasureData.MaxNum-clickNum,0,m_TreasureData.MaxNum)//剩余点击次数
-            };
-            GameEntry.Event.FireNow(this, ModelTreasureStoreFreshEventArgs.Create(data));
-            //
         }
     }
 }

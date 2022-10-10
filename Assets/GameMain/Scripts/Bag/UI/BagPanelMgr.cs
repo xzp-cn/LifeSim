@@ -236,6 +236,9 @@ public class BagPanelMgr : IUIModule
         //Text_attr.text = bagItemData.inforText;
         Text_info.text = bagItemData.inforText;
 
+        Image m_Image = m_BagInfoPanelTransform.Find("middle/Image").GetComponent<Image>();
+        FreshImg(m_Image,bagItemData.imageName);
+
     }
 
     public void Update()
@@ -263,4 +266,39 @@ public class BagPanelMgr : IUIModule
         GameEntry.Event.Unsubscribe(BagTreasureFreshEventArgs.EventId, FreshTreasureShow);
     }
 
+
+    private GameObject uiPoolObject;
+    void FreshImg(Image m_Image,string imageName)
+    {
+        Action action = () =>
+        {
+            //if (m_Image.sprite!=null)
+            //{
+            //    return;
+            //}
+            UIPool uiPool = uiPoolObject.GetComponent<UIPool>();
+            UIStruct uiStruct = uiPool.m_UiStructs.Find((_uiStruct) => { return _uiStruct.uiSprite.name.Equals(imageName); });
+            m_Image.sprite = uiStruct.uiSprite;
+        };
+
+        if (uiPoolObject == null)
+        {
+            GameEntry.Resource.LoadAsset(AssetUtility.GetUIFormAsset("UIPrefab"), Constant.AssetPriority.UIFormAsset, new LoadAssetCallbacks(
+                (assetName, asset, duration, userData) =>
+                {
+                    uiPoolObject = (GameObject)asset;
+                    Log.Info("Load 资源 '{0}' OK.", "UIPrefab");
+                    action?.Invoke();
+                },
+
+                (assetName, status, errorMessage, userData) =>
+                {
+                    Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'.", "UIPrefab", assetName, errorMessage);
+                }));
+        }
+        else
+        {
+            action?.Invoke();
+        }
+    }
 }

@@ -155,8 +155,7 @@ namespace StarForce
          }
 
 
-
-        public void Muted(bool isOn)
+         public void Muted(bool isOn)
          {
              m_isStop = !isOn;
              _Audio.volume = isOn ? GameEntry.Setting.GetFloat(Constant.Setting.UISpeakVolume):0;

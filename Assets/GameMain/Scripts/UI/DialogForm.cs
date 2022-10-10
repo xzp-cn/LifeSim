@@ -269,7 +269,6 @@ namespace StarForce
                       {
                           Log.Error("Can not load font '{0}' from '{1}' with error message '{2}'.", "UIPrefab", assetName, errorMessage);
                       }));
-
               });
             }
           action.Invoke();
